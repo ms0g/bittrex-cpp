@@ -1,5 +1,3 @@
-
-
 #ifndef BITTREX_CPP_CLIENT_H
 #define BITTREX_CPP_CLIENT_H
 
@@ -11,10 +9,10 @@
 namespace bittrex {
     class Client {
     public:
-        Client(const std::string &key) {
+        explicit Client(const std::string &key) {
             connection = std::make_shared<Connection>(key);
         }
-
+        /* Public information available without an API key */
         api::Public get_public();
 
 

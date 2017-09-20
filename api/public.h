@@ -17,24 +17,36 @@ using namespace bittrex;
 
 namespace bittrex {
     namespace api {
+        typedef vector<response::Market> VecMarket;
+        typedef vector<response::Currency> VecCurrency;
+        typedef vector<response::MarketSummary> VecMarketSum;
+        typedef vector<response::Trade> VecTrade;
+
         class Public {
         public:
             explicit Public(shared_ptr<Connection> connection) :
-                    connection(std::move(connection)) {};
+                    connection(move(connection)) {};
 
-            vector<response::Market> get_markets();
+            /* Get the open and available trading markets at Bittrex along with other meta data */
+            VecMarket get_markets();
 
-            vector<response::Currency> get_currencies();
+            /* Get all supported currencies at Bittrex along with other meta data */
+            VecCurrency get_currencies();
 
+            /* Get the current tick values for a market */
             response::Ticker get_ticker(const string &market);
 
-            vector<response::MarketSummary> get_market_summaries();
+            /* Get the last 24 hour summary of all active exchanges */
+            VecMarketSum get_market_summaries();
 
+            /* Get the last 24 hour summary of all active exchanges */
             response::MarketSummary get_market_summary(const string &market);
 
+            /* Get retrieve the orderbook for a given market */
             response::OrderBook get_order_book(const string &market, const string &type);
 
-            vector<response::Trade> get_market_history(const string &market);
+            /* Retrieve the latest trades that have occured for a specific market */
+            VecTrade get_market_history(const string &market);
 
         private:
             shared_ptr<Connection> connection;

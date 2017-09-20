@@ -3,7 +3,7 @@
 
 using namespace bittrex;
 
-std::string Connection::execute_request(std::string endpoint, const char *params, int method) {
+std::string Connection::execute_request(const std::string &endpoint, const char *params, int method) {
     switch (method) {
         case PUBLIC:
             if (params == nullptr)

@@ -6,8 +6,8 @@
 using namespace bittrex::api;
 using json = nlohmann::json;
 
-vector<response::Market> Public::get_markets() {
-    vector<response::Market> markets;
+VecMarket Public::get_markets() {
+    VecMarket markets;
     string res = connection->execute_request("public/getmarkets/", nullptr, PUBLIC);
     auto j_res = json::parse(res);
     if (!j_res["success"]) {
@@ -16,14 +16,14 @@ vector<response::Market> Public::get_markets() {
 
     auto j_markets = j_res["result"];
     for (auto &market:j_markets) {
-        markets.push_back(response::Market(market));
+        markets.emplace_back(market);
     }
     return markets;
 
 }
 
-vector<response::Currency> Public::get_currencies() {
-    vector<response::Currency> currencies;
+VecCurrency Public::get_currencies() {
+    VecCurrency currencies;
     string res = connection->execute_request("public/getcurrencies/", nullptr, PUBLIC);
     auto j_res = json::parse(res);
     if (!j_res["success"])
@@ -31,7 +31,7 @@ vector<response::Currency> Public::get_currencies() {
 
     auto j_currencies = j_res["result"];
     for (auto &currency:j_currencies) {
-        currencies.push_back(response::Currency(currency));
+        currencies.emplace_back(currency);
     }
     return currencies;
 
@@ -50,8 +50,8 @@ response::Ticker Public::get_ticker(const string &market) {
 
 }
 
-vector<response::MarketSummary> Public::get_market_summaries() {
-    vector<response::MarketSummary> market_summaries;
+VecMarketSum Public::get_market_summaries() {
+    VecMarketSum market_summaries;
     string res = connection->execute_request("public/getmarketsummaries/", nullptr, PUBLIC);
     auto j_res = json::parse(res);
     if (!j_res["success"])
@@ -59,7 +59,7 @@ vector<response::MarketSummary> Public::get_market_summaries() {
 
     auto j_summaries = j_res["result"];
     for (auto &sum:j_summaries) {
-        market_summaries.push_back(response::MarketSummary(sum));
+        market_summaries.emplace_back(sum);
     }
     return market_summaries;
 }
@@ -91,9 +91,9 @@ response::OrderBook Public::get_order_book(const string &market, const string &t
 
 }
 
-vector<response::Trade> Public::get_market_history(const string &market) {
+VecTrade Public::get_market_history(const string &market) {
     stringstream params;
-    vector<response::Trade> trades;
+    VecTrade trades;
     params << "market=" << market;
     string res = connection->execute_request("public/getmarkethistory?", params.str().c_str(), PUBLIC);
 
@@ -101,8 +101,8 @@ vector<response::Trade> Public::get_market_history(const string &market) {
     if (!j_res["success"])
         throw fail();
 
-    auto mhis = j_res["result"];
-    for (auto &j_trade:mhis) {
+    auto market_his = j_res["result"];
+    for (auto &j_trade:market_his) {
         trades.emplace_back(response::Trade(j_trade));
     }
     return trades;

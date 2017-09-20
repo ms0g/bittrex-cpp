@@ -14,9 +14,9 @@ namespace bittrex {
     /* Connection class to Bittrex API */
     class Connection {
     public:
-        Connection(std::string key) : key(std::move(key)){};
+        explicit Connection(std::string key) : key(std::move(key)){};
 
-        std::string execute_request(std::string endpoint, const char *params, int method);
+        std::string execute_request(const std::string &endpoint, const char *params, int method);
 
     private:
         const std::string key;

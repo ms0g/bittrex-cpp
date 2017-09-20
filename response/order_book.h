@@ -20,11 +20,13 @@ namespace bittrex {
 
         };
 
-        struct OrderBook {
-            OrderBook(json o_book, string type);
+        typedef vector<OrderBookEntry> VecOrderBookEnt;
 
-            vector<OrderBookEntry> buy;
-            vector<OrderBookEntry> sell;
+        struct OrderBook {
+            OrderBook(json o_book, const string &type);
+
+            VecOrderBookEnt buy;
+            VecOrderBookEnt sell;
 
         };
     }

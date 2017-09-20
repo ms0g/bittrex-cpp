@@ -7,21 +7,21 @@ OrderBookEntry::OrderBookEntry(json j) {
     rate = j["Rate"];
 }
 
-OrderBook::OrderBook(json o_book, string type) {
+OrderBook::OrderBook(json o_book, const string &type) {
     for (json::iterator it = o_book.begin(); it != o_book.end(); ++it) {
         if (type == "both") {
             if (it.key() == "buy") {
                 for (auto &el:it.value())
-                    buy.emplace_back(el);
+                    buy.emplace_back(OrderBookEntry(el));
             } else {
                 for (auto &el:it.value())
-                    sell.emplace_back(el);
+                    sell.emplace_back(OrderBookEntry(el));
             }
         } else {
             if (type == "buy")
-                buy.emplace_back(it.value());
+                buy.emplace_back(OrderBookEntry(it.value()));
             else
-                sell.emplace_back(it.value());
+                sell.emplace_back(OrderBookEntry(it.value()));
         }
 
     }

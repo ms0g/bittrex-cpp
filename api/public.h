@@ -11,6 +11,7 @@
 #include "../response/market_summary.h"
 #include "../response/order_book.h"
 #include "../response/market_history.h"
+#include "api_call.h"
 
 using namespace std;
 using namespace bittrex;
@@ -22,10 +23,9 @@ namespace bittrex {
         typedef vector<response::MarketSummary> VecMarketSum;
         typedef vector<response::Trade> VecTrade;
 
-        class Public {
+        class Public: public ApiCall {
         public:
-            explicit Public(shared_ptr<Connection> connection) :
-                    connection(move(connection)) {};
+            explicit Public(shared_ptr<Connection> connection) : ApiCall(move(connection)){}
 
             /* Get the open and available trading markets at Bittrex along with other meta data */
             VecMarket get_markets();
@@ -48,8 +48,6 @@ namespace bittrex {
             /* Retrieve the latest trades that have occured for a specific market */
             VecTrade get_market_history(const string &market);
 
-        private:
-            shared_ptr<Connection> connection;
         };
     }
 }

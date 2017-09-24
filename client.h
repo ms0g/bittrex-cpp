@@ -5,6 +5,7 @@
 #include <memory>
 #include "connection.h"
 #include "api/public.h"
+#include "api/market.h"
 
 namespace bittrex {
     class Client {
@@ -14,6 +15,7 @@ namespace bittrex {
         }
         /* Public information available without an API key */
         api::Public get_public();
+        api::Market get_market();
 
 
     private:

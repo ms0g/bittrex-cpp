@@ -13,7 +13,7 @@ using json = nlohmann::json;
 
 namespace utils {
 
-    /* Helper functions to make paramaters part of uri. */
+    /* Helper functions */
     template<typename T>
     string make_params(const T &t) {
         stringstream ss;

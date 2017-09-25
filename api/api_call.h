@@ -12,6 +12,8 @@ using namespace std;
 using json = nlohmann::json;
 
 namespace utils {
+
+    /* Helper functions to make paramaters part of uri. */
     template<typename T>
     string make_params(const T &t) {
         stringstream ss;
@@ -31,13 +33,14 @@ namespace utils {
 
 namespace bittrex{
     namespace api{
+
         class ApiCall{
         public:
             explicit ApiCall(shared_ptr<Connection> connection):
                     connection(move(connection)){}
 
         protected:
-            json dispatch(const string &endpoint,const char *params,int type){
+            json dispatch(const string &endpoint, const char *params, int type){
                 string res = connection->execute_request(endpoint, params, type);
                 auto j_res = json::parse(res);
                 if (!j_res["success"])

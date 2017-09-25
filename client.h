@@ -13,8 +13,10 @@ namespace bittrex {
         explicit Client(const std::string &key) {
             connection = std::make_shared<Connection>(key);
         }
-        /* Public information available without an API key */
+        /* Used for public information available without an API key */
         api::Public get_public();
+
+        /* Used for programatic trading of crypto currencies */
         api::Market get_market();
 
 

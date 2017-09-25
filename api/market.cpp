@@ -1,56 +1,36 @@
 #include <sstream>
 #include "market.h"
-#include "exceptions.h"
 #include "../libs/json/json.hpp"
 
 using namespace bittrex::api;
 using json = nlohmann::json;
 
 string Market::buy_limit(const string &market, float quantity, float rate) {
-    stringstream params;
-    params << "market=" << market << "&" << "quantity=" << quantity << "&" << "rate=" << rate;
-    string res = connection->execute_request("market/buylimit?", params.str().c_str(), MARKET);
-
-    auto j_res = json::parse(res);
-    if (!j_res["success"])
-        throw fail();
-    return j_res["result"];
+    string parameters = utils::make_params("market=",market,"quantity=",quantity,"rate=",rate);
+    auto res = dispatch("market/buylimit?",parameters.c_str(), MARKET);
+    return res["result"];
 }
 
 string Market::sell_limit(const string &market, float quantity, float rate) {
-    stringstream params;
-    params << "market=" << market << "&" << "quantity=" << quantity << "&" << "rate=" << rate;
-    string res = connection->execute_request("market/selllimit?", params.str().c_str(), MARKET);
+    string parameters = utils::make_params("market=",market,"quantity=",quantity,"rate=",rate);
+    auto res = dispatch("market/selllimit?",parameters.c_str(), MARKET);
+    return res["result"];
 
-    auto j_res = json::parse(res);
-    if (!j_res["success"])
-        throw fail();
-    return j_res["result"];
 }
 
 string Market::cancel(const string &uuid) {
-    stringstream params;
-    params << "uuid=" << uuid;
-    string res = connection->execute_request("market/cancel?", params.str().c_str(), MARKET);
-
-    auto j_res = json::parse(res);
-    if (!j_res["success"])
-        throw fail();
-    return j_res["result"];
+    string parameters = utils::make_params("uuid=", uuid);
+    auto res = dispatch("market/cancel?",parameters.c_str(), MARKET);
+    return res["result"];
 }
 
 VecOpenOrder Market::get_open_orders(const string &market) {
     VecOpenOrder open_orders;
-    stringstream params;
-    params << "market=" << market;
-    string res = connection->execute_request("/getopenorders?", params.str().c_str(), MARKET);
 
-    auto j_res = json::parse(res);
-    if (!j_res["success"]) {
-        throw fail();
-    }
+    string parameters = utils::make_params("market=", market);
+    auto res = dispatch("market/getopenorders?",parameters.c_str(), MARKET);
 
-    auto j_o_orders = j_res["result"];
+    auto j_o_orders = res["result"];
     for (auto &order:j_o_orders) {
         open_orders.emplace_back(response::OpenOrder(order));
     }

@@ -2,10 +2,6 @@
 
 using namespace bittrex::response;
 
-OrderBookEntry::OrderBookEntry(json j) {
-    quantity = j["Quantity"];
-    rate = j["Rate"];
-}
 
 OrderBook::OrderBook(json o_book, const string &type) {
     for (json::iterator it = o_book.begin(); it != o_book.end(); ++it) {

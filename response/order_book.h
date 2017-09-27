@@ -13,7 +13,10 @@ using namespace std;
 namespace bittrex {
     namespace response {
         struct OrderBookEntry {
-            explicit OrderBookEntry(json j);
+            explicit OrderBookEntry(json j){
+                quantity = j["Quantity"];
+                rate = j["Rate"];
+            };
 
             float quantity;
             float rate;

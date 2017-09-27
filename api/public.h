@@ -13,19 +13,18 @@
 #include "../response/market_history.h"
 #include "api_call.h"
 
-using namespace std;
 using namespace bittrex;
 
 namespace bittrex {
     namespace api {
-        typedef vector<response::Market> VecMarket;
-        typedef vector<response::Currency> VecCurrency;
-        typedef vector<response::MarketSummary> VecMarketSum;
-        typedef vector<response::Trade> VecTrade;
+        typedef std::vector<response::Market> VecMarket;
+        typedef std::vector<response::Currency> VecCurrency;
+        typedef std::vector<response::MarketSummary> VecMarketSum;
+        typedef std::vector<response::Trade> VecTrade;
 
         class Public: public ApiCall {
         public:
-            explicit Public(shared_ptr<Connection> connection) : ApiCall(move(connection)){}
+            explicit Public(std::shared_ptr<Connection> connection) : ApiCall(std::move(connection)){}
 
             /* Get the open and available trading markets at Bittrex along with other meta data */
             VecMarket get_markets();
@@ -34,19 +33,19 @@ namespace bittrex {
             VecCurrency get_currencies();
 
             /* Get the current tick values for a market */
-            response::Ticker get_ticker(const string &market);
+            response::Ticker get_ticker(const std::string &market);
 
             /* Get the last 24 hour summary of all active exchanges */
             VecMarketSum get_market_summaries();
 
             /* Get the last 24 hour summary of all active exchanges */
-            response::MarketSummary get_market_summary(const string &market);
+            response::MarketSummary get_market_summary(const std::string &market);
 
             /* Get retrieve the orderbook for a given market */
-            response::OrderBook get_order_book(const string &market, const string &type);
+            response::OrderBook get_order_book(const std::string &market, const std::string &type);
 
             /* Retrieve the latest trades that have occured for a specific market */
-            VecTrade get_market_history(const string &market);
+            VecTrade get_market_history(const std::string &market);
 
         };
     }

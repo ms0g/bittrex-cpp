@@ -16,7 +16,7 @@ namespace bittrex {
     public:
         explicit Connection(std::string key) : key(std::move(key)){};
 
-        std::string execute_request(const std::string &endpoint, const char *params, int method);
+        std::string execute_request(const std::string &endpoint, const std::string& params, int method);
 
     private:
         const std::string key;

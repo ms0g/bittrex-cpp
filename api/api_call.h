@@ -8,25 +8,27 @@
 #include "../libs/json/json.hpp"
 #include "exceptions.h"
 
-using namespace std;
 using json = nlohmann::json;
 
 namespace utils {
 
     /* Helper functions to make paramaters part of uri. */
     template<typename T>
-    string make_params(const T &t) {
+    std::string make_params(const T& t) {
         stringstream ss;
-        size_t found = string(t).find('=');
-        if (found != string::npos)
-            ss << t;
-        else
-            ss << t << "&";
+
+        ss << t;
+        if (ss.str().empty())
+            return string("");
+
+        size_t found = ss.str().find('=');
+        if (found == std::string::npos)
+            ss << "&";
         return ss.str();
     }
 
     template<typename First, typename ... Strings>
-    string make_params(First arg, const Strings &... rest) {
+    std::string make_params(First arg, const Strings &... rest) {
         return make_params(arg) + make_params(rest...);
     };
 }
@@ -36,19 +38,21 @@ namespace bittrex{
 
         class ApiCall{
         public:
-            explicit ApiCall(shared_ptr<Connection> connection):
-                    connection(move(connection)){}
+            explicit ApiCall(std::shared_ptr<Connection> connection):
+                    connection(std::move(connection)){}
 
         protected:
-            json dispatch(const string &endpoint, const char *params, int type){
-                string res = connection->execute_request(endpoint, params, type);
+            template <typename ... Params>
+            json dispatch(const std::string &endpoint, int type, const Params&... rest){
+                std::string parameters = utils::make_params(rest...);
+                auto res = connection->execute_request(endpoint, parameters, type);
                 auto j_res = json::parse(res);
                 if (!j_res["success"])
                     throw fail();
                 return j_res;
             };
 
-            shared_ptr<Connection> connection;
+            std::shared_ptr<Connection> connection;
         };
     }
 }

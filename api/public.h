@@ -24,7 +24,7 @@ namespace bittrex {
 
         class Public: public ApiCall {
         public:
-            explicit Public(std::shared_ptr<Connection> connection) : ApiCall(std::move(connection)){}
+            explicit Public(std::unique_ptr<Connection> connection) : ApiCall(std::move(connection)){}
 
             /* Get the open and available trading markets at Bittrex along with other meta data */
             VecMarket get_markets();

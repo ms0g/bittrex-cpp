@@ -3,9 +3,13 @@
 using namespace bittrex;
 
 api::Public Client::get_public() {
-    return api::Public(connection);
+    return api::Public(std::move(connection));
 }
 
 api::Market Client::get_market() {
-    return api::Market(connection);
+    return api::Market(std::move(connection));
+}
+
+api::Account Client::get_account() {
+    return api::Account(std::move(connection));
 }

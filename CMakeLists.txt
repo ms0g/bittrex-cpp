@@ -22,8 +22,9 @@ set(SOURCE_FILES
         response/balance.h
         response/deposit_address.h
         response/order.h
-        response/order_history_entry.h
-        response/order_book.cpp response/order_book.h)
+        response/order_history.h
+        response/order_book.cpp response/order_book.h
+        response/withdrawal_history.h)
 ##add_library(bittrex_cpp ${SOURCE_FILES})
 add_executable(bittrex_cpp ${SOURCE_FILES})
 

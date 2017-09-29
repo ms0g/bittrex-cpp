@@ -47,8 +47,10 @@ namespace bittrex{
                 std::string parameters = utils::make_params(rest...);
                 auto res = connection->execute_request(endpoint, parameters, type);
                 auto j_res = json::parse(res);
-                if (!j_res["success"])
-                    throw fail();
+                if (!j_res["success"]){
+                    std::string msg = j_res["message"];
+                    throw fail(msg);
+                }
                 return j_res;
             };
 

@@ -38,8 +38,8 @@ namespace bittrex{
 
         class ApiCall{
         public:
-            explicit ApiCall(std::shared_ptr<Connection> connection):
-                    connection(std::move(connection)){}
+            explicit ApiCall(const std::shared_ptr<Connection>& connection):
+                    connection(connection){}
 
         protected:
             template <typename ... Params>

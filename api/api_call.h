@@ -38,7 +38,7 @@ namespace bittrex{
 
         class ApiCall{
         public:
-            explicit ApiCall(std::unique_ptr<Connection> connection):
+            explicit ApiCall(std::shared_ptr<Connection> connection):
                     connection(std::move(connection)){}
 
         protected:
@@ -56,7 +56,7 @@ namespace bittrex{
                 return j_res;
             };
 
-            std::unique_ptr<Connection> connection;
+            std::shared_ptr<Connection> connection;
         };
     }
 }

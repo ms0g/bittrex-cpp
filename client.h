@@ -11,7 +11,7 @@
 namespace bittrex {
     class Client {
     public:
-        explicit Client(const std::string &key):connection(make_unique<Connection>(key)) {}
+        explicit Client(const std::string &key):connection(make_shared<Connection>(key)) {}
         /* Used for public information available without an API key */
         api::Public get_public();
 
@@ -23,7 +23,7 @@ namespace bittrex {
 
 
     private:
-        std::unique_ptr<Connection> connection;
+        std::shared_ptr<Connection> connection;
     };
 }
 #endif //BITTREX_CPP_CLIENT_H

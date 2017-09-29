@@ -33,8 +33,11 @@ response::DepositAddress Account::get_deposit_address(const std::string &currenc
 }
 
 
-std::string Account::withdraw(const std::string &currency, float quantity, const std::string &address) {
-    json res = dispatch("account/withdraw?", ACCOUNT, "currency=", currency,"quantity=",quantity,"address=",address);
+std::string Account::withdraw(const std::string &currency, float quantity,
+                              const std::string &address,int payment_id) {
+    json res = dispatch("account/withdraw?", ACCOUNT,
+                        "currency=", currency,"quantity=",quantity,
+                        "address=",address,"paymentid=",payment_id);
     return res["result"];
 }
 

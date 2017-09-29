@@ -46,10 +46,11 @@ namespace bittrex{
              * @param currency a string literal for the currency (ex: LTC)
              * @param quantity the quantity of coins to withdraw
              * @param address the address where to send the funds.
-             * @param paymentid optional used for CryptoNotes/BitShareX/Nxt optional field (memo/paymentid)
+             * @param payment_id optional used for CryptoNotes/BitShareX/Nxt optional field (memo/paymentid)
              * @return Returns you the withdrawal uuid
              */
-            std::string withdraw(const std::string& currency,float quantity, const std::string& address);
+            std::string withdraw(const std::string& currency, float quantity,
+                                 const std::string& address,int payment_id);
 
             /**
              * Used to retrieve a single order by uuid.

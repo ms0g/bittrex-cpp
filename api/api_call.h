@@ -45,8 +45,10 @@ namespace bittrex{
             template <typename ... Params>
             json dispatch(const std::string &endpoint, int type, const Params&... rest){
                 std::string parameters = utils::make_params(rest...);
+
                 auto res = connection->execute_request(endpoint, parameters, type);
                 auto j_res = json::parse(res);
+
                 if (!j_res["success"]){
                     std::string msg = j_res["message"];
                     throw fail(msg);

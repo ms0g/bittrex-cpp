@@ -11,33 +11,66 @@
 #include "../response/market_summary.h"
 #include "../response/order_book.h"
 #include "../response/market_history.h"
+#include "api_call.h"
 
-using namespace std;
 using namespace bittrex;
 
 namespace bittrex {
     namespace api {
-        class Public {
+
+        typedef std::vector<response::Market> VecMarket;
+        typedef std::vector<response::Currency> VecCurrency;
+        typedef std::vector<response::MarketSummary> VecMarketSum;
+        typedef std::vector<response::Trade> VecTrade;
+
+        class Public : public ApiCall {
         public:
-            explicit Public(shared_ptr<Connection> connection) :
-                    connection(std::move(connection)) {};
+            explicit Public(const std::shared_ptr<Connection> &connection) :
+                    ApiCall(connection) {}
 
-            vector<response::Market> get_markets();
+            /**
+             * Get the open and available trading markets at Bittrex along with other meta data
+             * @param None
+             */
+            VecMarket get_markets();
 
-            vector<response::Currency> get_currencies();
+            /**
+             * Get all supported currencies at Bittrex along with other meta data
+             * @param None
+             */
+            VecCurrency get_currencies();
 
-            response::Ticker get_ticker(const string &market);
+            /**
+             * Get the current tick values for a market
+             * @param market a string literal for the market (ex: BTC-LTC)
+             */
+            response::Ticker get_ticker(const std::string &market);
 
-            vector<response::MarketSummary> get_market_summaries();
+            /**
+             * Get the last 24 hour summary of all active exchanges
+             * @param None
+             */
+            VecMarketSum get_market_summaries();
 
-            response::MarketSummary get_market_summary(const string &market);
+            /**
+             * Get the last 24 hour summary of all active exchanges
+             * @param market a string literal for the market (ex: BTC-LTC)
+             */
+            response::MarketSummary get_market_summary(const std::string &market);
 
-            response::OrderBook get_order_book(const string &market, const string &type);
+            /**
+             * Get retrieve the orderbook for a given market
+             * @param market a string literal for the market (ex: BTC-LTC)
+             * @param type buy, sell or both to identify the type of orderbook to return
+             */
+            response::OrderBook get_order_book(const std::string &market, const std::string &type);
 
-            vector<response::Trade> get_market_history(const string &market);
+            /**
+             * Retrieve the latest trades that have occured for a specific market
+             * @param market a string literal for the market (ex: BTC-LTC)
+             */
+            VecTrade get_market_history(const std::string &market);
 
-        private:
-            shared_ptr<Connection> connection;
         };
     }
 }

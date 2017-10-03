@@ -7,19 +7,17 @@
 
 namespace bittrex {
 
-    enum {
-        PUBLIC, MARKET, ACCOUNT
-    };
-
     /* Connection class to Bittrex API */
     class Connection {
     public:
-        Connection(std::string key) : key(std::move(key)){};
+        explicit Connection(std::string key, std::string secret) :
+                key(std::move(key)), secret(std::move(secret)) {};
 
-        std::string execute_request(std::string endpoint, const char *params, int method);
+        std::string execute_request(const std::string &endpoint, const std::string &params, int method);
 
     private:
         const std::string key;
+        const std::string secret;
 
     };
 }

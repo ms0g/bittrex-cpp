@@ -13,18 +13,23 @@ using namespace std;
 namespace bittrex {
     namespace response {
         struct OrderBookEntry {
-            explicit OrderBookEntry(json j);
+            explicit OrderBookEntry(json j){
+                quantity = j["Quantity"];
+                rate = j["Rate"];
+            };
 
             float quantity;
             float rate;
 
         };
 
-        struct OrderBook {
-            OrderBook(json o_book, string type);
+        typedef vector<OrderBookEntry> VecOrderBookEnt;
 
-            vector<OrderBookEntry> buy;
-            vector<OrderBookEntry> sell;
+        struct OrderBook {
+            OrderBook(json o_book, const string &type);
+
+            VecOrderBookEnt buy;
+            VecOrderBookEnt sell;
 
         };
     }

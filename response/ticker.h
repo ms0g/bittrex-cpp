@@ -9,7 +9,11 @@ using json=nlohmann::json;
 namespace bittrex {
     namespace response {
         struct Ticker {
-            explicit Ticker(json j_ticker);
+            explicit Ticker(json j_ticker){
+                bid = j_ticker["Bid"];
+                ask = j_ticker["Ask"];
+                last = j_ticker["Last"];
+            };
 
             float bid;
             float ask;

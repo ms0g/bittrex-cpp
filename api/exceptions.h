@@ -7,10 +7,17 @@
 
 using namespace std;
 
-class fail:public exception{
-    const char* what() const throw() override {
-        return "Api call failed!";
+class fail : public exception {
+public:
+    explicit fail(std::string msg) : msg(std::move(msg)) {}
+
+    const char *what() const throw() override {
+        return msg.c_str();
     }
 
+private:
+    const std::string msg;
+
 };
+
 #endif //BITTREX_CPP_EXCEPTIONS_H

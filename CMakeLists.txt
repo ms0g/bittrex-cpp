@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(bittrex_cpp)
+project(bittrex)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -27,3 +27,10 @@ set(SOURCE_FILES
 
 add_library(bittrex STATIC ${SOURCE_FILES})
 target_link_libraries(bittrex curlpp curl crypto)
+INSTALL(TARGETS bittrex
+        ARCHIVE DESTINATION lib
+        )
+INSTALL (
+        DIRECTORY ${CMAKE_SOURCE_DIR}
+        DESTINATION include
+        FILES_MATCHING PATTERN "*.h*")

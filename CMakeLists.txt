@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.8)
 project(bittrex_cpp)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -12,7 +12,6 @@ set(SOURCE_FILES
         client.cpp client.h
         connection.cpp connection.h
         request.cpp request.h
-        tests/main.cpp
         response/market.h
         response/currency.h
         response/ticker.h
@@ -25,7 +24,7 @@ set(SOURCE_FILES
         response/order_history.h
         response/order_book.cpp response/order_book.h
         response/withdrawal_history.h)
-##add_library(bittrex_cpp ${SOURCE_FILES})
-add_executable(bittrex_cpp ${SOURCE_FILES})
+add_library(bittrex STATIC ${SOURCE_FILES})
+#add_executable(bittrex_cpp ${SOURCE_FILES})
 
-target_link_libraries(bittrex_cpp libcurlpp.a curl crypto)
+target_link_libraries(bittrex libcurlpp.a curl crypto)

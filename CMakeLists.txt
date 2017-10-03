@@ -24,7 +24,6 @@ set(SOURCE_FILES
         response/order_history.h
         response/order_book.cpp response/order_book.h
         response/withdrawal_history.h)
-add_library(bittrex STATIC ${SOURCE_FILES})
-#add_executable(bittrex_cpp ${SOURCE_FILES})
 
+add_library(bittrex STATIC ${SOURCE_FILES})
 target_link_libraries(bittrex libcurlpp.a curl crypto)

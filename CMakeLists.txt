@@ -26,4 +26,4 @@ set(SOURCE_FILES
         response/withdrawal_history.h)
 
 add_library(bittrex STATIC ${SOURCE_FILES})
-target_link_libraries(bittrex libcurlpp.a curl crypto)
+target_link_libraries(bittrex curlpp curl crypto)

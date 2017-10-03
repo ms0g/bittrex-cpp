@@ -12,9 +12,9 @@ using json = nlohmann::json;
 
 namespace utils {
 
-    /* Helper functions */
+    /* Helper functions to make payloads */
     template<typename T>
-    std::string make_params(const T& t) {
+    std::string make_params(const T &t) {
         stringstream ss;
 
         ss << t;
@@ -33,34 +33,43 @@ namespace utils {
     };
 }
 
-namespace bittrex{
-    namespace api{
+namespace bittrex {
 
-        class ApiCall{
+
+    namespace api {
+        enum {
+            PUBLIC, MARKET, ACCOUNT
+        };
+
+
+        class ApiCall {
         public:
-            explicit ApiCall(const std::shared_ptr<Connection>& connection):
-                    connection(connection){}
+            explicit ApiCall(std::shared_ptr<Connection> connection) :
+                    connection(std::move(connection)) {}
 
         protected:
-            template <typename ... Params>
-            json dispatch(const std::string &endpoint, int type, const Params&... rest){
-                std::string parameters = utils::make_params(rest...);
+            const std::shared_ptr<Connection> connection;
 
-                auto res = connection->execute_request(endpoint, parameters, type);
+            template<typename ... Params>
+            json dispatch(const std::string &endpoint, int type, const Params &... rest) {
+                // Create uri params
+                std::string payloads = utils::make_params(rest...);
+
+                // execute request
+                auto res = connection->execute_request(endpoint, payloads, type);
                 auto j_res = json::parse(res);
 
-                if (!j_res["success"]){
+                if (!j_res["success"]) {
                     std::string msg = j_res["message"];
                     throw fail(msg);
                 }
                 return j_res;
             };
 
-            std::shared_ptr<Connection> connection;
+
         };
     }
 }
-
 
 
 #endif //BITTREX_CPP_API_CALL_H

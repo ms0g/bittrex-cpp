@@ -23,10 +23,10 @@ namespace bittrex {
         typedef std::vector<response::MarketSummary> VecMarketSum;
         typedef std::vector<response::Trade> VecTrade;
 
-        class Public: public ApiCall {
+        class Public : public ApiCall {
         public:
-            explicit Public(const std::shared_ptr<Connection>& connection):
-                    ApiCall(connection){}
+            explicit Public(const std::shared_ptr<Connection> &connection) :
+                    ApiCall(connection) {}
 
             /**
              * Get the open and available trading markets at Bittrex along with other meta data

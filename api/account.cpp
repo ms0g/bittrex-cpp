@@ -17,7 +17,7 @@ VecBalance Account::get_balances() {
 }
 
 
-response::Balance Account::get_balance(const std::string& currency) {
+response::Balance Account::get_balance(const std::string &currency) {
     json res = dispatch("account/getbalance?", ACCOUNT, "currency=", currency);
     auto balance = res["result"];
     return response::Balance(balance);
@@ -34,16 +34,16 @@ response::DepositAddress Account::get_deposit_address(const std::string &currenc
 
 
 std::string Account::withdraw(const std::string &currency, float quantity,
-                              const std::string &address,int payment_id) {
+                              const std::string &address, int payment_id) {
     json res = dispatch("account/withdraw?", ACCOUNT,
-                        "currency=", currency,"quantity=",quantity,
-                        "address=",address,"paymentid=",payment_id);
+                        "currency=", currency, "quantity=", quantity,
+                        "address=", address, "paymentid=", payment_id);
     return res["result"];
 }
 
 
 response::Order Account::get_order(const std::string &uuid) {
-    json res = dispatch("account/getorder", ACCOUNT, "uuid=", uuid);
+    json res = dispatch("account/getorder?", ACCOUNT, "uuid=", uuid);
     auto order = res["result"];
     return response::Order(order);
 }
@@ -52,7 +52,7 @@ response::Order Account::get_order(const std::string &uuid) {
 VecOrderHistoryEnt Account::get_order_history(const string &market) {
     VecOrderHistoryEnt order_history;
 
-    json res = dispatch("account/getorderhistory", ACCOUNT, "market=", market);
+    json res = dispatch("account/getorderhistory?", ACCOUNT, "market=", market);
 
     auto order_his = res["result"];
     for (auto const &or_his:order_history) {
@@ -67,7 +67,7 @@ VecWithdHisEnt Account::get_withdrawal_history(const string &currency) {
 
     json res = dispatch("account/getwithdrawalhistory?", ACCOUNT, "currency=", currency);
     auto withd_his = res["result"];
-    for (auto const &withd_his_ent:withd_his){
+    for (auto const &withd_his_ent:withd_his) {
         withd_history.emplace_back(response::WithdrawalHistoryEntry(withd_his_ent));
     }
     return withd_history;

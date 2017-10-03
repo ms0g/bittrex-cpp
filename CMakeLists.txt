@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.5)
 project(bittrex_cpp)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -28,4 +28,4 @@ set(SOURCE_FILES
 ##add_library(bittrex_cpp ${SOURCE_FILES})
 add_executable(bittrex_cpp ${SOURCE_FILES})
 
-target_link_libraries(bittrex_cpp libcurlpp.a curl)
+target_link_libraries(bittrex_cpp libcurlpp.a curl crypto)

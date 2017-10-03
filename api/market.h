@@ -14,9 +14,9 @@ namespace bittrex {
 
         typedef vector<response::OpenOrder> VecOpenOrder;
 
-        class Market:public ApiCall{
+        class Market : public ApiCall {
         public:
-            explicit Market(const std::shared_ptr<Connection>& connection) :
+            explicit Market(const std::shared_ptr<Connection> &connection) :
                     ApiCall(connection) {};
 
             /**

@@ -7,16 +7,17 @@
 
 using namespace std;
 
-class fail:public exception{
+class fail : public exception {
 public:
-    explicit fail(std::string msg ): msg(std::move(msg)){}
+    explicit fail(std::string msg) : msg(std::move(msg)) {}
 
-    const char* what() const throw() override {
+    const char *what() const throw() override {
         return msg.c_str();
     }
 
 private:
-    std::string msg;
+    const std::string msg;
 
 };
+
 #endif //BITTREX_CPP_EXCEPTIONS_H

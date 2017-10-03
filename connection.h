@@ -7,7 +7,9 @@
 
 namespace bittrex {
 
-    /* Connection class to Bittrex API */
+    /**
+     * Connection class to Bittrex API
+     */
     class Connection {
     public:
         explicit Connection(std::string key, std::string secret) :

@@ -12,7 +12,9 @@ using json = nlohmann::json;
 
 namespace utils {
 
-    /* Helper functions to make payloads */
+    /**
+     * Helper functions to make payloads
+     */
     template<typename T>
     std::string make_params(const T &t) {
         stringstream ss;
@@ -34,14 +36,14 @@ namespace utils {
 }
 
 namespace bittrex {
-
-
     namespace api {
         enum {
             PUBLIC, MARKET, ACCOUNT
         };
 
-
+        /**
+         * parent class to bittrex's API
+         */
         class ApiCall {
         public:
             explicit ApiCall(std::shared_ptr<Connection> connection) :

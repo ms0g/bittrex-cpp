@@ -1,11 +1,10 @@
-#include <curlpp/cURLpp.hpp>
-#include <curlpp/Easy.hpp>
-#include <curlpp/Options.hpp>
-#include <sstream>
-#include <ctime>
+#include <curlpp/cURLpp.hpp> //curlpp::cleanup
+#include <curlpp/Options.hpp> //curlpp::Options
+#include <curlpp/Easy.hpp> //curlpp::Easy
+#include <openssl/hmac.h> //HMAC
+#include <sstream> //std::stringstream
+#include <ctime> //std::time
 #include "request.h"
-#include <openssl/hmac.h>
-#include <cstring>
 
 #define PUBLIC 0
 
@@ -28,6 +27,7 @@ std::string Request::get(std::string endpoint, int method) {
 
         std::string apisign = "apisign:" + utils::hmac_sha512(uri, secret);
         headers.push_back(apisign);
+
         r.setOpt(cURLpp::options::HttpHeader(headers));
         r.setOpt(cURLpp::Options::WriteStream(&res));
         r.setOpt(curlpp::options::Url(uri));

@@ -4,7 +4,11 @@ project(bittrex_cpp)
 set(CMAKE_CXX_STANDARD 14)
 
 set(SOURCE_FILES
-        main.cpp)
+        bittrex_api_test.cpp)
 
-add_executable(main ${SOURCE_FILES})
-target_link_libraries(main ${CMAKE_SOURCE_DIR}/libbittrex.a curlpp curl crypto)
+find_package(Boost COMPONENTS unit_test_framework REQUIRED)
+
+add_executable(bittrex_api_test ${SOURCE_FILES})
+
+target_link_libraries(bittrex_api_test bittrex curlpp curl crypto
+        ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})

@@ -10,7 +10,12 @@
 
 using namespace bittrex;
 
-std::string Request::get(std::string endpoint, int method) {
+std::string Request::get(const std::string &key,
+                         const std::string &secret,
+                         const std::string &payloads,
+                         const std::string &endpoint,
+                         int method) {
+
     std::stringstream res;
     auto uri = BASE_URL + endpoint;
 

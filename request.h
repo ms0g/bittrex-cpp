@@ -14,16 +14,11 @@ namespace bittrex {
 
     class Request {
     public:
-        Request(std::string key, std::string secret, std::string payloads) :
-                key(std::move(key)), secret(std::move(secret)), payloads(std::move(payloads)) {}
-
-        std::string get(std::string endpoint, int method);
-
-    private:
-        const std::string key;
-        const std::string secret;
-        const std::string payloads;
-
+        static std::string get(const std::string &key,
+                               const std::string &secret,
+                               const std::string &payloads,
+                               const std::string &endpoint,
+                               int method);
     };
 }
 #endif //BITTREX_CPP_REQUEST_H

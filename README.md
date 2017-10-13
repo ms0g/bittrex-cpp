@@ -26,7 +26,7 @@ sudo make install
 
 int main(){
     std::string key="xxxxx";
-    std::string secret="xxxxx"
+    std::string secret="xxxxx";
     
     bittrex::Client cl(key,secret);
     bittrex::api::Public p =  cl.get_public();

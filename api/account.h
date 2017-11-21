@@ -15,10 +15,6 @@ using namespace bittrex;
 namespace bittrex {
     namespace api {
 
-        typedef vector<response::Balance> VecBalance;
-        typedef vector<response::OrderHistoryEntry> VecOrderHistoryEnt;
-        typedef vector<response::WithdrawalHistoryEntry> VecWithdHisEnt;
-
         class Account : public ApiCall {
         public:
             explicit Account(const std::shared_ptr<Connection> &connection) :
@@ -28,7 +24,7 @@ namespace bittrex {
              * Used to retrieve all balances from your account
              * @param None
              */
-            VecBalance get_balances();
+            List<response::Balance> get_balances();
 
             /**
              * Used to retrieve the balance from your account for a specific currency.
@@ -64,14 +60,14 @@ namespace bittrex {
              * @param market optional a string literal for the market (ie. BTC-LTC).
              * If ommited, will return for all markets
              */
-            VecOrderHistoryEnt get_order_history(const std::string &market = "");
+            List<response::OrderHistoryEntry> get_order_history(const std::string &market = "");
 
             /**
              * Used to retrieve your withdrawal history.
              * @param currency optional	a string literal for the currecy (ie. BTC).
              * If omitted, will return for all currencies
              */
-            VecWithdHisEnt get_withdrawal_history(const std::string &currency = "");
+            List<response::WithdrawalHistoryEntry> get_withdrawal_history(const std::string &currency = "");
 
             //void get_deposit_history();
 

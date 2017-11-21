@@ -2,30 +2,30 @@
 #include "public.h"
 
 
-using namespace bittrex::api;
+using namespace bittrex;
 using json = nlohmann::json;
 
 
-VecMarket Public::get_markets() {
-    VecMarket markets;
+List<response::Market> Public::get_markets() {
+    List<response::Market> markets;
 
     json res = dispatch("public/getmarkets/", PUBLIC, "");
 
     auto j_markets = res["result"];
-    for (auto &market:j_markets) {
+    for (auto const &market:j_markets) {
         markets.emplace_back(response::Market(market));
     }
     return markets;
 }
 
 
-VecCurrency Public::get_currencies() {
-    VecCurrency currencies;
+List<response::Currency> Public::get_currencies() {
+    List<response::Currency> currencies;
 
     json res = dispatch("public/getcurrencies/", PUBLIC, "");
 
     auto j_currencies = res["result"];
-    for (auto &currency:j_currencies) {
+    for (auto const &currency:j_currencies) {
         currencies.emplace_back(response::Currency(currency));
     }
     return currencies;
@@ -39,13 +39,13 @@ response::Ticker Public::get_ticker(const string &market) {
 }
 
 
-VecMarketSum Public::get_market_summaries() {
-    VecMarketSum market_summaries;
+List<response::MarketSummary> Public::get_market_summaries() {
+    List<response::MarketSummary> market_summaries;
 
     json res = dispatch("public/getmarketsummaries/", PUBLIC, "");
 
     auto j_summaries = res["result"];
-    for (auto &sum:j_summaries) {
+    for (auto const &sum:j_summaries) {
         market_summaries.emplace_back(response::MarketSummary(sum));
     }
     return market_summaries;
@@ -66,13 +66,13 @@ response::OrderBook Public::get_order_book(const string &market, const string &t
 }
 
 
-VecTrade Public::get_market_history(const string &market) {
-    VecTrade trades;
+List<response::Trade> Public::get_market_history(const string &market) {
+    List<response::Trade> trades;
 
     json res = dispatch("public/getmarkethistory?", PUBLIC, "market=", market);
 
     auto market_hist = res["result"];
-    for (auto &j_trade:market_hist) {
+    for (auto const &j_trade:market_hist) {
         trades.emplace_back(response::Trade(j_trade));
     }
     return trades;

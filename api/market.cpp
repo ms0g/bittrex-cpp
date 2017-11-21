@@ -24,13 +24,13 @@ std::string Market::cancel(const string &uuid) {
 }
 
 
-VecOpenOrder Market::get_open_orders(const string &market) {
-    VecOpenOrder open_orders;
+List<response::OpenOrder> Market::get_open_orders(const string &market) {
+    List<response::OpenOrder> open_orders;
 
     auto res = dispatch("market/getopenorders?", MARKET, "market=", market);
 
     auto j_o_orders = res["result"];
-    for (auto &order:j_o_orders) {
+    for (auto const &order:j_o_orders) {
         open_orders.emplace_back(response::OpenOrder(order));
     }
     return open_orders;

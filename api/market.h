@@ -12,8 +12,6 @@ using namespace bittrex;
 namespace bittrex {
     namespace api {
 
-        typedef vector<response::OpenOrder> VecOpenOrder;
-
         class Market : public ApiCall {
         public:
             explicit Market(const std::shared_ptr<Connection> &connection) :
@@ -47,7 +45,7 @@ namespace bittrex {
              * Get all orders that you currently have opened. A specific market can be requested
              * @param market optional a string literal for the market (ie. BTC-LTC)
              * */
-            VecOpenOrder get_open_orders(const std::string &market);
+            List<response::OpenOrder> get_open_orders(const std::string &market);
         };
     }
 }

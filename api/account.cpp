@@ -4,8 +4,8 @@ using namespace bittrex::api;
 using json = nlohmann::json;
 
 
-VecBalance Account::get_balances() {
-    VecBalance balances;
+List<response::Balance> Account::get_balances() {
+    List<response::Balance> balances;
 
     json res = dispatch("account/getbalances?", ACCOUNT, "");
 
@@ -49,8 +49,8 @@ response::Order Account::get_order(const std::string &uuid) {
 }
 
 
-VecOrderHistoryEnt Account::get_order_history(const string &market) {
-    VecOrderHistoryEnt order_history;
+List<response::OrderHistoryEntry> Account::get_order_history(const string &market) {
+    List<response::OrderHistoryEntry> order_history;
 
     json res = dispatch("account/getorderhistory?", ACCOUNT, "market=", market);
 
@@ -62,8 +62,8 @@ VecOrderHistoryEnt Account::get_order_history(const string &market) {
 }
 
 
-VecWithdHisEnt Account::get_withdrawal_history(const string &currency) {
-    VecWithdHisEnt withd_history;
+List<response::WithdrawalHistoryEntry> Account::get_withdrawal_history(const string &currency) {
+    List<response::WithdrawalHistoryEntry> withd_history;
 
     json res = dispatch("account/getwithdrawalhistory?", ACCOUNT, "currency=", currency);
     auto withd_his = res["result"];

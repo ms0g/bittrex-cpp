@@ -42,6 +42,12 @@ namespace bittrex {
         };
 
         /**
+         * Generic list implementation
+         */
+        template <typename T>
+        using List = std::vector<T>;
+
+        /**
          * parent class to bittrex's API
          */
         class ApiCall {

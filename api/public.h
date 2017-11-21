@@ -13,15 +13,10 @@
 #include "../response/market_history.h"
 #include "api_call.h"
 
-using namespace bittrex;
+using namespace bittrex::api;
 
 namespace bittrex {
     namespace api {
-
-        typedef std::vector<response::Market> VecMarket;
-        typedef std::vector<response::Currency> VecCurrency;
-        typedef std::vector<response::MarketSummary> VecMarketSum;
-        typedef std::vector<response::Trade> VecTrade;
 
         class Public : public ApiCall {
         public:
@@ -32,13 +27,13 @@ namespace bittrex {
              * Get the open and available trading markets at Bittrex along with other meta data
              * @param None
              */
-            VecMarket get_markets();
+            List<response::Market> get_markets();
 
             /**
              * Get all supported currencies at Bittrex along with other meta data
              * @param None
              */
-            VecCurrency get_currencies();
+            List<response::Currency> get_currencies();
 
             /**
              * Get the current tick values for a market
@@ -50,7 +45,7 @@ namespace bittrex {
              * Get the last 24 hour summary of all active exchanges
              * @param None
              */
-            VecMarketSum get_market_summaries();
+            List<response::MarketSummary> get_market_summaries();
 
             /**
              * Get the last 24 hour summary of all active exchanges
@@ -69,7 +64,7 @@ namespace bittrex {
              * Retrieve the latest trades that have occured for a specific market
              * @param market a string literal for the market (ex: BTC-LTC)
              */
-            VecTrade get_market_history(const std::string &market);
+            List<response::Trade> get_market_history(const std::string &market);
 
         };
     }

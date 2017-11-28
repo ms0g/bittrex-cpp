@@ -13,7 +13,8 @@
 #include "../response/market_history.h"
 #include "api_call.h"
 
-using namespace bittrex::api;
+using namespace bittrex;
+using namespace utils;
 
 namespace bittrex {
     namespace api {

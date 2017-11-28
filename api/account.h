@@ -11,6 +11,7 @@
 #include "../response/withdrawal_history.h"
 
 using namespace bittrex;
+using namespace utils;
 
 namespace bittrex {
     namespace api {

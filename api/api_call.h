@@ -11,6 +11,11 @@
 using json = nlohmann::json;
 
 namespace utils {
+    /**
+    * Generic list implementation
+    */
+    template <typename T>
+    using List = std::vector<T>;
 
     /**
      * Helper functions to make payloads
@@ -41,11 +46,6 @@ namespace bittrex {
             PUBLIC, MARKET, ACCOUNT
         };
 
-        /**
-         * Generic list implementation
-         */
-        template <typename T>
-        using List = std::vector<T>;
 
         /**
          * parent class to bittrex's API

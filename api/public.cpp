@@ -2,7 +2,7 @@
 #include "public.h"
 
 
-using namespace bittrex;
+using namespace bittrex::api;
 using json = nlohmann::json;
 
 

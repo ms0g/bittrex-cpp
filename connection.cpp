@@ -4,5 +4,5 @@
 using namespace bittrex;
 
 std::string Connection::execute_request(const std::string &endpoint, const std::string &payloads, int method) {
-    return Request::get(key, secret, payloads, endpoint, method);
+    return Request::get(m_key, m_secret, payloads, endpoint, method);
 }

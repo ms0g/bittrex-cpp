@@ -13,13 +13,13 @@ namespace bittrex {
     class Connection {
     public:
         explicit Connection(std::string key, std::string secret) :
-                key(std::move(key)), secret(std::move(secret)) {};
+                m_key(std::move(key)), m_secret(std::move(secret)) {};
 
         std::string execute_request(const std::string &endpoint, const std::string &paylods, int method);
 
     private:
-        const std::string key;
-        const std::string secret;
+        const std::string m_key;
+        const std::string m_secret;
 
     };
 }

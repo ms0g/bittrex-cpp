@@ -53,10 +53,10 @@ namespace bittrex {
         class ApiCall {
         public:
             explicit ApiCall(std::shared_ptr<Connection> connection) :
-                    connection(std::move(connection)) {}
+                    m_connection(std::move(connection)) {}
 
         protected:
-            const std::shared_ptr<Connection> connection;
+            const std::shared_ptr<Connection> m_connection;
 
             template<typename ... Params>
             json dispatch(const std::string &endpoint, int type, const Params &... rest) {
@@ -64,7 +64,7 @@ namespace bittrex {
                 std::string payloads = utils::make_params(rest...);
 
                 // execute request
-                auto res = connection->execute_request(endpoint, payloads, type);
+                auto res = m_connection->execute_request(endpoint, payloads, type);
                 auto j_res = json::parse(res);
 
                 if (!j_res["success"]) {

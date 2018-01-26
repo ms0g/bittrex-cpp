@@ -1,5 +1,5 @@
-#ifndef BITTREX_BITTLIB_H
-#define BITTREX_BITTLIB_H
+#ifndef BITTREX_UTILS_H
+#define BITTREX_UTILS_H
 
 #include <string>
 #include <sstream>
@@ -43,8 +43,8 @@ namespace bittrex {
         };
 
          /**
-         * Wrapper for primitive types
-         */
+          * Wrapper for primitive types
+          */
         class String {
         public:
             String &operator=(const json &s) {
@@ -104,4 +104,4 @@ namespace bittrex {
         };
     }
 }
-#endif //BITTREX_BITTLIB_H
+#endif //BITTREX_UTILS_H

@@ -2,11 +2,12 @@
 #define BITTREX_CPP_RES_MARKET_SUMMARY_H
 
 #include <iostream>
-#include "../libs/json/json.hpp"
+#include "../lib/json.hpp"
+#include "../lib/bittlib.h"
 
 
 using json=nlohmann::json;
-using namespace std;
+using namespace bittrex::lib;
 
 namespace bittrex {
     namespace response {
@@ -27,19 +28,19 @@ namespace bittrex {
                 created = j_market_sum["Created"];
             };
 
-            string market_name;
-            float high;
-            float low;
-            float volume;
-            float last;
-            float base_volume;
-            string time_stamp;
-            float bid;
-            float ask;
-            int open_buy_orders;
-            int open_sell_orders;
-            float prev_day;
-            string created;
+            String market_name;
+            Double high;
+            Double low;
+            Double volume;
+            Double last;
+            Double base_volume;
+            String time_stamp;
+            Double bid;
+            Double ask;
+            Int open_buy_orders;
+            Int open_sell_orders;
+            Double prev_day;
+            String created;
 
         };
     }

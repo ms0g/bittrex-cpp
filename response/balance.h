@@ -1,9 +1,11 @@
 #ifndef BITTREX_CPP_RES_BALANCE_H
 #define BITTREX_CPP_RES_BALANCE_H
 #include <iostream>
-#include "../libs/json/json.hpp"
+#include "../lib/json.hpp"
+#include "../lib/bittlib.h"
 
 using json=nlohmann::json;
+using namespace bittrex::lib;
 
 namespace bittrex {
     namespace response {
@@ -17,13 +19,13 @@ namespace bittrex {
                 requested=j_balance["Requested"];
                 uuid=j_balance["Uuid"];
             };
-            std::string currency;
-            float balance;
-            float available;
-            float pending;
-            std::string crypto_address;
-            float requested;
-            std::string uuid;
+            String currency;
+            Double balance;
+            Double available;
+            Double pending;
+            String crypto_address;
+            Double requested;
+            String uuid;
 
         };
     }

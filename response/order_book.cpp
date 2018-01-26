@@ -3,7 +3,7 @@
 using namespace bittrex::response;
 
 
-OrderBook::OrderBook(json o_book, const string &type) {
+OrderBook::OrderBook(json o_book, const std::string &type) {
     for (json::iterator it = o_book.begin(); it != o_book.end(); ++it) {
         if (type == "both") {
             if (it.key() == "buy") {

@@ -1,9 +1,11 @@
 #ifndef BITTREX_CPP_RES_ORDER_H
 #define BITTREX_CPP_RES_ORDER_H
 #include <iostream>
-#include "../libs/json/json.hpp"
+#include "../lib/json.hpp"
+#include "../lib/bittlib.h"
 
 using json=nlohmann::json;
+using namespace bittrex::lib;
 
 namespace bittrex {
     namespace response {
@@ -33,29 +35,29 @@ namespace bittrex {
                  condition=j_order["Condition"];
                  condition_target=j_order["ConditionTarget"];
             };
-            std::string account_id;
-            std::string order_uuid;
-            std::string exchange;
-            std::string type;
-            float quantity{};
-            float quantity_remaining{};
-            float limit{};
-            float reserved{};
-            float reserve_remaining{};
-            float commission_reserved{};
-            float commission_reserve_remaining{};
-            float commission_paid{};
-            float price{};
-            float price_per_unit{};
-            std::string opened;
+            String account_id;
+            String order_uuid;
+            String exchange;
+            String type;
+            Double quantity{};
+            Double quantity_remaining{};
+            Double limit{};
+            Double reserved{};
+            Double reserve_remaining{};
+            Double commission_reserved{};
+            Double commission_reserve_remaining{};
+            Double commission_paid{};
+            Double price{};
+            Double price_per_unit{};
+            String opened;
             bool closed{};
             bool is_open{};
-            std::string sentinel;
+            String sentinel;
             bool cancel_initiated{};
             bool immediate_or_cancel{};
             bool is_conditional{};
-            std::string condition;
-            std::string condition_target;
+            String condition;
+            String condition_target;
 
         };
     }

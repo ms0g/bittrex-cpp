@@ -1,14 +1,13 @@
-
-
 #ifndef BITTREX_CPP_RES_ORDER_BOOK_H
 #define BITTREX_CPP_RES_ORDER_BOOK_H
 
 #include <iostream>
 #include <memory>
-#include "../libs/json/json.hpp"
+#include "../lib/json.hpp"
+#include "../lib/bittlib.h"
 
 using json=nlohmann::json;
-using namespace std;
+using namespace bittrex::lib;
 
 namespace bittrex {
     namespace response {
@@ -18,15 +17,15 @@ namespace bittrex {
                 rate = j["Rate"];
             };
 
-            float quantity;
-            float rate;
+            Double quantity;
+            Double rate;
 
         };
 
-        typedef vector<OrderBookEntry> VecOrderBookEnt;
+        typedef std::vector<OrderBookEntry> VecOrderBookEnt;
 
         struct OrderBook {
-            OrderBook(json o_book, const string &type);
+            OrderBook(json o_book, const std::string &type);
 
             VecOrderBookEnt buy;
             VecOrderBookEnt sell;

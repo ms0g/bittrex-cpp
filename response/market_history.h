@@ -2,10 +2,12 @@
 #define BITTREX_CPP_RES_MARKET_HISTORY_H
 
 #include <iostream>
-#include "../libs/json/json.hpp"
+#include "../lib/json.hpp"
+#include "../lib/bittlib.h"
 
-using namespace std;
+
 using json=nlohmann::json;
+using namespace bittrex::lib;
 
 namespace bittrex {
     namespace response {
@@ -20,13 +22,13 @@ namespace bittrex {
                 order_type = j_market_his["OrderType"];
             };
 
-            int id;
-            string time_stamp;
-            float quantity;
-            float price;
-            float total;
-            string fill_type;
-            string order_type;
+            Int id;
+            String time_stamp;
+            Double quantity;
+            Double price;
+            Double total;
+            String fill_type;
+            String order_type;
         };
     }
 }

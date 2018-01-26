@@ -1,10 +1,12 @@
 #ifndef BITTREX_CPP_RES_OPEN_ORDER_H
 #define BITTREX_CPP_RES_OPEN_ORDER_H
 
-#include "../libs/json/json.hpp"
+#include "../lib/json.hpp"
+#include "../lib/bittlib.h"
 
-using namespace std;
+
 using json=nlohmann::json;
+using namespace bittrex::lib;
 
 namespace bittrex {
     namespace response {
@@ -28,23 +30,23 @@ namespace bittrex {
                 condition =j_order["Condition"];
                 condition_target=j_order["ConditionTarget"];
             };
-            string uuid;
-            string order_uuid;
-            string exchange; 
-            string order_type ;
-            float quantity;
-            float quantity_remaining;
-            float limit;
-            float commission_paid;
-            float price;
-            string price_per_unit ;
-            string opened;
-            string closed ;
+            String uuid;
+            String order_uuid;
+            String exchange;
+            String order_type ;
+            Double quantity;
+            Double quantity_remaining;
+            Double limit;
+            Double commission_paid;
+            Double price;
+            String price_per_unit ;
+            String opened;
+            String closed ;
             bool cancel_initiated ;
             bool immediate_or_cancel ;
             bool is_conditional ;
-            string condition ;
-            string condition_target;
+            String condition ;
+            String condition_target;
 
         };
     }

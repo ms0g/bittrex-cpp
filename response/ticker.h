@@ -1,10 +1,12 @@
 #ifndef BITTREX_CPP_RES_TICKER_H
 #define BITTREX_CPP_RES_TICKER_H
 
-#include "../libs/json/json.hpp"
+#include "../lib/json.hpp"
+#include "../lib/bittlib.h"
 
 
 using json=nlohmann::json;
+using namespace bittrex::lib;
 
 namespace bittrex {
     namespace response {
@@ -15,9 +17,9 @@ namespace bittrex {
                 last = j_ticker["Last"];
             };
 
-            float bid;
-            float ask;
-            float last;
+            Double bid;
+            Double ask;
+            Double last;
 
         };
     }

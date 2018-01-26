@@ -1,9 +1,11 @@
 #ifndef BITTREX_CPP_RES_DEPOSIT_ADDRESS_H
 #define BITTREX_CPP_RES_DEPOSIT_ADDRESS_H
 #include <iostream>
-#include "../libs/json/json.hpp"
+#include "../lib/json.hpp"
+#include "../lib/bittlib.h"
 
 using json=nlohmann::json;
+using namespace bittrex::lib;
 
 namespace bittrex {
     namespace response {
@@ -12,8 +14,8 @@ namespace bittrex {
                 currency=j_deposit["Currency"];
                 address=j_deposit["Address"];
             };
-            std::string currency;
-            std::string address;
+            String currency;
+            String address;
 
         };
     }

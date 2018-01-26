@@ -2,10 +2,12 @@
 #define BITTREX_CPP_RES_CURRENCY_H
 
 #include <iostream>
-#include "../libs/json/json.hpp"
+#include "../lib/json.hpp"
+#include "../lib/bittlib.h"
 
-using namespace std;
+
 using json=nlohmann::json;
+using namespace bittrex::lib;
 
 namespace bittrex {
     namespace response {
@@ -17,18 +19,16 @@ namespace bittrex {
                 txfee = j_currency["TxFee"];
                 is_active = j_currency["IsActive"];
                 coin_type = j_currency["CoinType"];
-
-                auto cur = j_currency["BaseAddress"];
-                base_address = (cur != nullptr) ? cur : "";
+                base_address = j_currency["BaseAddress"];
             };
 
-            string currency;
-            string currency_long;
-            int min_confirmation;
-            float txfee;
+            String currency;
+            String currency_long;
+            Int min_confirmation;
+            Double txfee;
             bool is_active;
-            string coin_type;
-            string base_address;
+            String coin_type;
+            String base_address;
 
         };
     }

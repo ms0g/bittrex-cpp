@@ -1,11 +1,12 @@
 #ifndef BITTREX_CPP_RES_MARKET_H
 #define BITTREX_CPP_RES_MARKET_H
 
-#include <iostream>
-#include "../libs/json/json.hpp"
+#include "../lib/json.hpp"
+#include "../lib/bittlib.h"
 
-using namespace std;
+
 using json=nlohmann::json;
+using namespace bittrex::lib;
 
 namespace bittrex {
     namespace response {
@@ -21,14 +22,14 @@ namespace bittrex {
                 created = j_market["Created"];
             };
 
-            string market_currency;
-            string base_currency;
-            string market_currency_long;
-            string base_currency_long;
-            float min_trade_size;
-            string market_name;
+            String market_currency;
+            String base_currency;
+            String market_currency_long;
+            String base_currency_long;
+            Double min_trade_size;
+            String market_name;
             bool is_active;
-            string created;
+            String created;
         };
     }
 }

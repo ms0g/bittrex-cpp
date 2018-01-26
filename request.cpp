@@ -6,15 +6,16 @@
 #include <ctime> //std::time
 #include "request.h"
 
-#define PUBLIC 0
+
 
 using namespace bittrex;
+using namespace bittrex::lib;
 
 std::string Request::get(const std::string &key,
                          const std::string &secret,
                          const std::string &payloads,
                          const std::string &endpoint,
-                         int method) {
+                         ApiType type) {
 
     std::stringstream res;
     auto uri = BASE_URL + endpoint;
@@ -25,7 +26,7 @@ std::string Request::get(const std::string &key,
         curlpp::Easy r;
 
         auto nonce = std::time(nullptr);
-        if (method != PUBLIC)
+        if (type != ApiType::PUBLIC)
             uri += "apikey=" + key + "&nonce=" + std::to_string(nonce) + "&" + payloads;
         else
             uri += payloads;

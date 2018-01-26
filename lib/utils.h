@@ -2,12 +2,44 @@
 #define BITTREX_BITTLIB_H
 
 #include <string>
+#include <sstream>
 #include "json.hpp"
 
 using json=nlohmann::json;
 
 namespace bittrex {
     namespace lib {
+        enum class ApiType : int {
+            PUBLIC, MARKET, ACCOUNT
+        };
+
+        /**
+         * Generic list implementation
+         */
+        template <typename T>
+        using List = std::vector<T>;
+
+        /**
+         * Functions to make payloads
+         */
+        template<typename T>
+        std::string make_params(const T &t) {
+            std::stringstream ss;
+
+            ss << t;
+            if (ss.str().empty())
+                return std::string("");
+
+            size_t found = ss.str().find('=');
+            if (found == std::string::npos)
+                ss << "&";
+            return ss.str();
+        }
+
+        template<typename First, typename ... Strings>
+        std::string make_params(First arg, const Strings &... rest) {
+            return make_params(arg) + make_params(rest...);
+        };
 
          /**
          * Wrapper for primitive types

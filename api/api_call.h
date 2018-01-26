@@ -6,45 +6,17 @@
 #include <sstream>
 #include "../connection.h"
 #include "../lib/json.hpp"
+#include "../lib/utils.h"
 #include "exceptions.h"
 
 using json = nlohmann::json;
+using namespace bittrex::lib;
 
-namespace utils {
-    /**
-    * Generic list implementation
-    */
-    template <typename T>
-    using List = std::vector<T>;
 
-    /**
-     * Helper functions to make payloads
-     */
-    template<typename T>
-    std::string make_params(const T &t) {
-        stringstream ss;
-
-        ss << t;
-        if (ss.str().empty())
-            return string("");
-
-        size_t found = ss.str().find('=');
-        if (found == std::string::npos)
-            ss << "&";
-        return ss.str();
-    }
-
-    template<typename First, typename ... Strings>
-    std::string make_params(First arg, const Strings &... rest) {
-        return make_params(arg) + make_params(rest...);
-    };
-}
 
 namespace bittrex {
     namespace api {
-        enum {
-            PUBLIC, MARKET, ACCOUNT
-        };
+
 
 
         /**
@@ -59,9 +31,9 @@ namespace bittrex {
             const std::shared_ptr<Connection> m_connection;
 
             template<typename ... Params>
-            json dispatch(const std::string &endpoint, int type, const Params &... rest) {
+            json dispatch(const std::string &endpoint, ApiType type, const Params &... rest) {
                 // Create uri params
-                std::string payloads = utils::make_params(rest...);
+                std::string payloads = make_params(rest...);
 
                 // execute request
                 auto res = m_connection->execute_request(endpoint, payloads, type);

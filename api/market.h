@@ -8,7 +8,6 @@
 #include "api_call.h"
 
 using namespace bittrex;
-using namespace utils;
 
 namespace bittrex {
     namespace api {

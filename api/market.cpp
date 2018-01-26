@@ -6,20 +6,20 @@ using json = nlohmann::json;
 
 
 std::string Market::buy_limit(const string &market, float quantity, float rate) {
-    auto res = dispatch("market/buylimit?", MARKET, "market=", market, "quantity=", quantity, "rate=", rate);
+    auto res = dispatch("market/buylimit?", ApiType::MARKET, "market=", market, "quantity=", quantity, "rate=", rate);
     return res["result"];
 }
 
 
 std::string Market::sell_limit(const string &market, float quantity, float rate) {
-    auto res = dispatch("market/selllimit?", MARKET, "market=", market, "quantity=", quantity, "rate=", rate);
+    auto res = dispatch("market/selllimit?", ApiType::MARKET, "market=", market, "quantity=", quantity, "rate=", rate);
     return res["result"];
 
 }
 
 
 std::string Market::cancel(const string &uuid) {
-    auto res = dispatch("market/cancel?", MARKET, "uuid=", uuid);
+    auto res = dispatch("market/cancel?", ApiType::MARKET, "uuid=", uuid);
     return res["result"];
 }
 
@@ -27,7 +27,7 @@ std::string Market::cancel(const string &uuid) {
 List<response::OpenOrder> Market::get_open_orders(const string &market) {
     List<response::OpenOrder> open_orders;
 
-    auto res = dispatch("market/getopenorders?", MARKET, "market=", market);
+    auto res = dispatch("market/getopenorders?", ApiType::MARKET, "market=", market);
 
     auto j_o_orders = res["result"];
     for (auto const &order:j_o_orders) {

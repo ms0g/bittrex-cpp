@@ -2,7 +2,7 @@
 #define BITTREX_CPP_RES_ORDER_H
 #include <iostream>
 #include "../lib/json.hpp"
-#include "../lib/bittlib.h"
+#include "../lib/utils.h"
 
 using json=nlohmann::json;
 using namespace bittrex::lib;

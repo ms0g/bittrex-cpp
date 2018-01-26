@@ -2,7 +2,7 @@
 #define BITTREX_CPP_RES_TICKER_H
 
 #include "../lib/json.hpp"
-#include "../lib/bittlib.h"
+#include "../lib/utils.h"
 
 
 using json=nlohmann::json;

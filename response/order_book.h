@@ -4,7 +4,7 @@
 #include <iostream>
 #include <memory>
 #include "../lib/json.hpp"
-#include "../lib/bittlib.h"
+#include "../lib/utils.h"
 
 using json=nlohmann::json;
 using namespace bittrex::lib;

@@ -9,6 +9,7 @@ using json=nlohmann::json;
 
 namespace bittrex {
     namespace lib {
+
         enum class ApiType : int {
             PUBLIC, MARKET, ACCOUNT
         };
@@ -72,9 +73,9 @@ namespace bittrex {
                 return out << i.m_val;
             }
 
-            int operator+(const Int &i) const { return m_val + i.m_val; }
-            int operator-(const Int &i) const { return m_val - i.m_val; }
-            int operator*(const Int &i) const { return m_val * i.m_val; }
+            constexpr int operator+(const Int &i) { return m_val + i.m_val; }
+            constexpr int operator-(const Int &i) { return m_val - i.m_val; }
+            constexpr int operator*(const Int &i) { return m_val * i.m_val; }
 
         private:
             int m_val;
@@ -93,9 +94,9 @@ namespace bittrex {
                 return out << d.m_val;
             }
 
-            double operator+(const Double &d) const { return m_val + d.m_val; }
-            double operator-(const Double &d) const { return m_val - d.m_val; }
-            double operator*(const Double &d) const { return m_val * d.m_val; }
+            constexpr double operator+(const Double &d) { return m_val + d.m_val; }
+            constexpr double operator-(const Double &d) { return m_val - d.m_val; }
+            constexpr double operator*(const Double &d) { return m_val * d.m_val; }
 
         private:
             double m_val;

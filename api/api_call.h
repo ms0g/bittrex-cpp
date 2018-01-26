@@ -16,9 +16,6 @@ using namespace bittrex::lib;
 
 namespace bittrex {
     namespace api {
-
-
-
         /**
          * parent class to bittrex's API
          */

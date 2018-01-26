@@ -22,13 +22,11 @@ namespace bittrex {
 
         };
 
-        typedef std::vector<OrderBookEntry> VecOrderBookEnt;
-
         struct OrderBook {
             OrderBook(json o_book, const std::string &type);
 
-            VecOrderBookEnt buy;
-            VecOrderBookEnt sell;
+            List<OrderBookEntry> buy;
+            List<OrderBookEntry> sell;
 
         };
     }

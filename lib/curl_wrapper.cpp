@@ -15,17 +15,17 @@ HttpHeader::HttpHeader(const std::string &header) {
 }
 
 void HttpHeader::setOpt() {
-    curl_easy_setopt(m_curl, CURLOPT_HTTPHEADER, m_chunk);
+    curl_easy_setopt(m_curlHandle, CURLOPT_HTTPHEADER, m_chunk);
 }
 
 
 void WriteData::setOpt() {
-    curl_easy_setopt(m_curl, CURLOPT_WRITEFUNCTION, write_callback);
-    curl_easy_setopt(m_curl, CURLOPT_WRITEDATA, &m_buf);
+    curl_easy_setopt(m_curlHandle, CURLOPT_WRITEFUNCTION, write_callback);
+    curl_easy_setopt(m_curlHandle, CURLOPT_WRITEDATA, &m_buf);
 }
 
 void Url::setOpt() {
-    curl_easy_setopt(m_curl, CURLOPT_URL, m_uri.c_str());
+    curl_easy_setopt(m_curlHandle, CURLOPT_URL, m_uri.c_str());
 
 }
 
@@ -45,7 +45,7 @@ CurlWrapper::~CurlWrapper() {
 
 
 void CurlWrapper::setOpt(curl::options::OptionBase &&opt) {
-    opt.m_curl = m_curl;
+    opt.m_curlHandle = m_curl;
     opt.setOpt();
 }
 

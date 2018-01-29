@@ -5,6 +5,7 @@
 #include <memory>
 #include "../lib/json.hpp"
 #include "../lib/utils.h"
+#include "../lib/primitive_wrapper.h"
 
 using json=nlohmann::json;
 using namespace bittrex::lib;

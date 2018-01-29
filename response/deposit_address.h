@@ -2,8 +2,7 @@
 #define BITTREX_CPP_RES_DEPOSIT_ADDRESS_H
 #include <iostream>
 #include "../lib/json.hpp"
-#include "../lib/utils.h"
-
+#include "../lib/primitive_wrapper.h"
 using json=nlohmann::json;
 using namespace bittrex::lib;
 

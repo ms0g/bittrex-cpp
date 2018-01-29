@@ -7,7 +7,7 @@
 #include "../connection.h"
 #include "../lib/json.hpp"
 #include "../lib/utils.h"
-#include "exceptions.h"
+#include "../lib/exceptions.h"
 
 using json = nlohmann::json;
 using namespace bittrex::lib;
@@ -42,8 +42,6 @@ namespace bittrex {
                 }
                 return j_res;
             };
-
-
         };
     }
 }

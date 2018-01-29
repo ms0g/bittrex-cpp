@@ -13,7 +13,6 @@ using json = nlohmann::json;
 using namespace bittrex::lib;
 
 
-
 namespace bittrex {
     namespace api {
         /**

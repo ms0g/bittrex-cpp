@@ -5,7 +5,7 @@ Bittrex C++ API Client Library
 
 ### Prerequisites
 + [CMake](http://www.cmake.org "CMake project page") (>= 3.8)
-+ [CURLpp](http://www.curlpp.org "Curlpp home page") (>= 0.8.1)
++ [Libcurl](https://curl.haxx.se/libcurl/ "LibCurl home page")
 + [Crypto](https://www.openssl.org/docs/man1.0.2/crypto/crypto.html "Openssl home page") (HMAC)
 + [GCC](http://gcc.gnu.org "GCC home") (>= 5.4.0)
 + [Boost](http://www.boost.org/ "Boost project page") (>= 1.58.0) (optional)

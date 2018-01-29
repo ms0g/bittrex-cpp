@@ -9,10 +9,6 @@ using namespace bittrex::lib;
 
 static const std::string BASE_URL = "https://bittrex.com/api/v1.1/";
 
-namespace utils {
-    std::string hmac_sha512(const std::string &uri, const std::string &secret);
-}
-
 namespace bittrex {
 
     class Request {

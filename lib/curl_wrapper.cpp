@@ -14,6 +14,10 @@ HttpHeader::HttpHeader(const std::string &header) {
     m_chunk = curl_slist_append(m_chunk, header.c_str());
 }
 
+HttpHeader::~HttpHeader() {
+    curl_slist_free_all(m_chunk);
+}
+
 void HttpHeader::setOpt() {
     curl_easy_setopt(m_curlHandle, CURLOPT_HTTPHEADER, m_chunk);
 }
@@ -26,7 +30,6 @@ void WriteData::setOpt() {
 
 void Url::setOpt() {
     curl_easy_setopt(m_curlHandle, CURLOPT_URL, m_uri.c_str());
-
 }
 
 CurlWrapper::CurlWrapper() {
@@ -34,7 +37,6 @@ CurlWrapper::CurlWrapper() {
     m_curl = curl_easy_init();
     if (!m_curl)
         throw fail("Curl init failed!");
-
 }
 
 CurlWrapper::~CurlWrapper() {
@@ -53,6 +55,6 @@ void CurlWrapper::perform() {
     m_res = curl_easy_perform(m_curl);
     // Check for errors
     if (m_res != CURLE_OK)
-        fprintf(stderr,"curl_easy_perform() failed: %s\n", curl_easy_strerror(m_res));
+        fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(m_res));
 
 }

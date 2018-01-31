@@ -25,7 +25,7 @@ namespace curl {
         class HttpHeader : public OptionBase {
         public:
             HttpHeader(const std::string &header);
-            ~HttpHeader() { curl_slist_free_all(m_chunk); }
+            ~HttpHeader();
             void setOpt();
 
         private:
@@ -46,7 +46,7 @@ namespace curl {
 
         /**
          * Libcurl Url Option
-         * */
+         */
         class Url : public OptionBase {
         public:
             Url(std::string &uri) : m_uri(uri) {};

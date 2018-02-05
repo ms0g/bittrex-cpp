@@ -75,7 +75,7 @@ namespace bittrex {
         private:
             CURL *m_curl;
             CURLcode m_res;
-            std::vector<curl::options::OptionBase*> optionList;
+            std::vector<curl::options::OptionBase*> m_optionList;
         };
 
     }

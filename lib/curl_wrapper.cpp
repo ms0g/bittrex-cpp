@@ -41,7 +41,7 @@ CurlWrapper::CurlWrapper() {
 
 CurlWrapper::~CurlWrapper() {
     // always cleanup
-    for (auto const &opt:optionList)
+    for (auto const &opt:m_optionList)
         delete opt;
 
     curl_easy_cleanup(m_curl);
@@ -50,7 +50,7 @@ CurlWrapper::~CurlWrapper() {
 
 
 void CurlWrapper::setOpt(curl::options::OptionBase *opt) {
-    optionList.push_back(opt);
+    m_optionList.push_back(opt);
     opt->m_curlHandle = m_curl;
     opt->setOpt();
 }

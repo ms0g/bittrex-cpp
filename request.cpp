@@ -15,12 +15,12 @@ std::string Request::get(const std::string &key,
 
     std::string res;
     auto uri = BASE_URL + endpoint;
+
     CurlWrapper r;
     try {
         auto nonce = std::time(nullptr);
-        if (type != ApiType::PUBLIC)
-            uri += "apikey=" + key + "&nonce=" + std::to_string(nonce) + "&" + payloads;
-        else
+        (type != ApiType::PUBLIC) ?
+            uri += "apikey=" + key + "&nonce=" + std::to_string(nonce) + "&" + payloads :
             uri += payloads;
 
         std::string apisign = "apisign:" + hmac_sha512(uri, secret);

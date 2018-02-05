@@ -1,11 +1,8 @@
 #ifndef BITTREX_CPP_RES_CURRENCY_H
 #define BITTREX_CPP_RES_CURRENCY_H
 
-#include <iostream>
 #include "../lib/json.hpp"
-#include "../lib/utils.h"
 #include "../lib/primitive_wrapper.h"
-
 
 using json=nlohmann::json;
 using namespace bittrex::lib;
@@ -13,7 +10,7 @@ using namespace bittrex::lib;
 namespace bittrex {
     namespace response {
         struct Currency {
-            explicit Currency(json j_currency){
+            explicit Currency(json j_currency) {
                 currency = j_currency["Currency"];
                 currency_long = j_currency["CurrencyLong"];
                 min_confirmation = j_currency["MinConfirmation"];

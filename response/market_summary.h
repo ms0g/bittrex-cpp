@@ -1,10 +1,8 @@
 #ifndef BITTREX_CPP_RES_MARKET_SUMMARY_H
 #define BITTREX_CPP_RES_MARKET_SUMMARY_H
 
-#include <iostream>
 #include "../lib/json.hpp"
 #include "../lib/primitive_wrapper.h"
-
 
 using json=nlohmann::json;
 using namespace bittrex::lib;
@@ -12,7 +10,7 @@ using namespace bittrex::lib;
 namespace bittrex {
     namespace response {
         struct MarketSummary {
-            explicit MarketSummary(json j_market_sum){
+            explicit MarketSummary(json j_market_sum) {
                 market_name = j_market_sum["MarketName"];
                 high = j_market_sum["High"];
                 low = j_market_sum["Low"];

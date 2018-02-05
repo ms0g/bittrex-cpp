@@ -4,14 +4,13 @@
 #include "../lib/json.hpp"
 #include "../lib/primitive_wrapper.h"
 
-
 using json=nlohmann::json;
 using namespace bittrex::lib;
 
 namespace bittrex {
     namespace response {
         struct Ticker {
-            explicit Ticker(json j_ticker){
+            explicit Ticker(json j_ticker) {
                 bid = j_ticker["Bid"];
                 ask = j_ticker["Ask"];
                 last = j_ticker["Last"];

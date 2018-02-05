@@ -1,7 +1,6 @@
 #ifndef BITTREX_CPP_RES_ORDER_HISTORY_ENTRY_H
 #define BITTREX_CPP_RES_ORDER_HISTORY_ENTRY_H
 
-#include <iostream>
 #include "../lib/json.hpp"
 #include "../lib/primitive_wrapper.h"
 
@@ -29,7 +28,7 @@ namespace bittrex {
 
             }
 
-           String order_uuid;
+            String order_uuid;
             String exchange;
             String time_stamp;
             String order_type;

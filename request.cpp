@@ -16,8 +16,8 @@ std::string Request::get(const std::string &key,
     std::string res;
     auto uri = BASE_URL + endpoint;
 
-    CurlWrapper r;
     try {
+        CurlWrapper r;
         auto nonce = std::time(nullptr);
         (type != ApiType::PUBLIC) ?
             uri += "apikey=" + key + "&nonce=" + std::to_string(nonce) + "&" + payloads :

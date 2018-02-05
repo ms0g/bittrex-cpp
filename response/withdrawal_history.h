@@ -1,13 +1,11 @@
 #ifndef BITTREX_CPP_RES_WITHDRAWAL_HISTORY_H
 #define BITTREX_CPP_RES_WITHDRAWAL_HISTORY_H
 
-#include <iostream>
 #include "../lib/json.hpp"
 #include "../lib/primitive_wrapper.h"
 
 using json=nlohmann::json;
 using namespace bittrex::lib;
-
 
 namespace bittrex {
     namespace response {

@@ -2,9 +2,7 @@
 #define BITTREX_CPP_RES_MARKET_H
 
 #include "../lib/json.hpp"
-#include "../lib/utils.h"
 #include "../lib/primitive_wrapper.h"
-
 
 using json=nlohmann::json;
 using namespace bittrex::lib;
@@ -12,7 +10,7 @@ using namespace bittrex::lib;
 namespace bittrex {
     namespace response {
         struct Market {
-            explicit Market(json j_market){
+            explicit Market(json j_market) {
                 market_currency = j_market["MarketCurrency"];
                 base_currency = j_market["BaseCurrency"];
                 market_currency_long = j_market["MarketCurrencyLong"];

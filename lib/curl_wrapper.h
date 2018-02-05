@@ -25,7 +25,10 @@ namespace curl {
         class HttpHeader : public OptionBase {
         public:
             HttpHeader(const std::string &header);
+            ~HttpHeader();
             void setOpt();
+
+        private:
             struct curl_slist *m_chunk = nullptr;
         };
 
@@ -70,7 +73,6 @@ namespace bittrex {
         private:
             CURL *m_curl;
             CURLcode m_res;
-            struct curl_slist *m_header = nullptr;
         };
 
     }

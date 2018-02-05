@@ -24,9 +24,9 @@ std::string Request::get(const std::string &key,
             uri += payloads;
 
         std::string apisign = "apisign:" + hmac_sha512(uri, secret);
-        r.setOpt(curl::options::HttpHeader(apisign));
-        r.setOpt(curl::options::WriteData(res));
-        r.setOpt(curl::options::Url(uri));
+        r.setOpt(new curl::options::HttpHeader(apisign));
+        r.setOpt(new curl::options::WriteData(res));
+        r.setOpt(new curl::options::Url(uri));
 
         r.perform();
     }

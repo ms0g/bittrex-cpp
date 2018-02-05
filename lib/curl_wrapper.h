@@ -3,6 +3,7 @@
 
 #include <string>
 #include <curl/curl.h>
+#include <vector>
 
 static size_t write_callback(char *contents, size_t size, size_t nmemb, void *userdata);
 
@@ -53,7 +54,7 @@ namespace curl {
             void setOpt();
 
         private:
-            std::string m_uri;
+            std::string &m_uri;
         };
 
     }
@@ -68,11 +69,12 @@ namespace bittrex {
             CurlWrapper();
             ~CurlWrapper();
             void perform();
-            void setOpt(curl::options::OptionBase &&opt);
+            void setOpt(curl::options::OptionBase *opt);
 
         private:
             CURL *m_curl;
             CURLcode m_res;
+            std::vector<curl::options::OptionBase*> optionList;
         };
 
     }

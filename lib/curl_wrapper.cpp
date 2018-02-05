@@ -41,14 +41,18 @@ CurlWrapper::CurlWrapper() {
 
 CurlWrapper::~CurlWrapper() {
     // always cleanup
+    for (auto const &opt:optionList)
+        delete opt;
+
     curl_easy_cleanup(m_curl);
     curl_global_cleanup();
 }
 
 
-void CurlWrapper::setOpt(curl::options::OptionBase &&opt) {
-    opt.m_curlHandle = m_curl;
-    opt.setOpt();
+void CurlWrapper::setOpt(curl::options::OptionBase *opt) {
+    optionList.push_back(opt);
+    opt->m_curlHandle = m_curl;
+    opt->setOpt();
 }
 
 void CurlWrapper::perform() {

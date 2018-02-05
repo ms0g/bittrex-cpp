@@ -1,5 +1,6 @@
 #include "curl_wrapper.h"
 #include "exceptions.h"
+#include <typeinfo>
 
 using namespace bittrex::lib;
 using namespace curl::options;
@@ -14,9 +15,6 @@ HttpHeader::HttpHeader(const std::string &header) {
     m_chunk = curl_slist_append(m_chunk, header.c_str());
 }
 
-HttpHeader::~HttpHeader() {
-    curl_slist_free_all(m_chunk);
-}
 
 void HttpHeader::setOpt() {
     curl_easy_setopt(m_curlHandle, CURLOPT_HTTPHEADER, m_chunk);
@@ -41,6 +39,7 @@ CurlWrapper::CurlWrapper() {
 
 CurlWrapper::~CurlWrapper() {
     // always cleanup
+    curl_slist_free_all(m_header);
     curl_easy_cleanup(m_curl);
     curl_global_cleanup();
 }
@@ -48,6 +47,14 @@ CurlWrapper::~CurlWrapper() {
 
 void CurlWrapper::setOpt(curl::options::OptionBase &&opt) {
     opt.m_curlHandle = m_curl;
+    // We need to move slist pointer upper class to free.
+    try {
+        HttpHeader &&header = std::move(dynamic_cast<HttpHeader &>(opt));
+        m_header = header.m_chunk;
+    }
+    catch (std::bad_cast &e) { ;
+    }
+
     opt.setOpt();
 }
 

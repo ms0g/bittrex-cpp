@@ -15,6 +15,7 @@ namespace curl {
          */
         class OptionBase {
         public:
+            virtual ~OptionBase() = default;
             virtual void setOpt() = 0;
             CURL *m_curlHandle = nullptr;
 

@@ -22,6 +22,9 @@ namespace bittrex {
                 return out << s.m_val;
             }
 
+            /** cast operator */
+            explicit operator const char *() const { return m_val.c_str(); }
+
         private:
             std::string m_val;
 
@@ -41,6 +44,9 @@ namespace bittrex {
             friend std::ostream &operator<<(std::ostream &out, const Int &i) {
                 return out << i.m_val;
             }
+
+            /** cast operator */
+            explicit operator int() const { return m_val; }
 
             constexpr int operator+(const Int &i) { return m_val + i.m_val; }
             constexpr int operator-(const Int &i) { return m_val - i.m_val; }
@@ -64,6 +70,9 @@ namespace bittrex {
             friend std::ostream &operator<<(std::ostream &out, const Double &d) {
                 return out << d.m_val;
             }
+
+            /** cast operator */
+            explicit operator double() const { return m_val; }
 
             constexpr double operator+(const Double &d) { return m_val + d.m_val; }
             constexpr double operator-(const Double &d) { return m_val - d.m_val; }

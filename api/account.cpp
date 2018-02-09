@@ -53,7 +53,8 @@ response::Order Account::get_order(const std::string &uuid) {
 List<response::OrderHistoryEntry> Account::get_order_history(const string &market) {
     List<response::OrderHistoryEntry> order_history;
 
-    json res = dispatch("account/getorderhistory?", ApiType::ACCOUNT, "market=", market);
+    json res = (!market.empty()) ? dispatch("account/getorderhistory?", ApiType::ACCOUNT, "market=", market):
+               dispatch("account/getorderhistory?", ApiType::ACCOUNT, "");
 
     auto order_his = res["result"];
     for (auto const &or_his:order_history) {

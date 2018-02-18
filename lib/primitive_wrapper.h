@@ -24,6 +24,7 @@ namespace bittrex {
 
             /** cast operator */
             explicit operator const char *() const { return m_val.c_str(); }
+            explicit operator std::string() const { return m_val; }
 
         private:
             std::string m_val;

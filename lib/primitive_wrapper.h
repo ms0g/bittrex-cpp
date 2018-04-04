@@ -8,6 +8,7 @@ using json=nlohmann::json;
 
 namespace bittrex {
     namespace lib {
+
         /**
          * Wrapper for string to check out null case
          */
@@ -32,9 +33,8 @@ namespace bittrex {
         };
 
         /**
-        * Wrapper for integer to check out null case
-        */
-
+         * Wrapper for integer to check out null case
+         */
         class Int {
         public:
             Int &operator=(const json &i) {
@@ -59,8 +59,8 @@ namespace bittrex {
         };
 
         /**
-        * Wrapper for double to check out null case
-        */
+         * Wrapper for double to check out null case
+         */
         class Double {
         public:
             Double &operator=(const json &d) {

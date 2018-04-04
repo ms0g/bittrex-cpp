@@ -12,7 +12,7 @@ set(SOURCE_FILES
         request.cpp request.h
         response/order_book.cpp response/order_book.h
         lib/utils.cpp lib/utils.h
-        lib/curl_wrapper.cpp lib/curl_wrapper.h
+        lib/libcurlpp.cpp lib/libcurlpp.h
         )
 
 add_library(bittrex STATIC ${SOURCE_FILES})

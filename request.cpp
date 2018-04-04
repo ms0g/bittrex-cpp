@@ -1,7 +1,7 @@
 #include <sstream> //std::stringstream
 #include <ctime> //std::time
 #include "request.h"
-#include "lib/curl_wrapper.h"
+#include "lib/libcurlpp.h"
 #include "lib/exceptions.h"
 
 using namespace bittrex;
@@ -17,18 +17,18 @@ std::string Request::get(const std::string &key,
     auto uri = BASE_URL + endpoint;
 
     try {
-        CurlWrapper r;
+        Curl curl;
         auto nonce = std::time(nullptr);
         (type != ApiType::PUBLIC) ?
             uri += "apikey=" + key + "&nonce=" + std::to_string(nonce) + "&" + payloads :
             uri += payloads;
 
         std::string apisign = "apisign:" + hmac_sha512(uri, secret);
-        r.setOpt(new curl::options::HttpHeader(apisign));
-        r.setOpt(new curl::options::WriteData(res));
-        r.setOpt(new curl::options::Url(uri));
+        curl.setOpt(new curl::options::HttpHeader(apisign));
+        curl.setOpt(new curl::options::WriteData(res));
+        curl.setOpt(new curl::options::Url(uri));
 
-        r.perform();
+        curl.perform();
     }
     catch (fail &e) {
         std::cout << e.what() << std::endl;

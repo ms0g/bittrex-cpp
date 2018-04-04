@@ -1,4 +1,4 @@
-#include "curl_wrapper.h"
+#include "libcurlpp.h"
 #include "exceptions.h"
 
 using namespace bittrex::lib;
@@ -29,17 +29,17 @@ void WriteData::setOpt() {
 }
 
 void Url::setOpt() {
-    curl_easy_setopt(m_curlHandle, CURLOPT_URL, m_uri.c_str());
+    curl_easy_setopt(m_curlHandle, CURLOPT_URL, m_url.c_str());
 }
 
-CurlWrapper::CurlWrapper() {
+Curl::Curl() {
     curl_global_init(CURL_GLOBAL_DEFAULT);
     m_curl = curl_easy_init();
     if (!m_curl)
         throw fail("Curl init failed!");
 }
 
-CurlWrapper::~CurlWrapper() {
+Curl::~Curl() {
     // always cleanup
     for (auto const &opt:m_optionList)
         delete opt;
@@ -49,13 +49,13 @@ CurlWrapper::~CurlWrapper() {
 }
 
 
-void CurlWrapper::setOpt(curl::options::OptionBase *opt) {
+void Curl::setOpt(curl::options::OptionBase *opt) {
     m_optionList.push_back(opt);
     opt->m_curlHandle = m_curl;
     opt->setOpt();
 }
 
-void CurlWrapper::perform() {
+void Curl::perform() {
     m_res = curl_easy_perform(m_curl);
     // Check for errors
     if (m_res != CURLE_OK)

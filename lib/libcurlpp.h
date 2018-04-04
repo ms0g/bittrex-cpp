@@ -39,7 +39,7 @@ namespace curl {
          */
         class WriteData : public OptionBase {
         public:
-            WriteData(std::string &resbuf) : m_buf(resbuf) {};
+            WriteData(std::string &buf) : m_buf(buf) {};
             void setOpt();
 
         private:
@@ -51,11 +51,11 @@ namespace curl {
          */
         class Url : public OptionBase {
         public:
-            Url(std::string &uri) : m_uri(uri) {};
+            Url(std::string &url) : m_url(url) {};
             void setOpt();
 
         private:
-            std::string &m_uri;
+            std::string &m_url;
         };
 
     }
@@ -65,10 +65,10 @@ namespace bittrex {
         /**
          * Wrapper class for libcurl
          */
-        class CurlWrapper {
+        class Curl {
         public:
-            CurlWrapper();
-            ~CurlWrapper();
+            Curl();
+            ~Curl();
             void perform();
             void setOpt(curl::options::OptionBase *opt);
 

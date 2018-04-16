@@ -1,5 +1,5 @@
-#ifndef BITTREX_CURL_WRAPPER_H
-#define BITTREX_CURL_WRAPPER_H
+#ifndef BITTREX_LIBCURLPP_H
+#define BITTREX_LIBCURLPP_H
 
 #include <string>
 #include <curl/curl.h>
@@ -98,4 +98,4 @@ namespace bittrex {
 }
 
 
-#endif //BITTREX_CURL_WRAPPER_H
+#endif //BITTREX_LIBCURLPP_H

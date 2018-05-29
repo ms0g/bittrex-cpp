@@ -71,7 +71,7 @@ namespace api {
 
         //void get_deposit_history();
 
-};
+    };
 }
 }
 #endif //BITTREX_CPP_ACCOUNT_H

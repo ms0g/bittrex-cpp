@@ -22,7 +22,7 @@ sudo make install
 ### Usage
 ```bash 
 #include <iostream>
-#include <bittrex-cpp/client.h>
+#include <libbittrex/client.h>
 
 int main(){
     std::string key="xxxxx";

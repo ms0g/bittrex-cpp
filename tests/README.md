@@ -7,6 +7,7 @@ API Test
 ### Building
 ```bash
 cmake .
+make
 ```
 
 ### Run Tests

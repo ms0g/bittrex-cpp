@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(bittrex_cpp)
+project(bittrex_api_test)
 
 set(CMAKE_CXX_STANDARD 14)
 

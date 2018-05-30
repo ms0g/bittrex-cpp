@@ -9,7 +9,7 @@ API Test
 cmake .
 ```
 
-### Usage
+### Run Tests
 ```bash
 ./bittrex_api_test --report_level=detailed
 

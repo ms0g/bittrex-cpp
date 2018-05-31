@@ -9,26 +9,27 @@ using json=nlohmann::json;
 using namespace bittrex::lib;
 
 namespace bittrex {
-    namespace response {
-        struct OrderBookEntry {
-            explicit OrderBookEntry(json j) {
-                quantity = j["Quantity"];
-                rate = j["Rate"];
-            };
+namespace response {
 
-            Double quantity;
-            Double rate;
+struct OrderBookEntry {
+    explicit OrderBookEntry(json j) {
+        quantity = j["Quantity"];
+        rate = j["Rate"];
+    };
 
-        };
+    Double quantity;
+    Double rate;
 
-        struct OrderBook {
-            OrderBook(json o_book, const std::string &type);
+};
 
-            List<OrderBookEntry> buy;
-            List<OrderBookEntry> sell;
+struct OrderBook {
+    OrderBook(json o_book, const std::string &type);
 
-        };
-    }
+    List<OrderBookEntry> buy;
+    List<OrderBookEntry> sell;
+
+};
+}
 }
 
 #endif //BITTREX_CPP_ORDER_BOOK_H

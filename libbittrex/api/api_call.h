@@ -15,33 +15,33 @@ using namespace bittrex::lib;
 
 namespace bittrex {
 namespace api {
-    /**
-     * parent class to bittrex's API
-     */
-    class ApiCall {
-    public:
-        explicit ApiCall(std::shared_ptr<Connection> connection) :
-                m_connection(std::move(connection)) {}
+/**
+ * parent class to bittrex's API
+ */
+class ApiCall {
+public:
+    explicit ApiCall(std::shared_ptr<Connection> connection) :
+            m_connection(std::move(connection)) {}
 
-    protected:
-        const std::shared_ptr<Connection> m_connection;
+protected:
+    const std::shared_ptr<Connection> m_connection;
 
-        template<typename ... Params>
-        json dispatch(const std::string &endpoint, ApiType type, const Params &... rest) {
-            // Create uri params
-            std::string payloads = make_params(rest...);
+    template<typename ... Params>
+    json dispatch(const std::string &endpoint, ApiType type, const Params &... rest) {
+        // Create uri params
+        std::string payloads = make_params(rest...);
 
-            // execute request
-            auto res = m_connection->execute_request(endpoint, payloads, type);
-            auto j_res = json::parse(res);
+        // execute request
+        auto res = m_connection->execute_request(endpoint, payloads, type);
+        auto j_res = json::parse(res);
 
-            if (!j_res["success"]) {
-                std::string msg = j_res["message"];
-                throw fail(msg);
-            }
-            return j_res;
-        };
-    };
+        if (!j_res["success"]) {
+            std::string msg = j_res["message"];
+            throw fail(msg);
+        }
+        return j_res;
+    }
+};
 }
 }
 

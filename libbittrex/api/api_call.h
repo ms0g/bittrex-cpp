@@ -20,8 +20,8 @@ namespace api {
  */
 class ApiCall {
 public:
-    explicit ApiCall(std::shared_ptr<Connection> connection) :
-            m_connection(std::move(connection)) {}
+    explicit ApiCall(const std::shared_ptr<Connection> &connection) :
+            m_connection(connection) {}
 
 protected:
     const std::shared_ptr<Connection> m_connection;
@@ -32,7 +32,7 @@ protected:
         std::string payloads = make_params(rest...);
 
         // execute request
-        auto res = m_connection->execute_request(endpoint, payloads, type);
+        auto res = m_connection->execute_request_async(endpoint, payloads, type);
         auto j_res = json::parse(res);
 
         if (!j_res["success"]) {

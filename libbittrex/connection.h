@@ -18,7 +18,9 @@ public:
     explicit Connection(std::string key, std::string secret) :
             m_key(std::move(key)), m_secret(std::move(secret)) {};
 
-    std::string execute_request(const std::string &endpoint, const std::string &paylods, ApiType type);
+    std::string execute_request_async(const std::string &endpoint,
+                                      const std::string &paylods,
+                                      ApiType type);
 
 private:
     const std::string m_key;

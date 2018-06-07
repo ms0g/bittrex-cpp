@@ -7,13 +7,13 @@ os:
   - linux
 addons:
   apt:
+  update: true
     sources:
       - ubuntu-toolchain-r-test
     packages:
       - gcc-7
       - g++-7
-install:
-  - sudo apt-get update
+before_install:
   - sudo apt-get install libcurl4-openssl-dev
   - sudo apt-get install libboost-all-dev
   - sudo apt-get install  libffi-dev libssl-dev libxml2-dev libxslt1-dev libjpeg8-dev zlib1g-dev
@@ -21,10 +21,13 @@ install:
 script:
   - export CC=gcc-7
   - export CXX=g++-7
+  # Build steps
   - cd libbittrex;mkdir build;cd build
   - cmake .. && cmake --build .
   - sudo make install
-  
+
+  # Run tests
+  - cd ..;cd ..
   - cd tests
   - cmake .
   - make

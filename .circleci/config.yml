@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/build-image:ubuntu-14.04-XXL-1327-3401d20
+      - image: circleci/gcc:latest
     steps:
       - checkout
       - run: sudo apt-get update

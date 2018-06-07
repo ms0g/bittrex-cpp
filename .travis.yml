@@ -1,0 +1,25 @@
+language: cpp
+dist: trusty
+sudo: required
+compiler:
+  - gcc
+os:
+  - linux
+
+install:
+  - sudo apt-get update
+  - sudo apt-get install build-essential
+  - sudo apt-get install libcurl4-openssl-dev
+  - sudo apt-get install libboost-all-dev
+  - sudo apt-get install  libffi-dev libssl-dev libxml2-dev libxslt1-dev libjpeg8-dev zlib1g-dev
+
+script:
+  - cd ${TRAVIS_BUILD_DIR}
+  - cd libbittrex;mkdir build;cd build
+  - cmake .. && cmake --build .
+  - sudo make install
+  
+  - cd tests
+  - cmake .
+  - make
+  - ./bittrex_api_test --report_level=detailed

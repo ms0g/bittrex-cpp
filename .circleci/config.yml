@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: gcc:latest
+      - image: trusty
     steps:
       - checkout
       - run: sudo apt-get update

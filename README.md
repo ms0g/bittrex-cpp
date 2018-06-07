@@ -1,4 +1,6 @@
 # bittrex-cpp
+[![Build Status](https://travis-ci.org/gurpinars/bittrex-cpp.svg?branch=master)](https://travis-ci.org/gurpinars/bittrex-cpp)
+
 Bittrex C++ API Client Library
 
 **WARNING:** Market buy/sells are extremely dangerous.You are at your own risk.

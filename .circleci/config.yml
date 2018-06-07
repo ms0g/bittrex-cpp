@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: trusty
+      - image: circleci/build-image:ubuntu-14.04-enterprise-942-7e8abd5
     steps:
       - checkout
       - run: sudo apt-get update

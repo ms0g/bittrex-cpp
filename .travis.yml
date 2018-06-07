@@ -12,6 +12,9 @@ addons:
     packages:
       - gcc-7
       - g++-7
+script:
+  - export CC=gcc-7
+  - export CXX=g++-7
 
 install:
   - sudo apt-get update

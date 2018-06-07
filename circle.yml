@@ -1,0 +1,15 @@
+dependencies:
+    pre:
+        - sudo apt-get update;sudo apt-get install build-essential
+
+compile:
+    override:
+        - cd libbittrex;mkdir build;cd build
+        - cmake .. && cmake --build .
+        - sudo make install
+
+test:
+    override:
+        - cmake .
+        - make
+        - ./bittrex_api_test --report_level=detailed

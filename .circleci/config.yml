@@ -12,7 +12,7 @@ jobs:
       - run: sudo apt-get install  libffi-dev libssl-dev libxml2-dev libxslt1-dev libjpeg8-dev zlib1g-dev
 
 
-      - run: cd libbittrex;mkdir build;cd build
+      - run: cd bittrex-cpp;cd libbittrex;mkdir build;cd build
       - run: cmake .. && cmake --build .
       - run: sudo make install
 

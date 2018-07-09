@@ -17,8 +17,8 @@ namespace api {
 
 class Account : public ApiCall {
 public:
-    explicit Account(const std::shared_ptr<Connection> &connection) :
-            ApiCall(connection) {}
+    explicit Account(std::unique_ptr<Connection> connection) :
+            ApiCall(std::move(connection)) {}
 
     /**
      * Used to retrieve all balances from your account

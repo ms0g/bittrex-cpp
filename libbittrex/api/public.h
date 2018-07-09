@@ -20,8 +20,8 @@ namespace api {
 
 class Public : public ApiCall {
 public:
-    explicit Public(const std::shared_ptr<Connection> &connection) :
-            ApiCall(connection) {}
+    explicit Public(std::unique_ptr<Connection> connection) :
+            ApiCall(std::move(connection)) {}
 
     /**
      * Get the open and available trading markets at Bittrex along with other meta data

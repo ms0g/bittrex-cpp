@@ -20,11 +20,11 @@ namespace api {
  */
 class ApiCall {
 public:
-    explicit ApiCall(const std::shared_ptr<Connection> &connection) :
-            m_connection(connection) {}
+    explicit ApiCall(std::unique_ptr<Connection> connection) :
+            m_connection(std::move(connection)) {}
 
 protected:
-    const std::shared_ptr<Connection> m_connection;
+    std::unique_ptr<Connection> m_connection;
 
     template<typename ... Params>
     json dispatch(const std::string &endpoint, ApiType type, const Params &... rest) {

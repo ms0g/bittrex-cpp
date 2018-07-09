@@ -14,8 +14,8 @@ namespace api {
 
 class Market : public ApiCall {
 public:
-    explicit Market(const std::shared_ptr<Connection> &connection) :
-            ApiCall(connection) {};
+    explicit Market(std::unique_ptr<Connection> connection) :
+            ApiCall(std::move(connection)) {};
 
     /**
      * Used to place a buy order in a specific market.

@@ -20,7 +20,7 @@ public:
     String(const String &other):_s(other._s) {}
     String(String &&rhs) noexcept: _s(std::move(rhs._s)) { rhs.reset(); }
     explicit String(std::string &other):_s(other) {}
-    explicit String(std::string &&rhs):_s(std::move(rhs)) { rhs.clear(); }
+    explicit String(std::string &&rhs):_s(std::move(rhs)) {}
     explicit String(const char *s):_s(s) {}
 
 

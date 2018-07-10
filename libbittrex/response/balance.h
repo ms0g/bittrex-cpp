@@ -2,7 +2,7 @@
 #define BITTREX_CPP_RES_BALANCE_H
 
 #include "../lib/json.hpp"
-#include "../lib/primitive_wrapper.h"
+#include "../lib/wrappers.h"
 
 using json=nlohmann::json;
 using namespace bittrex::lib;

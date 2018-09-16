@@ -8,8 +8,8 @@
 namespace bittrex {
 namespace test {
 
-bittrex::Client client("", "");
-bittrex::api::Public p = client.get_public();
+bittrex::Client btxcli("", "");
+auto p = btxcli.get_public_api();
 const std::string &MARKET = "BTC-LTC";
 
 

@@ -30,10 +30,9 @@ int main(){
     std::string key="xxxxx";
     std::string secret="xxxxx";
     
-    bittrex::Client cl(key,secret);
-    bittrex::api::Public p =  cl.get_public();
-    
-    auto markets = p.get_markets();
+    bittrex::Client btxcli(key,secret);
+    auto markets =  btxcli.get_public_api().get_markets();
+
     std::cout << markets.at(0).market_name << std::endl;
 }
 >> BTC-LTC

@@ -18,17 +18,17 @@ public:
     /**
      * Used for public information available without an API key
      */
-    api::Public get_public_api();
+    api::Public public_api();
 
     /**
      * Used for programatic trading of crypto currencies
      */
-    api::Market get_market_api();
+    api::Market market_api();
 
     /**
      * Used for managing your account
      */
-    api::Account get_account_api();
+    api::Account account_api();
 
 
 private:

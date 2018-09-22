@@ -31,7 +31,7 @@ int main(){
     std::string secret="xxxxx";
     
     bittrex::Client btxcli(key,secret);
-    auto markets =  btxcli.get_public_api().get_markets();
+    auto markets =  btxcli.public_api().get_markets();
 
     std::cout << markets.at(0).market_name << std::endl;
 }

@@ -3,17 +3,17 @@
 
 #include <iostream>
 #include <memory>
-#include "connection.h"
 #include "api/public.h"
 #include "api/market.h"
 #include "api/account.h"
+#include "api/api_call.h"
 
 namespace bittrex {
 
 class Client {
 public:
-    explicit Client(const std::string &key, const std::string &secret) :
-            m_connection(make_unique<Connection>(key, secret)) {}
+    explicit Client(std::string &key, std::string &secret) :
+            m_api_call(make_unique<bittrex::api::ApiCall>(key, secret)) {}
 
     /**
      * Used for public information available without an API key
@@ -32,7 +32,7 @@ public:
 
 
 private:
-    std::unique_ptr<Connection> m_connection;
+    std::unique_ptr<bittrex::api::ApiCall> m_api_call;
 };
 }
 #endif //BITTREX_CPP_CLIENT_H

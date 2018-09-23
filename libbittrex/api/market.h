@@ -3,7 +3,6 @@
 
 #include <memory>
 #include <utility>
-#include "../connection.h"
 #include "../response/open_order.h"
 #include "api_call.h"
 
@@ -12,10 +11,9 @@ using namespace bittrex;
 namespace bittrex {
 namespace api {
 
-class Market : public ApiCall {
+class Market {
 public:
-    explicit Market(std::unique_ptr<Connection> connection) :
-            ApiCall(std::move(connection)) {};
+    explicit Market(std::unique_ptr<ApiCall> api_call) : _api_call(std::move(api_call)) {}
 
     /**
      * Used to place a buy order in a specific market.
@@ -46,6 +44,9 @@ public:
      * @param market optional a string literal for the market (ie. BTC-LTC)
      * */
     List<response::OpenOrder> get_open_orders(const std::string &market);
+
+private:
+    std::unique_ptr<ApiCall> _api_call;
 };
 }
 }

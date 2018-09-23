@@ -4,7 +4,6 @@
 #include <iostream>
 #include <memory>
 #include <utility>
-#include "../connection.h"
 #include "../response/market.h"
 #include "../response/currency.h"
 #include "../response/ticker.h"
@@ -18,10 +17,9 @@ using namespace bittrex;
 namespace bittrex {
 namespace api {
 
-class Public : public ApiCall {
+class Public {
 public:
-    explicit Public(std::unique_ptr<Connection> connection) :
-            ApiCall(std::move(connection)) {}
+    explicit Public(std::unique_ptr<ApiCall> api_call) : _api_call(std::move(api_call)) {}
 
     /**
      * Get the open and available trading markets at Bittrex along with other meta data
@@ -66,6 +64,8 @@ public:
      */
     List<response::Trade> get_market_history(const std::string &market);
 
+private:
+    std::unique_ptr<ApiCall> _api_call;
 };
 }
 }

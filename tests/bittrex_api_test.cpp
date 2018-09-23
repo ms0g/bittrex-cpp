@@ -8,8 +8,11 @@
 namespace bittrex {
 namespace test {
 
-bittrex::Client btxcli("", "");
-auto p = btxcli.get_public_api();
+std::string key = "";
+std::string secret = "";
+
+bittrex::Client btxcli(key, secret);
+auto p = btxcli.public_api();
 const std::string &MARKET = "BTC-LTC";
 
 

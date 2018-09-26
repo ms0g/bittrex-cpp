@@ -2,14 +2,14 @@
 
 using namespace bittrex;
 
-api::Public Client::get_public_api() {
-    return api::Public(std::move(m_connection));
+api::Public Client::public_api() {
+    return api::Public(m_api_call);
 }
 
-api::Market Client::get_market_api() {
-    return api::Market(std::move(m_connection));
+api::Market Client::market_api() {
+    return api::Market(m_api_call);
 }
 
-api::Account Client::get_account_api() {
-    return api::Account(std::move(m_connection));
+api::Account Client::account_api() {
+    return api::Account(m_api_call);
 }

@@ -15,10 +15,9 @@ using namespace bittrex;
 namespace bittrex {
 namespace api {
 
-class Account : public ApiCall {
+class Account {
 public:
-    explicit Account(std::unique_ptr<Connection> connection) :
-            ApiCall(std::move(connection)) {}
+    explicit Account(std::shared_ptr<ApiCall> &api_call) : _api_call(api_call) {}
 
     /**
      * Used to retrieve all balances from your account
@@ -71,7 +70,10 @@ public:
 
     //void get_deposit_history();
 
+private:
+    std::shared_ptr<ApiCall> _api_call;
+
 };
-}
-}
+} //Namespace Api
+} //Namespace Bittrex
 #endif //BITTREX_CPP_ACCOUNT_H

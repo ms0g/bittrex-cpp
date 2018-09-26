@@ -19,7 +19,7 @@ INSTALL(TARGETS bittrex
         ARCHIVE DESTINATION lib
         )
 INSTALL (
-        DIRECTORY ${CMAKE_SOURCE_DIR}
-        DESTINATION include
+        DIRECTORY ${CMAKE_SOURCE_DIR} DESTINATION include
         FILES_MATCHING PATTERN "*.h*"
+        PATTERN "*build*" EXCLUDE
         )

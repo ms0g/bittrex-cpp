@@ -50,6 +50,6 @@ struct OpenOrder {
     String condition_target;
 
 };
-}
-}
+} //Namespace Response
+} //Namespace bittrex
 #endif //BITTREX_CPP_OPEN_ORDER_H

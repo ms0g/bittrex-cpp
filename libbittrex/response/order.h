@@ -62,6 +62,6 @@ struct Order {
     String condition_target;
 
 };
-}
-}
+} //Namespace Response
+} //Namespace bittrex
 #endif //BITTREX_CPP_ORDER_H

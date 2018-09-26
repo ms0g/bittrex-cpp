@@ -42,7 +42,7 @@ struct MarketSummary {
     String created;
 
 };
-}
-}
+} //Namespace Response
+} //Namespace bittrex
 
 #endif //BITTREX_CPP_MARKET_SUMMARY_H

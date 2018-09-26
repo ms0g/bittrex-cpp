@@ -30,6 +30,6 @@ struct Balance {
     String uuid;
 
 };
-}
-}
+} //Namespace Response
+} //Namespace bittrex
 #endif //BITTREX_CPP_BALANCE_H

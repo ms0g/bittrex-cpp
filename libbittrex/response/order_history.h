@@ -45,6 +45,6 @@ struct OrderHistoryEntry {
     bool immediate_or_cancel;
 
 };
-}
-}
+} //Namespace Response
+} //Namespace bittrex
 #endif //BITTREX_CPP_ORDER_HISTORY_ENTRY_H

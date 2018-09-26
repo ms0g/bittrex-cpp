@@ -22,6 +22,6 @@ struct Ticker {
     Double last;
 
 };
-}
-}
+} //Namespace Response
+} //Namespace bittrex
 #endif //BITTREX_CPP_TICKER_H

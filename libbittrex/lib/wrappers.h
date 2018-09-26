@@ -92,8 +92,8 @@ private:
     double _d;
 
 };
-}
-}
+} //Namespace Lib
+} //Namespace Bittrex
 
 
 #endif //BITTREX_PRIMITIVES_H

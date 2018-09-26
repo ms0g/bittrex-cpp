@@ -37,6 +37,6 @@ struct WithdrawalHistoryEntry {
     String canceled;
     bool invalid_address;
 };
-}
-}
+} //Namespace Response
+} //Namespace bittrex
 #endif //BITTREX_CPP_WITHDRAWAL_HISTORY_H

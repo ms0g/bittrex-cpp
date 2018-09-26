@@ -50,6 +50,6 @@ std::string make_params(First arg, const Strings &... rest) {
  * HMAC can be used to verify the integrity of a message as well as the authenticity.
  */
 std::string hmac_sha512(const std::string &uri, const std::string &secret);
-}
-}
+} //Namespace Lib
+} //Namespace Bittrex
 #endif //BITTREX_UTILS_H

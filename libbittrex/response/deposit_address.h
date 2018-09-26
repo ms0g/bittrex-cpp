@@ -20,6 +20,6 @@ struct DepositAddress {
     String address;
 
 };
-}
-}
+} //Namespace Response
+} //Namespace bittrex
 #endif //BITTREX_CPP_DEPOSIT_ADDRESS_H

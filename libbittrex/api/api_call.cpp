@@ -1,5 +1,6 @@
 #include <future>
 #include "api_call.h"
+#include "../lib/libcurlpp.h"
 
 using namespace bittrex::api;
 

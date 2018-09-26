@@ -30,7 +30,7 @@ struct Currency {
     String base_address;
 
 };
-}
-}
+} //Namespace Response
+} //Namespace bittrex
 
 #endif //BITTREX_CPP_CURRENCY_H

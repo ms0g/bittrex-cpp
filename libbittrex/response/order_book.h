@@ -29,7 +29,7 @@ struct OrderBook {
     List<OrderBookEntry> sell;
 
 };
-}
-}
+} //Namespace Response
+} //Namespace bittrex
 
 #endif //BITTREX_CPP_ORDER_BOOK_H

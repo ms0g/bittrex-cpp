@@ -29,6 +29,6 @@ struct Trade {
     String fill_type;
     String order_type;
 };
-}
-}
+} //Namespace Response
+} //Namespace bittrex
 #endif //BITTREX_CPP_MARKET_HISTORY_H

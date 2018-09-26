@@ -17,7 +17,7 @@ namespace api {
 
 class Account {
 public:
-    explicit Account(std::shared_ptr<ApiCall> api_call) : _api_call(api_call) {}
+    explicit Account(std::shared_ptr<ApiCall> &api_call) : _api_call(api_call) {}
 
     /**
      * Used to retrieve all balances from your account

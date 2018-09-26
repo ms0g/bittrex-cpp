@@ -19,7 +19,7 @@ namespace api {
 
 class Public {
 public:
-    explicit Public(std::shared_ptr<ApiCall> api_call) : _api_call(api_call) {}
+    explicit Public(std::shared_ptr<ApiCall> &api_call) : _api_call(api_call) {}
 
     /**
      * Get the open and available trading markets at Bittrex along with other meta data

@@ -13,7 +13,7 @@ namespace api {
 
 class Market {
 public:
-    explicit Market(std::shared_ptr<ApiCall> api_call) : _api_call(api_call) {}
+    explicit Market(std::shared_ptr<ApiCall> &api_call) : _api_call(api_call) {}
 
     /**
      * Used to place a buy order in a specific market.

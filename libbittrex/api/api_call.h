@@ -4,7 +4,7 @@
 #include <memory>
 #include <utility>
 #include <sstream>
-#include <future>
+
 #include "../lib/json.hpp"
 #include "../lib/utils.h"
 #include "../lib/exceptions.h"
@@ -17,38 +17,6 @@ static const std::string BASE_URL = "https://bittrex.com/api/v1.1/";
 
 
 namespace bittrex {
-namespace Request {
-
-std::string get(const std::string &key,
-                const std::string &secret,
-                const std::string &payloads,
-                const std::string &endpoint,
-                ApiType type) {
-
-    std::string res;
-    auto uri = BASE_URL + endpoint;
-
-    try {
-        Curl curl;
-        auto nonce = std::time(nullptr);
-        (type != ApiType::PUBLIC) ?
-                uri += "apikey=" + key + "&nonce=" + std::to_string(nonce) + "&" + payloads :
-                uri += payloads;
-
-        std::string apisign = "apisign:" + hmac_sha512(uri, secret);
-        curl.setOpt(new curl::options::HttpHeader(apisign));
-        curl.setOpt(new curl::options::WriteData(res));
-        curl.setOpt(new curl::options::Url(uri));
-
-        curl.perform();
-    }
-    catch (fail &e) {
-        std::cout << e.what() << std::endl;
-    }
-    return res;
-}
-} //Namespace Request
-
 namespace api {
 
 class ApiCall {
@@ -73,14 +41,12 @@ public:
         return j_res;
     }
 
-private:
-    std::string execute_request_async(const std::string &endpoint,
-                                      const std::string &payloads,
-                                      ApiType type) {
+    static std::string get(const std::string &, const std::string &,
+                           const std::string &, const std::string &,
+                           ApiType);
 
-        auto fut = std::async(std::launch::async, Request::get, m_key, m_secret, payloads, endpoint, type);
-        return fut.get();
-    }
+private:
+    std::string execute_request_async(const std::string &, const std::string &, ApiType);
 
     std::string &m_key;
     std::string &m_secret;

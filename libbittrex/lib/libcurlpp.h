@@ -73,8 +73,8 @@ private:
     std::string &m_url;
 };
 
-}
-}
+} //Namespace Options
+} //Namespace Curl
 namespace bittrex {
 namespace lib {
 /**
@@ -92,8 +92,8 @@ private:
     CURLcode m_res;
     std::vector<curl::options::OptionBase *> m_optionList;
 };
-}
-}
+} //Namespace Lib
+} //Namespace Bittrex
 
 
 #endif //BITTREX_LIBCURLPP_H

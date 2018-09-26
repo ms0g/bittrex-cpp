@@ -5,16 +5,50 @@
 #include <utility>
 #include <sstream>
 #include <future>
-#include "../request.h"
 #include "../lib/json.hpp"
 #include "../lib/utils.h"
 #include "../lib/exceptions.h"
+#include "../lib/libcurlpp.h"
 
 using json = nlohmann::json;
 using namespace bittrex::lib;
 
+static const std::string BASE_URL = "https://bittrex.com/api/v1.1/";
+
 
 namespace bittrex {
+namespace Request {
+
+std::string get(const std::string &key,
+                const std::string &secret,
+                const std::string &payloads,
+                const std::string &endpoint,
+                ApiType type) {
+
+    std::string res;
+    auto uri = BASE_URL + endpoint;
+
+    try {
+        Curl curl;
+        auto nonce = std::time(nullptr);
+        (type != ApiType::PUBLIC) ?
+                uri += "apikey=" + key + "&nonce=" + std::to_string(nonce) + "&" + payloads :
+                uri += payloads;
+
+        std::string apisign = "apisign:" + hmac_sha512(uri, secret);
+        curl.setOpt(new curl::options::HttpHeader(apisign));
+        curl.setOpt(new curl::options::WriteData(res));
+        curl.setOpt(new curl::options::Url(uri));
+
+        curl.perform();
+    }
+    catch (fail &e) {
+        std::cout << e.what() << std::endl;
+    }
+    return res;
+}
+} //Namespace Request
+
 namespace api {
 
 class ApiCall {
@@ -51,8 +85,8 @@ private:
     std::string &m_key;
     std::string &m_secret;
 };
-}
-}
+} //Namespace Api
+} //Namespace Bittrex
 
 
 #endif //BITTREX_CPP_API_CALL_H

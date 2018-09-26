@@ -67,6 +67,6 @@ public:
 private:
     std::unique_ptr<ApiCall> _api_call;
 };
-}
-}
+} //Namespace Api
+} //Namespace Bittrex
 #endif //BITTREX_CPP_PUBLIC_H

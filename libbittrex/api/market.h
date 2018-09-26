@@ -13,7 +13,7 @@ namespace api {
 
 class Market {
 public:
-    explicit Market(std::unique_ptr<ApiCall> api_call) : _api_call(std::move(api_call)) {}
+    explicit Market(std::shared_ptr<ApiCall> api_call) : _api_call(api_call) {}
 
     /**
      * Used to place a buy order in a specific market.
@@ -46,7 +46,7 @@ public:
     List<response::OpenOrder> get_open_orders(const std::string &market);
 
 private:
-    std::unique_ptr<ApiCall> _api_call;
+    std::shared_ptr<ApiCall> _api_call;
 };
 } //Namespace Api
 } //Namespace Bittrex

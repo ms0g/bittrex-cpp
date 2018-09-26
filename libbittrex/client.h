@@ -13,7 +13,7 @@ namespace bittrex {
 class Client {
 public:
     explicit Client(std::string &key, std::string &secret) :
-            m_api_call(make_unique<bittrex::api::ApiCall>(key, secret)) {}
+            m_api_call(std::make_shared<bittrex::api::ApiCall>(key, secret)) {}
 
     /**
      * Used for public information available without an API key
@@ -32,7 +32,7 @@ public:
 
 
 private:
-    std::unique_ptr<bittrex::api::ApiCall> m_api_call;
+    std::shared_ptr<bittrex::api::ApiCall> m_api_call;
 };
 } //Namespace Bittrex
 #endif //BITTREX_CPP_CLIENT_H

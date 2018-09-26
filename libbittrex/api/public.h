@@ -19,7 +19,7 @@ namespace api {
 
 class Public {
 public:
-    explicit Public(std::unique_ptr<ApiCall> api_call) : _api_call(std::move(api_call)) {}
+    explicit Public(std::shared_ptr<ApiCall> api_call) : _api_call(api_call) {}
 
     /**
      * Get the open and available trading markets at Bittrex along with other meta data
@@ -65,7 +65,7 @@ public:
     List<response::Trade> get_market_history(const std::string &market);
 
 private:
-    std::unique_ptr<ApiCall> _api_call;
+    std::shared_ptr<ApiCall> _api_call;
 };
 } //Namespace Api
 } //Namespace Bittrex

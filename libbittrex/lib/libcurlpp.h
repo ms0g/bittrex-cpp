@@ -85,7 +85,7 @@ public:
     Curl();
     ~Curl();
     void perform();
-    void setOpt(curl::options::OptionBase *opt);
+    void setOpt(curl::options::OptionBase *);
 
 private:
     CURL *m_curl;

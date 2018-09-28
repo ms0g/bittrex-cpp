@@ -9,14 +9,15 @@ using namespace std;
 
 class fail : public exception {
 public:
-    explicit fail(std::string msg) : msg(std::move(msg)) {}
+    explicit fail(std::string &msg) : msg(msg) {}
+    explicit fail(std::string &&msg) : msg(std::move(msg)) {}
 
-    const char *what() const throw() override {
+    const char *what() const noexcept override {
         return msg.c_str();
     }
 
 private:
-    const std::string msg;
+    std::string msg;
 
 };
 

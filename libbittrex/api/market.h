@@ -22,7 +22,7 @@ public:
      * @param quantity the amount to purchase
      * @param rate the rate at which to place the order.
      */
-    std::string buy_limit(const std::string &market, float quantity, float rate);
+    std::string buy_limit(const std::string &market, const float &quantity, const float &rate);
 
     /**
      * Used to place an sell order in a specific market.
@@ -31,7 +31,7 @@ public:
      * @param quantity the amount to purchase
      * @param rate the rate at which to place the order.
      */
-    std::string sell_limit(const std::string &market, float quantity, float rate);
+    std::string sell_limit(const string &market, const float &quantity, const float &rate);
 
     /**
      * Used to cancel a buy or sell order.

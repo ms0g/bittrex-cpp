@@ -6,14 +6,14 @@
 #include "api/public.h"
 #include "api/market.h"
 #include "api/account.h"
-#include "api/api_call.h"
+#include "api_call.h"
 
 namespace bittrex {
 
 class Client {
 public:
     explicit Client(std::string &key, std::string &secret) :
-            m_api_call(std::make_shared<bittrex::api::ApiCall>(key, secret)) {}
+            m_api_call(std::make_shared<bittrex::ApiCall>(key, secret)) {}
 
     /**
      * Used for public information available without an API key
@@ -32,7 +32,7 @@ public:
 
 
 private:
-    std::shared_ptr<bittrex::api::ApiCall> m_api_call;
+    std::shared_ptr<bittrex::ApiCall> m_api_call;
 };
 } //Namespace Bittrex
 #endif //BITTREX_CPP_CLIENT_H

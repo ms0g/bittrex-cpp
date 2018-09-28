@@ -1,17 +1,19 @@
 #include <future>
 #include "api_call.h"
-#include "../lib/libcurlpp.h"
+#include "lib/libcurlpp.h"
 
-using namespace bittrex::api;
+using namespace bittrex;
 
-std::string ApiCall::execute_request_async(const std::string &endpoint, const std::string &payloads, ApiType type) {
+std::string ApiCall::execute_request_async(const std::string &endpoint,
+                                           const std::string &payloads,
+                                           const ApiType &type) {
 
     auto fut = std::async(std::launch::async, ApiCall::get, m_key, m_secret, payloads, endpoint, type);
     return fut.get();
 }
 
 std::string ApiCall::get(const std::string &key, const std::string &secret,
-                         const std::string &payloads, const std::string &endpoint, ApiType type) {
+                         const std::string &payloads, const std::string &endpoint, const ApiType &type) {
 
     std::string res;
     auto uri = BASE_URL + endpoint;

@@ -4,9 +4,9 @@
 #include <memory>
 #include <utility>
 #include <sstream>
-#include "../lib/json.hpp"
-#include "../lib/utils.h"
-#include "../lib/exceptions.h"
+#include "lib/json.hpp"
+#include "lib/utils.h"
+#include "lib/exceptions.h"
 
 
 using json = nlohmann::json;
@@ -16,11 +16,10 @@ static const std::string BASE_URL = "https://bittrex.com/api/v1.1/";
 
 
 namespace bittrex {
-namespace api {
 
 class ApiCall {
 public:
-    explicit ApiCall(std::string &key, std::string &secret) :
+    explicit ApiCall(const std::string &key, const std::string &secret) :
             m_key(key),
             m_secret(secret) {}
 
@@ -42,15 +41,14 @@ public:
 
     static std::string get(const std::string &, const std::string &,
                            const std::string &, const std::string &,
-                           ApiType);
+                           const ApiType &);
 
 private:
-    std::string execute_request_async(const std::string &, const std::string &, ApiType);
+    std::string execute_request_async(const std::string &, const std::string &, const ApiType &);
 
-    std::string &m_key;
-    std::string &m_secret;
+    const std::string &m_key;
+    const std::string &m_secret;
 };
-} //Namespace Api
 } //Namespace Bittrex
 
 

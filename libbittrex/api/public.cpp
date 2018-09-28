@@ -5,8 +5,8 @@ using namespace bittrex::api;
 using json = nlohmann::json;
 
 
-List<response::Market> Public::get_markets() {
-    List<response::Market> markets;
+std::vector<response::Market> Public::get_markets() {
+    std::vector<response::Market> markets;
 
     json res = _api_call->dispatch("public/getmarkets/", ApiType::PUBLIC, "");
 
@@ -18,8 +18,8 @@ List<response::Market> Public::get_markets() {
 }
 
 
-List<response::Currency> Public::get_currencies() {
-    List<response::Currency> currencies;
+std::vector<response::Currency> Public::get_currencies() {
+    std::vector<response::Currency> currencies;
 
     json res = _api_call->dispatch("public/getcurrencies/", ApiType::PUBLIC, "");
 
@@ -38,8 +38,8 @@ response::Ticker Public::get_ticker(const string &market) {
 }
 
 
-List<response::MarketSummary> Public::get_market_summaries() {
-    List<response::MarketSummary> market_summaries;
+std::vector<response::MarketSummary> Public::get_market_summaries() {
+    std::vector<response::MarketSummary> market_summaries;
 
     json res = _api_call->dispatch("public/getmarketsummaries/", ApiType::PUBLIC, "");
 
@@ -65,8 +65,8 @@ response::OrderBook Public::get_order_book(const string &market, const string &t
 }
 
 
-List<response::Trade> Public::get_market_history(const string &market) {
-    List<response::Trade> trades;
+std::vector<response::Trade> Public::get_market_history(const string &market) {
+    std::vector<response::Trade> trades;
 
     json res = _api_call->dispatch("public/getmarkethistory?", ApiType::PUBLIC, "market=", market);
 

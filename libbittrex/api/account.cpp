@@ -5,8 +5,8 @@ using namespace bittrex::api;
 using json = nlohmann::json;
 
 
-List<response::Balance> Account::get_balances() {
-    List<response::Balance> balances;
+std::vector<response::Balance> Account::get_balances() {
+    std::vector<response::Balance> balances;
 
     json res = _api_call->dispatch("account/getbalances?", ApiType::ACCOUNT, "");
 
@@ -34,8 +34,8 @@ response::DepositAddress Account::get_deposit_address(const std::string &currenc
 }
 
 
-std::string Account::withdraw(const std::string &currency, float quantity,
-                              const std::string &address, int payment_id) {
+std::string Account::withdraw(const std::string &currency, const float &quantity,
+                              const std::string &address, const int &payment_id) {
     json res = _api_call->dispatch("account/withdraw?", ApiType::ACCOUNT,
                                    "currency=", currency, "quantity=", quantity,
                                    "address=", address, "paymentid=", payment_id);
@@ -50,8 +50,8 @@ response::Order Account::get_order(const std::string &uuid) {
 }
 
 
-List<response::OrderHistoryEntry> Account::get_order_history(const string &market) {
-    List<response::OrderHistoryEntry> order_history;
+std::vector<response::OrderHistoryEntry> Account::get_order_history(const string &market) {
+    std::vector<response::OrderHistoryEntry> order_history;
 
     json res = (!market.empty()) ?
                _api_call->dispatch("account/getorderhistory?", ApiType::ACCOUNT, "market=", market):
@@ -65,8 +65,8 @@ List<response::OrderHistoryEntry> Account::get_order_history(const string &marke
 }
 
 
-List<response::WithdrawalHistoryEntry> Account::get_withdrawal_history(const string &currency) {
-    List<response::WithdrawalHistoryEntry> withd_history;
+std::vector<response::WithdrawalHistoryEntry> Account::get_withdrawal_history(const string &currency) {
+    std::vector<response::WithdrawalHistoryEntry> withd_history;
 
     json res = _api_call->dispatch("account/getwithdrawalhistory?", ApiType::ACCOUNT, "currency=", currency);
     auto withd_his = res["result"];

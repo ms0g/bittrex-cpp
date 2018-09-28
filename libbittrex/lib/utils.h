@@ -17,12 +17,6 @@ enum class ApiType : int {
 };
 
 /**
- * Generic list implementation
- */
-template<typename T>
-using List = std::vector<T>;
-
-/**
  * Functions to make payloads
  */
 template<typename T>

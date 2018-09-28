@@ -3,7 +3,7 @@
 
 #include <utility>
 #include <vector>
-#include "api_call.h"
+#include "../api_call.h"
 #include "../response/balance.h"
 #include "../response/deposit_address.h"
 #include "../response/order.h"
@@ -23,7 +23,7 @@ public:
      * Used to retrieve all balances from your account
      * @param None
      */
-    List<response::Balance> get_balances();
+    std::vector<response::Balance> get_balances();
 
     /**
      * Used to retrieve the balance from your account for a specific currency.
@@ -45,8 +45,8 @@ public:
      * @param payment_id optional used for CryptoNotes/BitShareX/Nxt optional field (memo/paymentid)
      * @return Returns you the withdrawal uuid
      */
-    std::string withdraw(const std::string &currency, float quantity,
-                         const std::string &address, int payment_id);
+    std::string withdraw(const std::string &currency, const float &quantity,
+                         const std::string &address, const int &payment_id);
 
     /**
      * Used to retrieve a single order by uuid.
@@ -59,14 +59,14 @@ public:
      * @param market optional a string literal for the market (ie. BTC-LTC).
      * If ommited, will return for all markets
      */
-    List<response::OrderHistoryEntry> get_order_history(const std::string &market = "");
+    std::vector<response::OrderHistoryEntry> get_order_history(const std::string &market = "");
 
     /**
      * Used to retrieve your withdrawal history.
      * @param currency optional	a string literal for the currecy (ie. BTC).
      * If omitted, will return for all currencies
      */
-    List<response::WithdrawalHistoryEntry> get_withdrawal_history(const std::string &currency = "");
+    std::vector<response::WithdrawalHistoryEntry> get_withdrawal_history(const std::string &currency = "");
 
     //void get_deposit_history();
 

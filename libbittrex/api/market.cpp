@@ -26,8 +26,8 @@ std::string Market::cancel(const string &uuid) {
 }
 
 
-List<response::OpenOrder> Market::get_open_orders(const string &market) {
-    List<response::OpenOrder> open_orders;
+std::vector<response::OpenOrder> Market::get_open_orders(const string &market) {
+    std::vector<response::OpenOrder> open_orders;
 
     auto res = _api_call->dispatch("market/getopenorders?", ApiType::MARKET, "market=", market);
 

@@ -14,13 +14,18 @@ Bittrex C++ API Client Library
 
 ### Building
 ```bash
-mkdir build && cd build
-cmake .. && cmake --build .
+cd build
+./builder.sh
 ```
 ### Installation
 ```bash
 sudo make install
 ```
+### Run Tests
+```bash
+make test
+```
+
 ### Usage
 ```bash 
 #include <iostream>

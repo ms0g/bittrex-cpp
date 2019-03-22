@@ -22,11 +22,8 @@ script:
   - export CC=gcc-7
   - export CXX=g++-7
   # Build steps
-  - cd libbittrex;mkdir build;cd build
-  - cmake .. && cmake --build .
-  - sudo make install
+  - cd build
+  - ./builder.sh
 
   # Run tests
-  - cd ..;cd ..
-  - cd tests
-  - sh runtests.sh
+  - make test

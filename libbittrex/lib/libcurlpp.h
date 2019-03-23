@@ -4,11 +4,13 @@
 #include <string>
 #include <curl/curl.h>
 #include <vector>
+#include <memory>
+#include <functional>
 
 size_t write_callback(char *contents, size_t size, size_t nmemb, void *userdata);
 
-namespace curl {
-namespace options {
+
+namespace curl { namespace options {
 
 /**
  * Base class for libcurl options
@@ -16,8 +18,10 @@ namespace options {
 class OptionBase {
 public:
     virtual ~OptionBase() = default;
+
     virtual void setOpt() = 0;
-    CURL *m_curlHandle = nullptr;
+
+    std::shared_ptr<CURL> m_curlHandle;
 
 };
 
@@ -26,20 +30,22 @@ public:
  */
 class HttpHeader : public OptionBase {
 public:
-    explicit HttpHeader(const std::string &header) {
-        m_chunk = curl_slist_append(m_chunk, header.c_str());
-    }
+    using curl_slist_t = std::unique_ptr<curl_slist, std::function<void(curl_slist *)>>;
 
-    ~HttpHeader() override {
-        curl_slist_free_all(m_chunk);
+    explicit HttpHeader(const std::string &header) {
+        m_chunk = curl_slist_t(curl_slist_append(m_chunk.get(), header.c_str()),
+                               [](curl_slist *ptr) {
+                                   curl_slist_free_all(ptr);
+                               });
+
     }
 
     inline void setOpt() override {
-        curl_easy_setopt(m_curlHandle, CURLOPT_HTTPHEADER, m_chunk);
+        curl_easy_setopt(m_curlHandle.get(), CURLOPT_HTTPHEADER, m_chunk.get());
     };
 
 private:
-    struct curl_slist *m_chunk = nullptr;
+    curl_slist_t m_chunk;
 };
 
 /**
@@ -50,8 +56,8 @@ public:
     explicit WriteData(std::string &buf) : m_buf(buf) {};
 
     inline void setOpt() override {
-        curl_easy_setopt(m_curlHandle, CURLOPT_WRITEFUNCTION, write_callback);
-        curl_easy_setopt(m_curlHandle, CURLOPT_WRITEDATA, &m_buf);
+        curl_easy_setopt(m_curlHandle.get(), CURLOPT_WRITEFUNCTION, write_callback);
+        curl_easy_setopt(m_curlHandle.get(), CURLOPT_WRITEDATA, &m_buf);
     };
 
 private:
@@ -66,34 +72,32 @@ public:
     explicit Url(std::string &url) : m_url(url) {};
 
     inline void setOpt() override {
-        curl_easy_setopt(m_curlHandle, CURLOPT_URL, m_url.c_str());
+        curl_easy_setopt(m_curlHandle.get(), CURLOPT_URL, m_url.c_str());
     };
 
 private:
     std::string &m_url;
 };
 
-} //Namespace Options
-} //Namespace Curl
-namespace bittrex {
-namespace lib {
+}} //Namespace Curl
+
+namespace bittrex { namespace lib {
 /**
  * Wrapper class for libcurl
  */
 class Curl {
 public:
     Curl();
-    ~Curl();
+
     void perform();
-    void setOpt(curl::options::OptionBase *);
+
+    void setOpt(std::shared_ptr<curl::options::OptionBase>);
 
 private:
-    CURL *m_curl;
+    std::shared_ptr<CURL> m_curl;
     CURLcode m_res;
-    std::vector<curl::options::OptionBase *> m_optionList;
 };
-} //Namespace Lib
-} //Namespace Bittrex
+}} //Namespace Bittrex
 
 
 #endif //BITTREX_LIBCURLPP_H

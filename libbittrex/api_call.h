@@ -12,8 +12,6 @@
 using json = nlohmann::json;
 using namespace bittrex::lib;
 
-static const std::string BASE_URL = "https://bittrex.com/api/v1.1/";
-
 
 namespace bittrex {
 

@@ -11,9 +11,11 @@ size_t write_callback(char *contents, size_t size, size_t nmemb, void *userdata)
 }
 
 
-Curl::Curl() {
-    curl_global_init(CURL_GLOBAL_DEFAULT);
-    m_curl = curl_easy_init();
+Curl::Curl() :
+        m_curl(curl_easy_init(), [](CURL *ptr) {
+            curl_easy_cleanup(ptr);
+        }) {
+
     if (!m_curl)
         throw fail("Curl init failed!");
 }
@@ -24,8 +26,6 @@ Curl::~Curl() {
     for (auto const &opt:m_optionList)
         delete opt;
 
-    curl_easy_cleanup(m_curl);
-    curl_global_cleanup();
 }
 
 
@@ -37,9 +37,11 @@ void Curl::setOpt(curl::options::OptionBase *opt) {
 
 
 void Curl::perform() {
-    m_res = curl_easy_perform(m_curl);
+    m_res = curl_easy_perform(m_curl.get());
     // Check for errors
     if (m_res != CURLE_OK)
         fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(m_res));
 
 }
+
+

@@ -5,6 +5,7 @@
 #include <curl/curl.h>
 #include <vector>
 #include <memory>
+#include <functional>
 
 size_t write_callback(char *contents, size_t size, size_t nmemb, void *userdata);
 

@@ -89,16 +89,13 @@ class Curl {
 public:
     Curl();
 
-    ~Curl();
-
     void perform();
 
-    void setOpt(curl::options::OptionBase *);
+    void setOpt(std::shared_ptr<curl::options::OptionBase>);
 
 private:
     std::shared_ptr<CURL> m_curl;
     CURLcode m_res;
-    std::vector<curl::options::OptionBase *> m_optionList;
 };
 }} //Namespace Bittrex
 

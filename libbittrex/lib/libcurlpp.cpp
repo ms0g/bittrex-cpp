@@ -21,16 +21,7 @@ Curl::Curl() :
 }
 
 
-Curl::~Curl() {
-    // always cleanup
-    for (auto const &opt:m_optionList)
-        delete opt;
-
-}
-
-
-void Curl::setOpt(curl::options::OptionBase *opt) {
-    m_optionList.push_back(opt);
+void Curl::setOpt(std::shared_ptr<curl::options::OptionBase> opt) {
     opt->m_curlHandle = m_curl;
     opt->setOpt();
 }

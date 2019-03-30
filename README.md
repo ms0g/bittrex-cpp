@@ -27,7 +27,7 @@ make test
 ```
 
 ### Usage
-```bash 
+```C++ 
 #include <iostream>
 #include <libbittrex/client.h>
 

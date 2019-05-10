@@ -19,8 +19,6 @@ class OptionBase {
 public:
     virtual ~OptionBase() = default;
 
-    virtual void setOpt() = 0;
-
     std::shared_ptr<CURL> m_curlHandle;
 
 };
@@ -40,7 +38,7 @@ public:
 
     }
 
-    inline void setOpt() override {
+    inline void setOpt() {
         curl_easy_setopt(m_curlHandle.get(), CURLOPT_HTTPHEADER, m_chunk.get());
     };
 
@@ -55,7 +53,7 @@ class WriteData : public OptionBase {
 public:
     explicit WriteData(std::string &buf) : m_buf(buf) {};
 
-    inline void setOpt() override {
+    inline void setOpt() {
         curl_easy_setopt(m_curlHandle.get(), CURLOPT_WRITEFUNCTION, write_callback);
         curl_easy_setopt(m_curlHandle.get(), CURLOPT_WRITEDATA, &m_buf);
     };
@@ -71,7 +69,7 @@ class Url : public OptionBase {
 public:
     explicit Url(std::string &url) : m_url(url) {};
 
-    inline void setOpt() override {
+    inline void setOpt(){
         curl_easy_setopt(m_curlHandle.get(), CURLOPT_URL, m_url.c_str());
     };
 
@@ -91,7 +89,11 @@ public:
 
     void perform();
 
-    void setOpt(std::shared_ptr<curl::options::OptionBase>);
+    template <typename T>
+    void setOpt(std::shared_ptr<T> &opt) {
+        opt->m_curlHandle = m_curl;
+        opt->setOpt();
+    }
 
 private:
     std::shared_ptr<CURL> m_curl;

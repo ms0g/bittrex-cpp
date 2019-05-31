@@ -8,7 +8,7 @@ using json=nlohmann::json;
 using namespace bittrex::lib;
 
 namespace bittrex {
-namespace response {
+namespace model {
 
 struct Ticker {
     explicit Ticker(json j_ticker) {
@@ -22,6 +22,6 @@ struct Ticker {
     Double last;
 
 };
-} //Namespace Response
+} //Namespace model
 } //Namespace bittrex
 #endif //BITTREX_CPP_TICKER_H

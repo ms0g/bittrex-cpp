@@ -8,7 +8,7 @@ using json=nlohmann::json;
 using namespace bittrex::lib;
 
 namespace bittrex {
-namespace response {
+namespace model {
 
 struct OrderHistoryEntry {
     explicit OrderHistoryEntry(json j_order_ent) {
@@ -45,6 +45,6 @@ struct OrderHistoryEntry {
     bool immediate_or_cancel;
 
 };
-} //Namespace Response
+} //Namespace model
 } //Namespace bittrex
 #endif //BITTREX_CPP_ORDER_HISTORY_ENTRY_H

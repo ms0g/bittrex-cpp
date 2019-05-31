@@ -8,7 +8,7 @@ using json=nlohmann::json;
 using namespace bittrex::lib;
 
 namespace bittrex {
-namespace response {
+namespace model {
 
 struct MarketSummary {
     explicit MarketSummary(json j_market_sum) {
@@ -42,7 +42,7 @@ struct MarketSummary {
     String created;
 
 };
-} //Namespace Response
+} //Namespace model
 } //Namespace bittrex
 
 #endif //BITTREX_CPP_MARKET_SUMMARY_H

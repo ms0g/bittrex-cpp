@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <utility>
-#include "../response/open_order.h"
+#include "../models/open_order.h"
 #include "../api_call.h"
 
 using namespace bittrex;
@@ -43,7 +43,7 @@ public:
      * Get all orders that you currently have opened. A specific market can be requested
      * @param market optional a string literal for the market (ie. BTC-LTC)
      * */
-    std::vector<response::OpenOrder> get_open_orders(const std::string &market);
+    std::vector<model::OpenOrder> get_open_orders(const std::string &market);
 
 private:
     std::shared_ptr<ApiCall> _api_call;

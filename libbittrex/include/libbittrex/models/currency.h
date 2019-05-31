@@ -8,7 +8,7 @@ using json=nlohmann::json;
 using namespace bittrex::lib;
 
 namespace bittrex {
-namespace response {
+namespace model {
 
 struct Currency {
     explicit Currency(json j_currency) {
@@ -30,7 +30,7 @@ struct Currency {
     String base_address;
 
 };
-} //Namespace Response
+} //Namespace model
 } //Namespace bittrex
 
 #endif //BITTREX_CPP_CURRENCY_H

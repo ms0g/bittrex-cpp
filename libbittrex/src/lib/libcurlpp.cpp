@@ -1,5 +1,5 @@
-#include "libcurlpp.h"
-#include "exceptions.h"
+#include <libbittrex/lib/libcurlpp.h>
+#include <libbittrex/lib/exceptions.h>
 
 using namespace bittrex::lib;
 using namespace curl::options;

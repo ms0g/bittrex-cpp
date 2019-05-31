@@ -8,7 +8,7 @@ using json=nlohmann::json;
 using namespace bittrex::lib;
 
 namespace bittrex {
-namespace response {
+namespace model {
 
 struct Order {
     explicit Order(json j_order) {
@@ -62,6 +62,6 @@ struct Order {
     String condition_target;
 
 };
-} //Namespace Response
+} //Namespace model
 } //Namespace bittrex
 #endif //BITTREX_CPP_ORDER_H

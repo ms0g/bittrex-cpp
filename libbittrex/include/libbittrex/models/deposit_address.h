@@ -8,7 +8,7 @@ using json=nlohmann::json;
 using namespace bittrex::lib;
 
 namespace bittrex {
-namespace response {
+namespace model {
 
 struct DepositAddress {
     explicit DepositAddress(json j_deposit) {
@@ -20,6 +20,6 @@ struct DepositAddress {
     String address;
 
 };
-} //Namespace Response
+} //Namespace model
 } //Namespace bittrex
 #endif //BITTREX_CPP_DEPOSIT_ADDRESS_H

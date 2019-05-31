@@ -8,7 +8,7 @@ using json=nlohmann::json;
 using namespace bittrex::lib;
 
 namespace bittrex {
-namespace response {
+namespace model {
 
 struct Trade {
     explicit Trade(json j_market_his) {
@@ -29,6 +29,6 @@ struct Trade {
     String fill_type;
     String order_type;
 };
-} //Namespace Response
+} //Namespace model
 } //Namespace bittrex
 #endif //BITTREX_CPP_MARKET_HISTORY_H

@@ -1,5 +1,5 @@
 #include <sstream>
-#include "market.h"
+#include <libbittrex/api/market.h>
 
 using namespace bittrex::api;
 using json = nlohmann::json;
@@ -26,14 +26,14 @@ std::string Market::cancel(const string &uuid) {
 }
 
 
-std::vector<response::OpenOrder> Market::get_open_orders(const string &market) {
-    std::vector<response::OpenOrder> open_orders;
+std::vector<model::OpenOrder> Market::get_open_orders(const string &market) {
+    std::vector<model::OpenOrder> open_orders;
 
     auto res = _api_call->dispatch("market/getopenorders?", ApiType::MARKET, "market=", market);
 
     auto j_o_orders = res["result"];
     for (auto const &order:j_o_orders) {
-        open_orders.emplace_back(response::OpenOrder(order));
+        open_orders.emplace_back(model::OpenOrder(order));
     }
     return open_orders;
 }

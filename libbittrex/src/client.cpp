@@ -1,4 +1,4 @@
-#include "client.h"
+#include <libbittrex/client.h>
 
 using namespace bittrex;
 

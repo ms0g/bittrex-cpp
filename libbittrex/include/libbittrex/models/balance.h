@@ -8,7 +8,7 @@ using json=nlohmann::json;
 using namespace bittrex::lib;
 
 namespace bittrex {
-namespace response {
+namespace model {
 
 struct Balance {
     explicit Balance(json j_balance) {
@@ -30,6 +30,6 @@ struct Balance {
     String uuid;
 
 };
-} //Namespace Response
+} //Namespace model
 } //Namespace bittrex
 #endif //BITTREX_CPP_BALANCE_H

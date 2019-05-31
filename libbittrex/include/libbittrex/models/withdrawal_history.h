@@ -8,7 +8,7 @@ using json=nlohmann::json;
 using namespace bittrex::lib;
 
 namespace bittrex {
-namespace response {
+namespace model {
 
 struct WithdrawalHistoryEntry {
     explicit WithdrawalHistoryEntry(json wthe) {
@@ -37,6 +37,6 @@ struct WithdrawalHistoryEntry {
     String canceled;
     bool invalid_address;
 };
-} //Namespace Response
+} //Namespace model
 } //Namespace bittrex
 #endif //BITTREX_CPP_WITHDRAWAL_HISTORY_H

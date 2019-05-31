@@ -17,5 +17,6 @@ else ()
     message("Could not find the libCURL library")
 endif ()
 
+add_subdirectory(thirdparty)
 add_subdirectory(libbittrex)
 add_subdirectory(tests)

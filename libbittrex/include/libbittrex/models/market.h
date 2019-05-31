@@ -1,8 +1,8 @@
 #ifndef BITTREX_CPP_RES_MARKET_H
 #define BITTREX_CPP_RES_MARKET_H
 
-#include "../lib/json.hpp"
-#include "../lib/wrappers.h"
+#include <json.hpp>
+#include <libbittrex/lib/wrappers.h>
 
 using json=nlohmann::json;
 using namespace bittrex::lib;

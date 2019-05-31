@@ -1,9 +1,9 @@
 #ifndef BITTREX_CPP_RES_ORDER_BOOK_H
 #define BITTREX_CPP_RES_ORDER_BOOK_H
 
-#include "../lib/json.hpp"
-#include "../lib/utils.h"
-#include "../lib/wrappers.h"
+#include <json.hpp>
+#include <libbittrex/lib/utils.h>
+#include <libbittrex/lib/wrappers.h>
 
 using json=nlohmann::json;
 using namespace bittrex::lib;

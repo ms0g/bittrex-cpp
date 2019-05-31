@@ -3,8 +3,8 @@
 
 #include <memory>
 #include <utility>
-#include "../models/open_order.h"
-#include "../api_call.h"
+#include <libbittrex/models/open_order.h>
+#include <libbittrex/api_call.h>
 
 using namespace bittrex;
 

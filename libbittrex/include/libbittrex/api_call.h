@@ -4,9 +4,9 @@
 #include <memory>
 #include <utility>
 #include <sstream>
-#include "lib/json.hpp"
-#include "lib/utils.h"
-#include "lib/exceptions.h"
+#include <json.hpp>
+#include <libbittrex/lib/utils.h>
+#include <libbittrex/lib/exceptions.h>
 
 
 using json = nlohmann::json;

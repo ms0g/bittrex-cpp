@@ -4,13 +4,13 @@
 #include <iostream>
 #include <memory>
 #include <utility>
-#include "../models/market.h"
-#include "../models/currency.h"
-#include "../models/ticker.h"
-#include "../models/market_summary.h"
-#include "../models/order_book.h"
-#include "../models/market_history.h"
-#include "../api_call.h"
+#include <libbittrex/models/market.h>
+#include <libbittrex/models/currency.h>
+#include <libbittrex/models/ticker.h>
+#include <libbittrex/models/market_summary.h>
+#include <libbittrex/models/order_book.h>
+#include <libbittrex/models/market_history.h>
+#include <libbittrex/api_call.h>
 
 using namespace bittrex;
 

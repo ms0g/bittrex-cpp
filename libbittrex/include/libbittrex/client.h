@@ -3,10 +3,10 @@
 
 #include <iostream>
 #include <memory>
-#include "api/public.h"
-#include "api/market.h"
-#include "api/account.h"
-#include "api_call.h"
+#include <libbittrex/api/public.h>
+#include <libbittrex/api/market.h>
+#include <libbittrex/api/account.h>
+#include <libbittrex/api_call.h>
 
 namespace bittrex {
 

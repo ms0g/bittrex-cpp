@@ -3,12 +3,12 @@
 
 #include <utility>
 #include <vector>
-#include "../api_call.h"
-#include "../models/balance.h"
-#include "../models/deposit_address.h"
-#include "../models/order.h"
-#include "../models/order_history.h"
-#include "../models/withdrawal_history.h"
+#include <libbittrex/api_call.h>
+#include <libbittrex/models/balance.h>
+#include <libbittrex/models/deposit_address.h>
+#include <libbittrex/models/order.h>
+#include <libbittrex/models/order_history.h>
+#include <libbittrex/models/withdrawal_history.h>
 
 using namespace bittrex;
 

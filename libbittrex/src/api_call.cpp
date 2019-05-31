@@ -5,7 +5,7 @@
 
 using namespace bittrex;
 
-static const std::string BASE_URL = "https://bittrex.com/api/v1.1/";
+static const std::string BASE_URL = "https://api.bittrex.com/api/v1.1/";
 
 std::string ApiCall::execute_request_async(const std::string &endpoint,
                                            const std::string &payloads,

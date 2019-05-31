@@ -20,13 +20,6 @@ Curl::Curl() :
         throw fail("Curl init failed!");
 }
 
-
-void Curl::setOpt(std::shared_ptr<curl::options::OptionBase> opt) {
-    opt->m_curlHandle = m_curl;
-    opt->setOpt();
-}
-
-
 void Curl::perform() {
     m_res = curl_easy_perform(m_curl.get());
     // Check for errors

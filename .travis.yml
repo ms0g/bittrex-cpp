@@ -26,4 +26,5 @@ script:
   - ./builder.sh
 
   # Run tests
+  - cd build_temp
   - make test

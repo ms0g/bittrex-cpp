@@ -44,12 +44,12 @@ BOOST_AUTO_TEST_CASE(TestingGetMarketSummary) {
     BOOST_CHECK_NO_THROW(p.get_market_summary(MARKET));
 }
 
-BOOST_AUTO_TEST_CASE(TestingGetOrderBook) {
-    BOOST_REQUIRE_NO_THROW(p.get_order_book(MARKET, "both"));
-    auto order_book = p.get_order_book(MARKET, "both");
-    BOOST_CHECK(!order_book.buy.empty());
-    BOOST_CHECK(!order_book.sell.empty());
-}
+//BOOST_AUTO_TEST_CASE(TestingGetOrderBook) {
+//    BOOST_REQUIRE_NO_THROW(p.get_order_book(MARKET, "both"));
+//    auto order_book = p.get_order_book(MARKET, "both");
+//    BOOST_CHECK(!order_book.buy.empty());
+//    BOOST_CHECK(!order_book.sell.empty());
+//}
 
 BOOST_AUTO_TEST_CASE(TestingGetMarketHistory) {
     BOOST_REQUIRE_NO_THROW(p.get_market_history(MARKET));

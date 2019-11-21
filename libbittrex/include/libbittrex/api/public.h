@@ -11,61 +11,71 @@
 #include <libbittrex/models/order_book.h>
 #include <libbittrex/models/market_history.h>
 #include <libbittrex/api_call.h>
+#include <libbittrex/api/base.h>
 
 using namespace bittrex;
 
 namespace bittrex {
 namespace api {
 
-class Public {
+
+class Public: Base {
 public:
-    explicit Public(std::shared_ptr<ApiCall> &api_call) : _api_call(api_call) {}
+    explicit Public(std::shared_ptr<ApiCall> &api_call) : Base(api_call) {}
+    using market_t = model::Market;
+    using market_list_t = vector<market_t>;
+    using currency_t=model::Currency;
+    using currency_list_t=vector<model::Currency>;
+    using ticker_t=model::Ticker;
+    using market_summary_t=model::MarketSummary;
+    using market_sum_list_t=vector<market_summary_t>;
+    using order_book_t=model::OrderBook;
+    using trade_t=model::Trade;
+    using trade_list_t=vector<trade_t >;
 
     /**
      * Get the open and available trading markets at Bittrex along with other meta data
      * @param None
      */
-    std::vector<model::Market> get_markets();
+    market_list_t get_markets();
 
     /**
      * Get all supported currencies at Bittrex along with other meta data
      * @param None
      */
-    std::vector<model::Currency> get_currencies();
+    currency_list_t get_currencies();
 
     /**
      * Get the current tick values for a market
      * @param market a string literal for the market (ex: BTC-LTC)
      */
-    model::Ticker get_ticker(const std::string &market);
+    ticker_t get_ticker(const std::string &market);
 
     /**
      * Get the last 24 hour summary of all active exchanges
      * @param None
      */
-    std::vector<model::MarketSummary> get_market_summaries();
+    market_sum_list_t get_market_summaries();
 
     /**
      * Get the last 24 hour summary of all active exchanges
      * @param market a string literal for the market (ex: BTC-LTC)
      */
-    model::MarketSummary get_market_summary(const std::string &market);
+    market_summary_t get_market_summary(const std::string &market);
 
     /**
      * Get retrieve the orderbook for a given market
      * @param market a string literal for the market (ex: BTC-LTC)
      * @param type buy, sell or both to identify the type of orderbook to return
      */
-    model::OrderBook get_order_book(const std::string &market, const std::string &type);
+//    order_book_t get_order_book(const std::string &market, const std::string &type);
 
     /**
      * Retrieve the latest trades that have occured for a specific market
      * @param market a string literal for the market (ex: BTC-LTC)
      */
-    std::vector<model::Trade> get_market_history(const std::string &market);
+    trade_list_t get_market_history(const std::string &market);
 
-private:
-    std::shared_ptr<ApiCall> _api_call;
 };
 } //Namespace Api
 } //Namespace Bittrex

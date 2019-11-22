@@ -11,14 +11,14 @@ namespace bittrex {
 namespace model {
 
 struct Balance {
-    explicit Balance(json j_balance) {
-        currency = j_balance["Currency"];
-        balance = j_balance["Balance"];
-        available = j_balance["Available"];
-        pending = j_balance["Pending"];
-        crypto_address = j_balance["CryptoAddress"];
-        requested = j_balance["Requested"];
-        uuid = j_balance["Uuid"];
+    explicit Balance(json j) {
+        currency = j["Currency"];
+        balance = j["Balance"];
+        available = j["Available"];
+        pending = j["Pending"];
+        crypto_address = j["CryptoAddress"];
+        requested = j["Requested"];
+        uuid = j["Uuid"];
     };
 
     String currency;

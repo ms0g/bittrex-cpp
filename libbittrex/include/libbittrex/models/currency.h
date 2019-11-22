@@ -11,14 +11,14 @@ namespace bittrex {
 namespace model {
 
 struct Currency {
-    explicit Currency(json j_currency) {
-        currency = j_currency["Currency"];
-        currency_long = j_currency["CurrencyLong"];
-        min_confirmation = j_currency["MinConfirmation"];
-        txfee = j_currency["TxFee"];
-        is_active = j_currency["IsActive"];
-        coin_type = j_currency["CoinType"];
-        base_address = j_currency["BaseAddress"];
+    explicit Currency(json j) {
+        currency = j["Currency"];
+        currency_long = j["CurrencyLong"];
+        min_confirmation = j["MinConfirmation"];
+        txfee = j["TxFee"];
+        is_active = j["IsActive"];
+        coin_type = j["CoinType"];
+        base_address = j["BaseAddress"];
     };
 
     String currency;

@@ -11,9 +11,9 @@ namespace bittrex {
 namespace model {
 
 struct DepositAddress {
-    explicit DepositAddress(json j_deposit) {
-        currency = j_deposit["Currency"];
-        address = j_deposit["Address"];
+    explicit DepositAddress(json j) {
+        currency = j["Currency"];
+        address = j["Address"];
     };
 
     String currency;

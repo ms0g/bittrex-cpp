@@ -18,9 +18,9 @@ class String {
 public:
     String() {}
     String(const String &other):_s(other._s) {}
-    String(String &&rhs) noexcept: _s(std::move(rhs._s)) { rhs.reset(); }
+    String(String &&other) noexcept: _s(std::move(other._s)) { other.reset(); }
     explicit String(std::string &other):_s(other) {}
-    explicit String(std::string &&rhs):_s(std::move(rhs)) {}
+    explicit String(std::string &&other):_s(std::move(other)) {other.clear();}
     explicit String(const char *s):_s(s) {}
 
 

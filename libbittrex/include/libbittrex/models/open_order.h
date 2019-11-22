@@ -11,24 +11,24 @@ namespace bittrex {
 namespace model {
 
 struct OpenOrder {
-    explicit OpenOrder(json j_order) {
-        uuid = j_order["Uuid"];
-        order_uuid = j_order["OrderUuid"];
-        exchange = j_order["Exchange"];
-        order_type = j_order["OrderType"];
-        quantity = j_order["Quantity"];
-        quantity_remaining = j_order["QuantityRemaining"];
-        limit = j_order["Limit"];
-        commission_paid = j_order["CommissionPaid"];
-        price = j_order["Price"];
-        price_per_unit = j_order["PricePerUnit"];
-        opened = j_order["Opened"];
-        closed = j_order["Closed"];
-        cancel_initiated = j_order["CancelInitiated"];
-        immediate_or_cancel = j_order["ImmediateOrCancel"];
-        is_conditional = j_order["IsConditional"];
-        condition = j_order["Condition"];
-        condition_target = j_order["ConditionTarget"];
+    explicit OpenOrder(json j) {
+        uuid = j["Uuid"];
+        order_uuid = j["OrderUuid"];
+        exchange = j["Exchange"];
+        order_type = j["OrderType"];
+        quantity = j["Quantity"];
+        quantity_remaining = j["QuantityRemaining"];
+        limit = j["Limit"];
+        commission_paid = j["CommissionPaid"];
+        price = j["Price"];
+        price_per_unit = j["PricePerUnit"];
+        opened = j["Opened"];
+        closed = j["Closed"];
+        cancel_initiated = j["CancelInitiated"];
+        immediate_or_cancel = j["ImmediateOrCancel"];
+        is_conditional = j["IsConditional"];
+        condition = j["Condition"];
+        condition_target = j["ConditionTarget"];
     };
 
     String uuid;

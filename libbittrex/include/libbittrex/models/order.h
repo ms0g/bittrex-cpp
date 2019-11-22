@@ -11,30 +11,30 @@ namespace bittrex {
 namespace model {
 
 struct Order {
-    explicit Order(json j_order) {
-        account_id = j_order["AccountId"];
-        order_uuid = j_order["OrderUuid"];
-        exchange = j_order["Exchange"];
-        type = j_order["Type"];
-        quantity = j_order["Quantity"];
-        quantity_remaining = j_order["QuantityRemaining"];
-        limit = j_order["Limit"];
-        reserved = j_order["Reserved"];
-        reserve_remaining = j_order["ReserveRemaining"];
-        commission_reserved = j_order["CommissionReserved"];
-        commission_reserve_remaining = j_order["CommissionReserveRemaining"];
-        commission_paid = j_order["CommissionPaid"];
-        price = j_order["Price"];
-        price_per_unit = j_order["PricePerUnit"];
-        opened = j_order["Opened"];
-        closed = j_order["Closed"];
-        is_open = j_order["IsOpen"];
-        sentinel = j_order["Sentinel"];
-        cancel_initiated = j_order["CancelInitiated"];
-        immediate_or_cancel = j_order["ImmediateOrCancel"];
-        is_conditional = j_order["IsConditional"];
-        condition = j_order["Condition"];
-        condition_target = j_order["ConditionTarget"];
+    explicit Order(json j) {
+        account_id = j["AccountId"];
+        order_uuid = j["OrderUuid"];
+        exchange = j["Exchange"];
+        type = j["Type"];
+        quantity = j["Quantity"];
+        quantity_remaining = j["QuantityRemaining"];
+        limit = j["Limit"];
+        reserved = j["Reserved"];
+        reserve_remaining = j["ReserveRemaining"];
+        commission_reserved = j["CommissionReserved"];
+        commission_reserve_remaining = j["CommissionReserveRemaining"];
+        commission_paid = j["CommissionPaid"];
+        price = j["Price"];
+        price_per_unit = j["PricePerUnit"];
+        opened = j["Opened"];
+        closed = j["Closed"];
+        is_open = j["IsOpen"];
+        sentinel = j["Sentinel"];
+        cancel_initiated = j["CancelInitiated"];
+        immediate_or_cancel = j["ImmediateOrCancel"];
+        is_conditional = j["IsConditional"];
+        condition = j["Condition"];
+        condition_target = j["ConditionTarget"];
     };
 
     String account_id;

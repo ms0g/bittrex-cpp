@@ -11,15 +11,15 @@ namespace bittrex {
 namespace model {
 
 struct Market {
-    explicit Market(json j_market) {
-        market_currency = j_market["MarketCurrency"];
-        base_currency = j_market["BaseCurrency"];
-        market_currency_long = j_market["MarketCurrencyLong"];
-        base_currency_long = j_market["BaseCurrencyLong"];
-        min_trade_size = j_market["MinTradeSize"];
-        market_name = j_market["MarketName"];
-        is_active = j_market["IsActive"];
-        created = j_market["Created"];
+    explicit Market(json j) {
+        market_currency = j["MarketCurrency"];
+        base_currency = j["BaseCurrency"];
+        market_currency_long = j["MarketCurrencyLong"];
+        base_currency_long = j["BaseCurrencyLong"];
+        min_trade_size = j["MinTradeSize"];
+        market_name = j["MarketName"];
+        is_active = j["IsActive"];
+        created = j["Created"];
     };
 
     String market_currency;

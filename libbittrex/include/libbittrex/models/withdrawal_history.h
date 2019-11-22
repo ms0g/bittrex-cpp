@@ -11,18 +11,18 @@ namespace bittrex {
 namespace model {
 
 struct WithdrawalHistoryEntry {
-    explicit WithdrawalHistoryEntry(json wthe) {
-        payment_uuid = wthe["PaymentUuid"];
-        currency = wthe["Currency"];
-        amount = wthe["Amount"];
-        address = wthe["Address"];
-        opened = wthe["Opened"];
-        authorized = wthe["Authorized"];
-        pending_payment = wthe["PendingPayment"];
-        tx_cost = wthe["TxCost"];
-        tx_id = wthe["TxId"];
-        canceled = wthe["TxId"];
-        invalid_address = wthe["InvalidAddress"];
+    explicit WithdrawalHistoryEntry(json j) {
+        payment_uuid = j["PaymentUuid"];
+        currency = j["Currency"];
+        amount = j["Amount"];
+        address = j["Address"];
+        opened = j["Opened"];
+        authorized = j["Authorized"];
+        pending_payment = j["PendingPayment"];
+        tx_cost = j["TxCost"];
+        tx_id = j["TxId"];
+        canceled = j["TxId"];
+        invalid_address = j["InvalidAddress"];
     }
 
     String payment_uuid;

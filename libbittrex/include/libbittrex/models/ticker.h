@@ -11,10 +11,10 @@ namespace bittrex {
 namespace model {
 
 struct Ticker {
-    explicit Ticker(json j_ticker) {
-        bid = j_ticker["Bid"];
-        ask = j_ticker["Ask"];
-        last = j_ticker["Last"];
+    explicit Ticker(json &j) {
+        bid = j["Bid"];
+        ask = j["Ask"];
+        last = j["Last"];
     };
 
     Double bid;

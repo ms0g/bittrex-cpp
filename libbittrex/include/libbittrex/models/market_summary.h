@@ -11,20 +11,20 @@ namespace bittrex {
 namespace model {
 
 struct MarketSummary {
-    explicit MarketSummary(json j_market_sum) {
-        market_name = j_market_sum["MarketName"];
-        high = j_market_sum["High"];
-        low = j_market_sum["Low"];
-        volume = j_market_sum["Volume"];
-        last = j_market_sum["Last"];
-        base_volume = j_market_sum["BaseVolume"];
-        time_stamp = j_market_sum["TimeStamp"];
-        bid = j_market_sum["Bid"];
-        ask = j_market_sum["Ask"];
-        open_buy_orders = j_market_sum["OpenBuyOrders"];
-        open_sell_orders = j_market_sum["OpenSellOrders"];
-        prev_day = j_market_sum["PrevDay"];
-        created = j_market_sum["Created"];
+    explicit MarketSummary(json j) {
+        market_name = j["MarketName"];
+        high = j["High"];
+        low = j["Low"];
+        volume = j["Volume"];
+        last = j["Last"];
+        base_volume = j["BaseVolume"];
+        time_stamp = j["TimeStamp"];
+        bid = j["Bid"];
+        ask = j["Ask"];
+        open_buy_orders = j["OpenBuyOrders"];
+        open_sell_orders = j["OpenSellOrders"];
+        prev_day = j["PrevDay"];
+        created = j["Created"];
     };
 
     String market_name;

@@ -11,21 +11,21 @@ namespace bittrex {
 namespace model {
 
 struct OrderHistoryEntry {
-    explicit OrderHistoryEntry(json j_order_ent) {
-        order_uuid = j_order_ent["OrderUuid"];
-        exchange = j_order_ent["Exchange"];
-        time_stamp = j_order_ent["TimeStamp"];
-        order_type = j_order_ent["OrderType"];
-        limit = j_order_ent["Limit"];
-        quantity = j_order_ent["Quantity"];
-        quantity_remaining = j_order_ent["QuantityRemaining"];
-        commission = j_order_ent["Commission"];
-        price = j_order_ent["Price"];
-        price_per_unit = j_order_ent["PricePerUnit"];
-        is_conditional = j_order_ent["IsConditional"];
-        condition = j_order_ent["Condition"];
-        condition_target = j_order_ent["ConditionTarget"];
-        immediate_or_cancel = j_order_ent["ImmediateOrCancel"];
+    explicit OrderHistoryEntry(json j) {
+        order_uuid = j["OrderUuid"];
+        exchange = j["Exchange"];
+        time_stamp = j["TimeStamp"];
+        order_type = j["OrderType"];
+        limit = j["Limit"];
+        quantity = j["Quantity"];
+        quantity_remaining = j["QuantityRemaining"];
+        commission = j["Commission"];
+        price = j["Price"];
+        price_per_unit = j["PricePerUnit"];
+        is_conditional = j["IsConditional"];
+        condition = j["Condition"];
+        condition_target = j["ConditionTarget"];
+        immediate_or_cancel = j["ImmediateOrCancel"];
 
     }
 

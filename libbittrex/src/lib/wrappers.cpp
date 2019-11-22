@@ -2,7 +2,7 @@
 
 using namespace bittrex::lib;
 
-String& String::operator=(const json &s) {
+String &String::operator=(const json &s) {
     _s = s.is_null() ? "" : s.get<std::string>();
     return *this;
 }
@@ -12,9 +12,9 @@ String &String::operator=(const String &other) {
     return *this;
 }
 
-String &String::operator=(String &&rhs) noexcept {
-    _s = this != &rhs ? std::move(rhs._s) : _s;
-    rhs.reset();
+String &String::operator=(String &&other) noexcept {
+    _s = this != &other ? std::move(other._s) : _s;
+    other.reset();
     return *this;
 }
 
@@ -53,7 +53,6 @@ Int &Int::operator*(const Int &other) {
     _i *= other._i;
     return *this;
 }
-
 
 
 Double &Double::operator=(const json &other) {

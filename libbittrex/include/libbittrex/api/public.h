@@ -27,7 +27,7 @@ using market_summary_t=model::MarketSummary;
 using market_sum_list_t=vector<market_summary_t>;
 using order_book_t=model::OrderBook;
 using trade_t=model::Trade;
-using trade_list_t=vector<trade_t >;
+using trade_list_t=vector<trade_t>;
 
 class Public: Base {
 public:

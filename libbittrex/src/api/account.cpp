@@ -1,79 +1,61 @@
 #include <libbittrex/api/account.h>
 
-
 using namespace bittrex::api;
-using json = nlohmann::json;
 
-
-std::vector<model::Balance> Account::get_balances() {
-    std::vector<model::Balance> balances;
-
-    json res = _api_call->dispatch("account/getbalances?", ApiType::ACCOUNT, "");
-
-    auto j_balances = res["result"];
-    for (auto const &balance:j_balances) {
-        balances.emplace_back(model::Balance(balance));
-    }
-    return balances;
+balance_list_t Account::get_balances() {
+    auto res = api_request<balance_list_t,balance_t>("account/getbalances?", ApiType::ACCOUNT, "");
+    return res;
 }
 
 
-model::Balance Account::get_balance(const std::string &currency) {
-    json res = _api_call->dispatch("account/getbalance?", ApiType::ACCOUNT, "currency=", currency);
-    auto balance = res["result"];
-    return model::Balance(balance);
+balance_t Account::get_balance(const std::string &currency) {
+    auto res = api_request<balance_t, balance_t>("account/getbalance?", ApiType::ACCOUNT, "currency=",
+                                                           currency);
+    return res;
 
 }
 
 
-model::DepositAddress Account::get_deposit_address(const std::string &currency) {
-    json res = _api_call->dispatch("account/getdepositaddress?", ApiType::ACCOUNT, "currency=", currency);
-    auto dep_addr = res["result"];
-    return model::DepositAddress(dep_addr);
+deposit_address_t Account::get_deposit_address(const std::string &currency) {
+    auto res = api_request<deposit_address_t, deposit_address_t>("account/getdepositaddress?", ApiType::ACCOUNT,
+                                                                         "currency=", currency);
+    return res;
 
 }
 
 
-std::string Account::withdraw(const std::string &currency, const float &quantity,
-                              const std::string &address, const int &payment_id) {
-    json res = _api_call->dispatch("account/withdraw?", ApiType::ACCOUNT,
-                                   "currency=", currency, "quantity=", quantity,
-                                   "address=", address, "paymentid=", payment_id);
-    return res["result"];
+uuid_t Account::withdraw(const std::string &currency, const float &quantity,
+                         const std::string &address, const int &payment_id) {
+
+    auto res = api_request<uuid_t, uuid_t>("account/withdraw?", ApiType::ACCOUNT,
+                                           "currency=", currency, "quantity=", quantity,
+                                           "address=", address, "paymentid=", payment_id);
+    return res;
 }
 
 
-model::Order Account::get_order(const std::string &uuid) {
-    json res = _api_call->dispatch("account/getorder?", ApiType::ACCOUNT, "uuid=", uuid);
-    auto order = res["result"];
-    return model::Order(order);
+order_t Account::get_order(const std::string &uuid) {
+    auto res = api_request<order_t, order_t>("account/getorder?", ApiType::ACCOUNT, "uuid=", uuid);
+    return res;
 }
 
 
-std::vector<model::OrderHistoryEntry> Account::get_order_history(const string &market) {
-    std::vector<model::OrderHistoryEntry> order_history;
+order_history_ent_list_t Account::get_order_history(const string &market) {
+    //    json res = (!market.empty()) ?
+//               _api_call->dispatch("account/getorderhistory?", ApiType::ACCOUNT, "market=", market):
+//               _api_call->dispatch("account/getorderhistory?", ApiType::ACCOUNT, "");
 
-    json res = (!market.empty()) ?
-               _api_call->dispatch("account/getorderhistory?", ApiType::ACCOUNT, "market=", market):
-               _api_call->dispatch("account/getorderhistory?", ApiType::ACCOUNT, "");
-
-    auto order_his = res["result"];
-    for (auto const &or_his:order_history) {
-        order_history.emplace_back(model::OrderHistoryEntry(or_his));
-    }
-    return order_history;
+    auto res = api_request<order_history_ent_list_t, order_history_ent_t>("account/getorderhistory?",
+                                                                                       ApiType::ACCOUNT, "market=",
+                                                                                       market);
+    return res;
 }
 
 
-std::vector<model::WithdrawalHistoryEntry> Account::get_withdrawal_history(const string &currency) {
-    std::vector<model::WithdrawalHistoryEntry> withd_history;
-
-    json res = _api_call->dispatch("account/getwithdrawalhistory?", ApiType::ACCOUNT, "currency=", currency);
-    auto withd_his = res["result"];
-    for (auto const &withd_his_ent:withd_his) {
-        withd_history.emplace_back(model::WithdrawalHistoryEntry(withd_his_ent));
-    }
-    return withd_history;
+withdrawal_history_ent_list_t Account::get_withdrawal_history(const string &currency) {
+    auto res = api_request<withdrawal_history_ent_list_t, withdrawal_history_ent_t>(
+            "account/getwithdrawalhistory?", ApiType::ACCOUNT, "currency=", currency);
+    return res;
 }
 
 

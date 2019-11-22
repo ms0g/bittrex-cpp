@@ -1,38 +1,36 @@
 #include <libbittrex/api/public.h>
 
-
 using namespace bittrex::api;
-using json = nlohmann::json;
 
-std::vector<model::Market> Public::get_markets() {
-    auto res = api_request<std::vector<model::Market>, model::Market>("public/getmarkets/", ApiType::PUBLIC, "");
+market_list_t Public::get_markets() {
+    auto res = api_request<market_list_t, market_t>("public/getmarkets/", ApiType::PUBLIC, "");
     return res;
 }
 
 
-std::vector<model::Currency> Public::get_currencies() {
-    auto res = api_request<std::vector<model::Currency>, model::Currency>("public/getcurrencies/", ApiType::PUBLIC, "");
+currency_list_t Public::get_currencies() {
+    auto res = api_request<currency_list_t, currency_t>("public/getcurrencies/", ApiType::PUBLIC, "");
     return res;
 }
 
 
-model::Ticker Public::get_ticker(const string &market) {
-    auto res = api_request<model::Ticker, model::Ticker>("public/getticker?", ApiType::PUBLIC, "market=", market);
+ticker_t Public::get_ticker(const string &market) {
+    auto res = api_request<ticker_t, ticker_t>("public/getticker?", ApiType::PUBLIC, "market=", market);
     return res;
 }
 
 
-std::vector<model::MarketSummary> Public::get_market_summaries() {
-    auto res = api_request<std::vector<model::MarketSummary>, model::MarketSummary>("public/getmarketsummaries/",
-                                                                                    ApiType::PUBLIC, "");
+market_sum_list_t Public::get_market_summaries() {
+    auto res = api_request<market_sum_list_t, market_summary_t>("public/getmarketsummaries/",
+                                                                ApiType::PUBLIC, "");
     return res;
 
 }
 
 
-model::MarketSummary Public::get_market_summary(const string &market) {
-    auto res = api_request<model::MarketSummary, model::MarketSummary>("public/getmarketsummary?", ApiType::PUBLIC,
-                                                                       "market=", market);
+market_sum_list_t Public::get_market_summary(const string &market) {
+    auto res = api_request<market_sum_list_t, market_summary_t>("public/getmarketsummary?", ApiType::PUBLIC,
+                                                                "market=", market);
     return res;
 }
 
@@ -43,9 +41,9 @@ model::MarketSummary Public::get_market_summary(const string &market) {
 //}
 
 
-std::vector<model::Trade> Public::get_market_history(const string &market) {
-    auto res = api_request<std::vector<model::Trade>, model::Trade>("public/getmarkethistory?", ApiType::PUBLIC,
-                                                                    "market=", market);
+trade_list_t Public::get_market_history(const string &market) {
+    auto res = api_request<trade_list_t, trade_t>("public/getmarkethistory?", ApiType::PUBLIC,
+                                                  "market=", market);
     return res;
 
 }

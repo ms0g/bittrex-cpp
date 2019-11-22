@@ -2,20 +2,19 @@
 #define BITTREX_CPP_BASE_H
 
 #include <type_traits>
+#include <libbittrex/api_call.h>
 
 using namespace std;
 
-template<typename T>
-struct is_std_vector : false_type {
-};
-
-template<typename T>
-struct is_std_vector<std::vector<T>> : true_type {
-};
-
-
 namespace bittrex {
 namespace api {
+
+
+template<typename T>
+struct is_std_vector : false_type {};
+
+template<typename T>
+struct is_std_vector<std::vector<T>> : true_type {};
 
 class Base {
 public:
@@ -43,7 +42,7 @@ public:
         try {
             return M(j_res);
         } catch (...) {
-            return M(j_res[0]);
+
         }
 
 

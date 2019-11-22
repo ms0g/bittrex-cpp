@@ -10,7 +10,6 @@
 #include <libbittrex/models/market_summary.h>
 #include <libbittrex/models/order_book.h>
 #include <libbittrex/models/market_history.h>
-#include <libbittrex/api_call.h>
 #include <libbittrex/api/base.h>
 
 using namespace bittrex;
@@ -18,8 +17,8 @@ using namespace bittrex;
 namespace bittrex {
 namespace api {
 
-using market_t = model::Market;
-using market_list_t = vector<market_t>;
+using market_t=model::Market;
+using market_list_t=vector<market_t>;
 using currency_t=model::Currency;
 using currency_list_t=vector<model::Currency>;
 using ticker_t=model::Ticker;
@@ -30,6 +29,13 @@ using trade_t=model::Trade;
 using trade_list_t=vector<trade_t>;
 
 class Public: Base {
+private:
+    static constexpr const char *MARKET_END_P = "public/getmarkets/";
+    static constexpr const char *CURRENCY_END_P = "public/getcurrencies/";
+    static constexpr const char *TICKER_END_P = "public/getticker?";
+    static constexpr const char *MARKET_SUMS_END_P = "public/getmarketsummaries/";
+    static constexpr const char *MARKET_SUM_END_P = "public/getmarketsummary?";
+    static constexpr const char *MARKET_HIS_END_P = "public/getmarkethistory?";
 public:
     explicit Public(std::shared_ptr<ApiCall> &api_call) : Base(api_call) {}
 

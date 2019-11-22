@@ -16,13 +16,15 @@ using namespace bittrex::lib;
 namespace bittrex {
 
 class ApiCall {
+private:
+    static constexpr const char* BASE_URL = "https://api.bittrex.com/api/v1.1/";
 public:
     explicit ApiCall(const std::string &key, const std::string &secret) :
             m_key(key),
             m_secret(secret) {}
 
     template<typename ... Params>
-    json dispatch(const std::string &endpoint, ApiType type, const Params &... rest) {
+    json dispatch(const std::string &endpoint, const ApiType &type, const Params &... rest) {
         // Create uri params
         std::string payloads = make_params(rest...);
 

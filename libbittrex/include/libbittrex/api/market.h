@@ -5,7 +5,6 @@
 #include <utility>
 #include <libbittrex/models/open_order.h>
 #include <libbittrex/models/uuid.h>
-#include <libbittrex/api_call.h>
 #include <libbittrex/api/base.h>
 
 using namespace bittrex;
@@ -18,6 +17,11 @@ using open_order_t=model::OpenOrder;
 using open_order_list_t=vector<open_order_t >;
 
 class Market: Base {
+private:
+    static constexpr const char *BUYLIMIT_END_P = "market/buylimit?";
+    static constexpr const char *SELLLIMIT_END_P = "market/selllimit?";
+    static constexpr const char *CANCEL_END_P = "market/cancel?";
+    static constexpr const char *OPEN_ORDERS_END_P = "market/getopenorders?";
 public:
     explicit Market(std::shared_ptr<ApiCall> &api_call) : Base(api_call) {}
 

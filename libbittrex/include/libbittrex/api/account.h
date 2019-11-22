@@ -28,6 +28,14 @@ using withdrawal_history_ent_t=model::WithdrawalHistoryEntry;
 using withdrawal_history_ent_list_t=vector<withdrawal_history_ent_t>;
 
 class Account: Base {
+private:
+    static constexpr const char *BALANCES_END_P = "account/getbalances?";
+    static constexpr const char *BALANCE_END_P = "account/getbalance?";
+    static constexpr const char *DEPOSITADDR_END_P ="account/getdepositaddress?";
+    static constexpr const char *WITHDRAW_END_P = "account/withdraw?";
+    static constexpr const char *ORDER_END_P = "account/getorder?";
+    static constexpr const char *ORDER_HIS_END_P = "account/getorderhistory?";
+    static constexpr const char *WITHDRAWAL_HIS_END_P = "account/getwithdrawalhistory?";
 public:
     explicit Account(std::shared_ptr<ApiCall> &api_call) :Base(api_call) {}
 

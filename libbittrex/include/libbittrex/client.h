@@ -6,7 +6,7 @@
 #include <libbittrex/api/public.h>
 #include <libbittrex/api/market.h>
 #include <libbittrex/api/account.h>
-#include <libbittrex/api_call.h>
+#include <libbittrex/api/api_call.h>
 
 namespace bittrex {
 

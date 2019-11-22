@@ -2,7 +2,7 @@
 #define BITTREX_CPP_BASE_H
 
 #include <type_traits>
-#include <libbittrex/api_call.h>
+#include <libbittrex/api/api_call.h>
 
 using namespace std;
 
@@ -22,7 +22,7 @@ public:
 
     template<typename T, typename M, typename ... Params>
     typename std::enable_if<is_std_vector<T>::value, T>::type
-    api_request(const std::string &endpoint, ApiType type, const Params &... rest) {
+    api_request(const char *endpoint, const ApiType &type, const Params &... rest) {
         T res_arr;
         json res = _api_call->dispatch(endpoint, type, rest...);
         auto j_res = res["result"];
@@ -36,7 +36,7 @@ public:
 
     template<typename T, typename M, typename ... Params>
     typename std::enable_if<!is_std_vector<T>::value, T>::type
-    api_request(const std::string &endpoint, ApiType type, const Params &... rest) {
+    api_request(const char *endpoint, const ApiType &type, const Params &... rest) {
         json res = _api_call->dispatch(endpoint, type, rest...);
         auto j_res = res["result"];
         try {

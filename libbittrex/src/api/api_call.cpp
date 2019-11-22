@@ -1,10 +1,8 @@
 #include <future>
-#include <libbittrex/api_call.h>
+#include <libbittrex/api/api_call.h>
 #include <libbittrex/lib/libcurlpp.h>
 
 using namespace bittrex;
-
-static const std::string BASE_URL = "https://api.bittrex.com/api/v1.1/";
 
 std::string ApiCall::execute_request_async(const std::string &endpoint,
                                            const std::string &payloads,

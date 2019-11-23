@@ -10,10 +10,10 @@ set(COMPILATION_UNIT ${HEADERS} ${SOURCES})
 add_library(${PROJECT_NAME} STATIC ${COMPILATION_UNIT})
 add_dependencies(${PROJECT_NAME} thirdparty)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/)
-target_link_libraries(${PROJECT_NAME} ${CURL_LIBRARIES} nlohmann_json ${OPENSSL_CRYPTO_LIBRARY})
+target_link_libraries(${PROJECT_NAME} ${CURL_LIBRARIES} ${OPENSSL_CRYPTO_LIBRARY})
 INSTALL(TARGETS ${PROJECT_NAME} ARCHIVE DESTINATION lib
         )
 INSTALL(
-        DIRECTORY ${CMAKE_SOURCE_DIR}/include DESTINATION include
+        DIRECTORY ${CMAKE_SOURCE_DIR}/libbittrex/include DESTINATION include
         PATTERN "*build*" EXCLUDE
 )

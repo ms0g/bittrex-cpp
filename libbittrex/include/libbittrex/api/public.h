@@ -9,7 +9,7 @@
 #include <libbittrex/models/ticker.h>
 #include <libbittrex/models/market_summary.h>
 #include <libbittrex/models/order_book.h>
-#include <libbittrex/models/market_history.h>
+#include <libbittrex/models/trade.h>
 #include <libbittrex/api/base.h>
 
 using namespace bittrex;
@@ -22,8 +22,8 @@ using market_list_t=vector<market_t>;
 using currency_t=model::Currency;
 using currency_list_t=vector<model::Currency>;
 using ticker_t=model::Ticker;
-using market_summary_t=model::MarketSummary;
-using market_sum_list_t=vector<market_summary_t>;
+using market_sum_t=model::MarketSummary;
+using market_sum_list_t=vector<market_sum_t>;
 using order_book_t=model::OrderBook;
 using trade_t=model::Trade;
 using trade_list_t=vector<trade_t>;
@@ -74,7 +74,7 @@ public:
      * @param market a string literal for the market (ex: BTC-LTC)
      * @param type buy, sell or both to identify the type of orderbook to return
      */
-//    order_book_t get_order_book(const std::string &market, const std::string &type);
+    order_book_t get_order_book(const std::string &market, const std::string &type);
 
     /**
      * Retrieve the latest trades that have occured for a specific market

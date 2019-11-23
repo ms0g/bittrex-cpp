@@ -2,9 +2,9 @@
 #define BITTREX_CPP_BASE_H
 
 #include <type_traits>
+#include <boost/foreach.hpp>
 #include <libbittrex/api/api_call.h>
 
-using namespace std;
 
 namespace bittrex {
 namespace api {
@@ -22,30 +22,28 @@ public:
 
     template<typename T, typename M, typename ... Params>
     typename std::enable_if<is_std_vector<T>::value, T>::type
-    api_request(const char *endpoint, const ApiType &type, const Params &... rest) {
+    api_request(const char *endpoint, const btx::ApiType &type, const Params &... rest) {
         T res_arr;
-        json res = _api_call->dispatch(endpoint, type, rest...);
-        auto j_res = res["result"];
+        pt::ptree json_tree;
+        stringstream ss;
+        _api_call->dispatch(endpoint, type, json_tree, rest...);
+        BOOST_FOREACH(pt::ptree::value_type &child,
+                      json_tree.get_child("result")) {
+                        res_arr.emplace_back(M(child.second));
+                    }
 
-        for (auto const &e:j_res) {
-            res_arr.emplace_back(M(e));
-        }
         return res_arr;
 
     }
 
     template<typename T, typename M, typename ... Params>
     typename std::enable_if<!is_std_vector<T>::value, T>::type
-    api_request(const char *endpoint, const ApiType &type, const Params &... rest) {
-        json res = _api_call->dispatch(endpoint, type, rest...);
-        auto j_res = res["result"];
-        try {
-            return M(j_res);
-        } catch (...) {
+    api_request(const char *endpoint, const btx::ApiType &type, const Params &... rest) {
+        pt::ptree json_tree;
+        _api_call->dispatch(endpoint, type, json_tree, rest...);
+        auto res = json_tree.get_child("result");
 
-        }
-
-
+        return M(res);
     }
 
 private:

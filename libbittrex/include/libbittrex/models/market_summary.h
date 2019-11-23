@@ -1,45 +1,41 @@
 #ifndef BITTREX_CPP_RES_MARKET_SUMMARY_H
 #define BITTREX_CPP_RES_MARKET_SUMMARY_H
 
-#include <json.hpp>
-#include <libbittrex/lib/wrappers.h>
-
-using json=nlohmann::json;
-using namespace bittrex::lib;
+#include <boost/property_tree/ptree.hpp>
 
 namespace bittrex {
 namespace model {
 
 struct MarketSummary {
-    explicit MarketSummary(json j) {
-        market_name = j["MarketName"];
-        high = j["High"];
-        low = j["Low"];
-        volume = j["Volume"];
-        last = j["Last"];
-        base_volume = j["BaseVolume"];
-        time_stamp = j["TimeStamp"];
-        bid = j["Bid"];
-        ask = j["Ask"];
-        open_buy_orders = j["OpenBuyOrders"];
-        open_sell_orders = j["OpenSellOrders"];
-        prev_day = j["PrevDay"];
-        created = j["Created"];
+    explicit MarketSummary(boost::property_tree::ptree&j) {
+        market_name = j.get<std::string>("MarketName");
+        high = j.get<std::string>("High");
+        low = j.get<std::string>("Low");
+        volume = j.get<std::string>("Volume");
+        last = j.get<std::string>("Last");
+        base_volume = j.get<std::string>("BaseVolume");
+        time_stamp = j.get<std::string>("TimeStamp");
+        bid = j.get<std::string>("Bid");
+        ask = j.get<std::string>("Ask");
+        open_buy_orders = j.get<std::string>("OpenBuyOrders");
+        open_sell_orders = j.get<std::string>("OpenSellOrders");
+        prev_day = j.get<std::string>("PrevDay");
+        created = j.get<std::string>("Created");
     };
 
-    String market_name;
-    Double high;
-    Double low;
-    Double volume;
-    Double last;
-    Double base_volume;
-    String time_stamp;
-    Double bid;
-    Double ask;
-    Int open_buy_orders;
-    Int open_sell_orders;
-    Double prev_day;
-    String created;
+    std::string market_name;
+    std::string high;
+    std::string low;
+    std::string volume;
+    std::string last;
+    std::string base_volume;
+    std::string time_stamp;
+    std::string bid;
+    std::string ask;
+    std::string open_buy_orders;
+    std::string open_sell_orders;
+    std::string prev_day;
+    std::string created;
 
 };
 } //Namespace model

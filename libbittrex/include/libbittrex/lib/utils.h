@@ -4,9 +4,7 @@
 #include <string>
 #include <sstream>
 #include <openssl/hmac.h> //HMAC
-#include <json.hpp>
 
-using json=nlohmann::json;
 
 namespace bittrex {
 namespace lib {
@@ -30,7 +28,7 @@ std::string make_params(const T &t) {
     size_t found = ss.str().find('=');
     if (found == std::string::npos)
         ss << "&";
-    return ss.str();
+    return std::move(ss.str());
 }
 
 template<typename First, typename ... Strings>

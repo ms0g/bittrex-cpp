@@ -1,35 +1,31 @@
 #ifndef BITTREX_CPP_RES_MARKET_H
 #define BITTREX_CPP_RES_MARKET_H
 
-#include <json.hpp>
-#include <libbittrex/lib/wrappers.h>
-
-using json=nlohmann::json;
-using namespace bittrex::lib;
+#include <boost/property_tree/ptree.hpp>
 
 namespace bittrex {
 namespace model {
 
 struct Market {
-    explicit Market(json j) {
-        market_currency = j["MarketCurrency"];
-        base_currency = j["BaseCurrency"];
-        market_currency_long = j["MarketCurrencyLong"];
-        base_currency_long = j["BaseCurrencyLong"];
-        min_trade_size = j["MinTradeSize"];
-        market_name = j["MarketName"];
-        is_active = j["IsActive"];
-        created = j["Created"];
+    explicit Market(boost::property_tree::ptree &j) {
+        market_currency = j.get<std::string>("MarketCurrency");
+        base_currency = j.get<std::string>("BaseCurrency");
+        market_currency_long = j.get<std::string>("MarketCurrencyLong");
+        base_currency_long = j.get<std::string>("BaseCurrencyLong");
+        min_trade_size = j.get<std::string>("MinTradeSize");
+        market_name = j.get<std::string>("MarketName");
+        is_active = j.get<std::string>("IsActive");
+        created = j.get<std::string>("Created");
     };
 
-    String market_currency;
-    String base_currency;
-    String market_currency_long;
-    String base_currency_long;
-    Double min_trade_size;
-    String market_name;
-    bool is_active;
-    String created;
+    std::string market_currency;
+    std::string base_currency;
+    std::string market_currency_long;
+    std::string base_currency_long;
+    std::string min_trade_size;
+    std::string market_name;
+    std::string is_active;
+    std::string created;
 };
 } //Namespace model
 } //Namespace bittrex

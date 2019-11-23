@@ -10,7 +10,7 @@ Bittrex C++ API Client Library
 + [Libcurl](https://curl.haxx.se/libcurl/ "LibCurl home page")
 + [Crypto](https://www.openssl.org/docs/man1.0.2/crypto/crypto.html "Openssl home page") (HMAC)
 + [GCC](http://gcc.gnu.org "GCC home") (>= 5.4.0)
-+ [Boost](http://www.boost.org/ "Boost project page") (>= 1.58.0) (optional)
++ [Boost](http://www.boost.org/ "Boost project page") (>= 1.58.0) (Property Tree)
 
 ### Building
 ```bash

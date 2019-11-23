@@ -1,46 +1,39 @@
 #ifndef BITTREX_CPP_RES_ORDER_BOOK_H
 #define BITTREX_CPP_RES_ORDER_BOOK_H
 
-#include <json.hpp>
+#include <vector>
+#include <boost/foreach.hpp>
+#include <boost/property_tree/ptree.hpp>
 #include <libbittrex/lib/utils.h>
-#include <libbittrex/lib/wrappers.h>
 
-using json=nlohmann::json;
-using namespace bittrex::lib;
 
 namespace bittrex {
 namespace model {
 
 struct OrderBookEntry {
-    explicit OrderBookEntry(json j) {
-        quantity = j["Quantity"];
-        rate = j["Rate"];
+    explicit OrderBookEntry(boost::property_tree::ptree &j) {
+        quantity = j.get<std::string>("Quantity");
+        rate = j.get<std::string>("Rate");
     };
 
-    Double quantity;
-    Double rate;
+    std::string quantity;
+    std::string rate;
 
 };
 
 struct OrderBook {
-    OrderBook(json o_book, const std::string &type) {
-        for (json::iterator it = o_book.begin(); it != o_book.end(); ++it) {
-            if (type == "both") {
-                if (it.key() == "buy") {
-                    for (auto &el:it.value())
-                        buy.emplace_back(OrderBookEntry(el));
-                } else {
-                    for (auto &el:it.value())
-                        sell.emplace_back(OrderBookEntry(el));
-                }
-            } else {
-                if (type == "buy")
-                    buy.emplace_back(OrderBookEntry(it.value()));
-                else
-                    sell.emplace_back(OrderBookEntry(it.value()));
-            }
+    explicit OrderBook(boost::property_tree::ptree &j) {
 
-        }
+        BOOST_FOREACH(boost::property_tree::ptree::value_type &child,
+                      j.get_child("buy")) {
+                        buy.emplace_back(OrderBookEntry(child.second));
+                    }
+
+        BOOST_FOREACH(boost::property_tree::ptree::value_type &child,
+                      j.get_child("sell")) {
+                        sell.emplace_back(OrderBookEntry(child.second));
+                    }
+
 
     }
 

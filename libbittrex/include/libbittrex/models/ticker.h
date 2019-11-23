@@ -1,25 +1,22 @@
 #ifndef BITTREX_CPP_RES_TICKER_H
 #define BITTREX_CPP_RES_TICKER_H
 
-#include <json.hpp>
-#include <libbittrex/lib/wrappers.h>
+#include <boost/property_tree/ptree.hpp>
 
-using json=nlohmann::json;
-using namespace bittrex::lib;
 
 namespace bittrex {
 namespace model {
 
 struct Ticker {
-    explicit Ticker(json &j) {
-        bid = j["Bid"];
-        ask = j["Ask"];
-        last = j["Last"];
+    explicit Ticker(boost::property_tree::ptree &j) {
+        bid = j.get<std::string>("Bid");
+        ask = j.get<std::string>("Ask");
+        last = j.get<std::string>("Last");
     };
 
-    Double bid;
-    Double ask;
-    Double last;
+    std::string bid;
+    std::string ask;
+    std::string last;
 
 };
 } //Namespace model

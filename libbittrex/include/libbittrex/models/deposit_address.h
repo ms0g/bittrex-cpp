@@ -1,23 +1,20 @@
 #ifndef BITTREX_CPP_RES_DEPOSIT_ADDRESS_H
 #define BITTREX_CPP_RES_DEPOSIT_ADDRESS_H
 
-#include <json.hpp>
-#include <libbittrex/lib/wrappers.h>
+#include <boost/property_tree/ptree.hpp>
 
-using json=nlohmann::json;
-using namespace bittrex::lib;
 
 namespace bittrex {
 namespace model {
 
 struct DepositAddress {
-    explicit DepositAddress(json j) {
-        currency = j["Currency"];
-        address = j["Address"];
+    explicit DepositAddress(boost::property_tree::ptree&j) {
+        currency = j.get<std::string>("Currency");
+        address = j.get<std::string>("Address");
     };
 
-    String currency;
-    String address;
+    std::string currency;
+    std::string address;
 
 };
 } //Namespace model

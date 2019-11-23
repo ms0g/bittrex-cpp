@@ -1,41 +1,38 @@
 #ifndef BITTREX_CPP_RES_WITHDRAWAL_HISTORY_H
 #define BITTREX_CPP_RES_WITHDRAWAL_HISTORY_H
 
-#include <json.hpp>
-#include <libbittrex/lib/wrappers.h>
+#include <boost/property_tree/ptree.hpp>
 
-using json=nlohmann::json;
-using namespace bittrex::lib;
 
 namespace bittrex {
 namespace model {
 
 struct WithdrawalHistoryEntry {
-    explicit WithdrawalHistoryEntry(json j) {
-        payment_uuid = j["PaymentUuid"];
-        currency = j["Currency"];
-        amount = j["Amount"];
-        address = j["Address"];
-        opened = j["Opened"];
-        authorized = j["Authorized"];
-        pending_payment = j["PendingPayment"];
-        tx_cost = j["TxCost"];
-        tx_id = j["TxId"];
-        canceled = j["TxId"];
-        invalid_address = j["InvalidAddress"];
+    explicit WithdrawalHistoryEntry(boost::property_tree::ptree &j) {
+        payment_uuid = j.get<std::string>("PaymentUuid");
+        currency = j.get<std::string>("Currency");
+        amount = j.get<std::string>("Amount");
+        address = j.get<std::string>("Address");
+        opened = j.get<std::string>("Opened");
+        authorized = j.get<std::string>("Authorized");
+        pending_payment = j.get<std::string>("PendingPayment");
+        tx_cost = j.get<std::string>("TxCost");
+        tx_id = j.get<std::string>("TxId");
+        canceled = j.get<std::string>("TxId");
+        invalid_address = j.get<std::string>("InvalidAddress");
     }
 
-    String payment_uuid;
-    String currency;
-    Int amount;
-    String address;
-    String opened;
-    bool authorized;
-    bool pending_payment;
-    Double tx_cost;
-    String tx_id;
-    String canceled;
-    bool invalid_address;
+    std::string payment_uuid;
+    std::string currency;
+    std::string amount;
+    std::string address;
+    std::string opened;
+    std::string authorized;
+    std::string pending_payment;
+    std::string tx_cost;
+    std::string tx_id;
+    std::string canceled;
+    std::string invalid_address;
 };
 } //Namespace model
 } //Namespace bittrex

@@ -1,21 +1,18 @@
 #ifndef BITTREX_CPP_UUID_H
 #define BITTREX_CPP_UUID_H
-#include <json.hpp>
-#include <libbittrex/lib/wrappers.h>
+#include <boost/property_tree/ptree.hpp>
 
-using json=nlohmann::json;
-using namespace bittrex::lib;
 
 namespace bittrex {
 namespace model {
 
 struct Uuid {
-    explicit Uuid(json j) {
-        uuid = j["uuid"];
+    explicit Uuid(boost::property_tree::ptree &j) {
+        uuid = j.get<std::string>("uuid");
 
     };
 
-    String uuid;
+    std::string uuid;
 
 };
 } //Namespace model

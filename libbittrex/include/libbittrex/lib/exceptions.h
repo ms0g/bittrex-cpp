@@ -5,9 +5,8 @@
 #include <exception>
 #include <utility>
 
-using namespace std;
 
-class fail : public exception {
+class fail : public std::exception {
 public:
     explicit fail(std::string &msg) : msg(msg) {}
     explicit fail(std::string &&msg) : msg(std::move(msg)) {}

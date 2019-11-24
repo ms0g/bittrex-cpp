@@ -1,7 +1,7 @@
-#include <libbittrex/lib/utils.h>
+#ifndef BITTREX_CPP_HMAC_H
+#define BITTREX_CPP_HMAC_H
 
-namespace bittrex {
-namespace lib {
+#include <openssl/hmac.h>
 
 std::string hmac_sha512(const std::string &uri, const std::string &secret) {
     unsigned char *digest;
@@ -16,5 +16,5 @@ std::string hmac_sha512(const std::string &uri, const std::string &secret) {
 
     return std::move(std::string(sha512_str));
 }
-}
-}
+
+#endif //BITTREX_CPP_HMAC_H

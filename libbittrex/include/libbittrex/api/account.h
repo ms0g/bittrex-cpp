@@ -19,13 +19,13 @@ namespace api {
 
 using uuid_t=model::Uuid;
 using balance_t=model::Balance;
-using balance_list_t=vector<balance_t>;
+using balance_list_t=std::vector<balance_t>;
 using deposit_address_t=model::DepositAddress;
 using order_t=model::Order;
 using order_history_ent_t=model::OrderHistoryEntry;
-using order_history_ent_list_t=vector<order_history_ent_t>;
+using order_history_ent_list_t=std::vector<order_history_ent_t>;
 using withdrawal_history_ent_t=model::WithdrawalHistoryEntry;
-using withdrawal_history_ent_list_t=vector<withdrawal_history_ent_t>;
+using withdrawal_history_ent_list_t=std::vector<withdrawal_history_ent_t>;
 
 class Account: Base {
 private:

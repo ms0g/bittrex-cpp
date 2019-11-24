@@ -14,7 +14,7 @@ namespace api {
 
 using uuid_t=model::Uuid;
 using open_order_t=model::OpenOrder;
-using open_order_list_t=vector<open_order_t >;
+using open_order_list_t=std::vector<open_order_t >;
 
 class Market: Base {
 private:
@@ -41,7 +41,7 @@ public:
      * @param quantity the amount to purchase
      * @param rate the rate at which to place the order.
      */
-    uuid_t sell_limit(const string &market, const float &quantity, const float &rate);
+    uuid_t sell_limit(const std::string &market, const float &quantity, const float &rate);
 
     /**
      * Used to cancel a buy or sell order.

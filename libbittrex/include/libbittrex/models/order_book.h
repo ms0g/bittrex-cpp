@@ -4,7 +4,6 @@
 #include <vector>
 #include <boost/foreach.hpp>
 #include <boost/property_tree/ptree.hpp>
-#include <libbittrex/lib/utils.h>
 
 
 namespace bittrex {

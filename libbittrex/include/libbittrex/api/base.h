@@ -25,9 +25,9 @@ public:
     api_request(const char *endpoint, const Type &type, const Params &... rest) {
         T res_arr;
         pt::ptree json_tree;
-        std::stringstream ss;
 
         _api_call->dispatch(endpoint, type, json_tree, rest...);
+
         BOOST_FOREACH(pt::ptree::value_type &child,
                       json_tree.get_child("result")) {
                         res_arr.emplace_back(M(child.second));

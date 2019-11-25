@@ -23,17 +23,16 @@ struct OrderBookEntry {
 struct OrderBook {
     explicit OrderBook(boost::property_tree::ptree &j) {
 
-        BOOST_FOREACH(boost::property_tree::ptree::value_type &child,
-                      j.get_child("buy")) {
-                        buy.emplace_back(OrderBookEntry(child.second));
-                    }
+        auto foreach_on = [&](std::vector<OrderBookEntry> &vec, const char *node) {
+            BOOST_FOREACH(boost::property_tree::ptree::value_type &child,
+                          j.get_child(node)) {
+                            vec.emplace_back(OrderBookEntry(child.second));
+                        }
 
-        BOOST_FOREACH(boost::property_tree::ptree::value_type &child,
-                      j.get_child("sell")) {
-                        sell.emplace_back(OrderBookEntry(child.second));
-                    }
+        };
 
-
+        foreach_on(buy, "buy");
+        foreach_on(sell,"sell");
     }
 
     std::vector<OrderBookEntry> buy;

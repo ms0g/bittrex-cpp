@@ -17,5 +17,6 @@ target_link_libraries(bittrex_api_test PRIVATE
         pthread
         ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 
-add_test(NAME bittrex_api_test COMMAND bittrex_api_test --report_level=detailed)
+add_test(NAME bittrex_api_test
+        COMMAND bittrex_api_test --report_level=detailed)
 

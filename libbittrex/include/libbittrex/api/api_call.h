@@ -4,6 +4,7 @@
 #include <memory>
 #include <utility>
 #include <sstream>
+#include <future>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <libbittrex/lib/exceptions.h>
@@ -49,10 +50,18 @@ public:
         // Create uri params
         std::string payloads = make_params(rest...);
 
-        auto res = execute_request_async(endpoint, payloads, type);
+        auto async_get = [&](const std::string &endpoint, const std::string &payloads, const Type &type) {
+            auto fut = std::async(std::launch::async, ApiCall::get, m_key, m_secret, payloads, endpoint, type);
+            return fut;
+        };
 
-        ss << res;
-        pt::read_json(ss, json_tree);
+        ss << async_get(endpoint, payloads, type).get();
+        try {
+            std::cout << ss.str();
+            pt::read_json(ss, json_tree);
+        } catch (...) {
+            throw fail("Failed json reading: " + ss.str());
+        }
 
         auto success = json_tree.get<bool>("success");
         if (!success) {
@@ -63,11 +72,9 @@ public:
     }
 
     static std::string get(const std::string &, const std::string &, const std::string &, const std::string &,
-            const Type &);
+                           const Type &);
 
 private:
-    std::string execute_request_async(const std::string &, const std::string &, const Type &);
-
     const std::string &m_key;
     const std::string &m_secret;
 };

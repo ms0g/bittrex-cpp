@@ -1,18 +1,9 @@
-#include <future>
 #include <libbittrex/api/api_call.h>
 #include <libbittrex/lib/hmac.h>
 #include <libbittrex/lib/libcurlpp.h>
 
 using namespace bittrex;
 namespace btx=bittrex::lib;
-
-std::string ApiCall::execute_request_async(const std::string &endpoint,
-                                      const std::string &payloads,
-                                      const Type &type) {
-
-    auto fut = std::async(std::launch::async, ApiCall::get, m_key, m_secret, payloads, endpoint, type);
-    return std::move(fut.get());
-}
 
 std::string ApiCall::get(const std::string &key, const std::string &secret, const std::string &payloads, const std::string &endpoint,
                     const Type &type) {

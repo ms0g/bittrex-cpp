@@ -57,7 +57,6 @@ public:
 
         ss << async_get(endpoint, payloads, type).get();
         try {
-            std::cout << ss.str();
             pt::read_json(ss, json_tree);
         } catch (...) {
             throw fail("Failed json reading: " + ss.str());

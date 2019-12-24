@@ -11,6 +11,6 @@ std::string hmac_sha512(const std::string &uri, const std::string &secret) {
     for (int i = 0; i < 64; i++)
         sprintf(&sha512_str[i * 2], "%02x", (unsigned int) digest[i]);
 
-    return std::move(std::string(sha512_str));
+    return std::string(sha512_str);
 }
 

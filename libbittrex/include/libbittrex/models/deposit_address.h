@@ -8,7 +8,7 @@ namespace bittrex {
 namespace model {
 
 struct DepositAddress {
-    explicit DepositAddress(boost::property_tree::ptree&j) {
+    explicit DepositAddress(boost::property_tree::ptree &j) {
         currency = j.get<std::string>("Currency");
         address = j.get<std::string>("Address");
     };

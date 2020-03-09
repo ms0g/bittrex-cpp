@@ -20,7 +20,7 @@ namespace api {
 using market_t=model::Market;
 using market_list_t=std::vector<market_t>;
 using currency_t=model::Currency;
-using currency_list_t=std::vector<model::Currency>;
+using currency_list_t=std::vector<currency_t>;
 using ticker_t=model::Ticker;
 using market_sum_t=model::MarketSummary;
 using market_sum_list_t=std::vector<market_sum_t>;

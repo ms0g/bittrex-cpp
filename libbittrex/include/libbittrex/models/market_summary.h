@@ -7,7 +7,7 @@ namespace bittrex {
 namespace model {
 
 struct MarketSummary {
-    explicit MarketSummary(boost::property_tree::ptree&j) {
+    explicit MarketSummary(boost::property_tree::ptree &j) {
         market_name = j.get<std::string>("MarketName");
         high = j.get<std::string>("High");
         low = j.get<std::string>("Low");

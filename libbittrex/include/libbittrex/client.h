@@ -16,6 +16,10 @@ namespace bittrex {
         explicit Client(std::string key, std::string secret) :
                 m_api_call(std::make_shared<bittrex::ApiCall>(std::move(key), std::move(secret))) {}
 
+        Client(const char *key, const char *secret) :
+                m_api_call(std::make_shared<bittrex::ApiCall>(std::move(std::string(key)),
+                                                              std::move(std::string(secret)))) {}
+
         /**
          * Used for public information available without an API key
          */

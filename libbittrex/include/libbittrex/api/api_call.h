@@ -43,20 +43,22 @@ namespace bittrex {
     private:
         static constexpr const char *BASE_URL = "https://api.bittrex.com/api/v1.1/";
     public:
-        explicit ApiCall(const std::string &key, const std::string &secret) :
-                m_key(key),
-                m_secret(secret) {}
+        explicit ApiCall(std::string key, std::string secret) :
+                m_key(std::move(key)),
+                m_secret(std::move(secret)) {}
 
 
         static std::string make_request(const std::string &key, const std::string &secret, const std::string &payloads,
                                         const std::string &endpoint, const bittrex::api::Type &type);
 
         template<typename ... Params>
-        void dispatch(const std::string &endpoint, const bittrex::api::Type &type, pt::ptree &json_tree, const Params &... rest) {
+        void dispatch(const std::string &endpoint, const bittrex::api::Type &type, pt::ptree &json_tree,
+                      const Params &... rest) {
             /* Create uri params */
             std::string payloads = util::make_params(rest...);
 
-            auto async_get = [&](const std::string &endpoint, const std::string &payloads, const bittrex::api::Type &type) {
+            auto async_get = [&](const std::string &endpoint, const std::string &payloads,
+                                 const bittrex::api::Type &type) {
                 auto fut = std::async(std::launch::async, make_request, m_key, m_secret, payloads, endpoint, type);
                 return fut;
             };
@@ -78,8 +80,8 @@ namespace bittrex {
 
 
     private:
-        const std::string &m_key;
-        const std::string &m_secret;
+        std::string m_key;
+        std::string m_secret;
     };
 } //Namespace Bittrex
 

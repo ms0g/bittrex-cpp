@@ -24,10 +24,10 @@ deposit_address_t Account::get_deposit_address(const std::string &currency) {
 }
 
 
-uuid_t Account::withdraw(const std::string &currency, const float &quantity,
+btx_uuid_t Account::withdraw(const std::string &currency, const float &quantity,
                          const std::string &address, const int &payment_id) {
 
-    auto res = api_request<uuid_t, uuid_t>(WITHDRAW_END_P, bittrex::api::Type::ACCOUNT,
+    auto res = api_request<btx_uuid_t, btx_uuid_t>(WITHDRAW_END_P, bittrex::api::Type::ACCOUNT,
                                            "currency=", currency, "quantity=", quantity,
                                            "address=", address, "paymentid=", payment_id);
     return res;

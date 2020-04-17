@@ -12,7 +12,7 @@ using namespace bittrex;
 namespace bittrex {
     namespace api {
 
-        using uuid_t=model::Uuid;
+        using btx_uuid_t=model::Uuid;
         using open_order_t=model::OpenOrder;
         using open_order_list_t=std::vector<open_order_t>;
 
@@ -32,7 +32,7 @@ namespace bittrex {
              * @param quantity the amount to purchase
              * @param rate the rate at which to place the order.
              */
-            uuid_t buy_limit(const std::string &market, const float &quantity, const float &rate);
+            btx_uuid_t buy_limit(const std::string &market, const float &quantity, const float &rate);
 
             /**
              * Used to place an sell order in a specific market.
@@ -41,13 +41,13 @@ namespace bittrex {
              * @param quantity the amount to purchase
              * @param rate the rate at which to place the order.
              */
-            uuid_t sell_limit(const std::string &market, const float &quantity, const float &rate);
+            btx_uuid_t sell_limit(const std::string &market, const float &quantity, const float &rate);
 
             /**
              * Used to cancel a buy or sell order.
              * @param uuid uuid of buy or sell order
              */
-            uuid_t cancel(const std::string &uuid);
+            btx_uuid_t cancel(const std::string &uuid);
 
             /**
              * Get all orders that you currently have opened. A specific market can be requested

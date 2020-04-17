@@ -1,21 +1,9 @@
 cmake_minimum_required(VERSION 3.7)
 project(bittrex_cpp)
+
 enable_testing()
+
 set(CMAKE_CXX_STANDARD 14)
-FIND_PACKAGE(OpenSSL REQUIRED)
-
-if (OPENSSL_FOUND)
-    INCLUDE_DIRECTORIES(${OPENSSL_INCLUDE_DIR})
-else ()
-    message("Could not find the OpenSSL library")
-endif ()
-
-FIND_PACKAGE(CURL REQUIRED)
-if (CURL_FOUND)
-    INCLUDE_DIRECTORIES(${CURL_INCLUDE_DIR})
-else ()
-    message("Could not find the libCURL library")
-endif ()
 
 add_subdirectory(libbittrex)
 add_subdirectory(tests)

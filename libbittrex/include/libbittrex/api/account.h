@@ -17,7 +17,7 @@ using namespace bittrex;
 namespace bittrex {
     namespace api {
 
-        using uuid_t=model::Uuid;
+        using btx_uuid_t=model::Uuid;
         using balance_t=model::Balance;
         using balance_list_t=std::vector<balance_t>;
         using deposit_address_t=model::DepositAddress;
@@ -65,7 +65,7 @@ namespace bittrex {
              * @param payment_id optional used for CryptoNotes/BitShareX/Nxt optional field (memo/paymentid)
              * @return Returns you the withdrawal uuid
              */
-            uuid_t withdraw(const std::string &currency, const float &quantity,
+            btx_uuid_t withdraw(const std::string &currency, const float &quantity,
                             const std::string &address, const int &payment_id);
 
             /**

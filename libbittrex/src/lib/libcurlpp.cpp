@@ -24,7 +24,7 @@ void Curl::perform() {
     m_res = curl_easy_perform(m_curl.get());
     // Check for errors
     if (m_res != CURLE_OK)
-        fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(m_res));
+        std::cerr << "curl_easy_perform() failed: %s\n" << curl_easy_strerror(m_res) << std::endl;
 
 }
 

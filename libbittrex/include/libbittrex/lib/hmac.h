@@ -1,5 +1,4 @@
-#ifndef BITTREX_CPP_HMAC_H
-#define BITTREX_CPP_HMAC_H
+#pragma once
 
 #ifdef __APPLE__
     #include <CommonCrypto/CommonHMAC.h>
@@ -11,5 +10,3 @@
 #include <string>
 
 std::string hmac_sha512(const std::string &uri, const std::string &secret);
-
-#endif //BITTREX_CPP_HMAC_H

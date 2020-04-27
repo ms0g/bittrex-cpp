@@ -1,10 +1,8 @@
-#ifndef BITTREX_CPP_EXCEPTIONS_H
-#define BITTREX_CPP_EXCEPTIONS_H
+#pragma once
 
 #include <iostream>
 #include <exception>
 #include <utility>
-
 
 class fail : public std::exception {
 public:
@@ -20,5 +18,3 @@ private:
     std::string msg;
 
 };
-
-#endif //BITTREX_CPP_EXCEPTIONS_H

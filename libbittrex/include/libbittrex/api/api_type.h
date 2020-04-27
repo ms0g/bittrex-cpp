@@ -1,12 +1,10 @@
-#ifndef BITTREX_CPP_API_TYPE_H
-#define BITTREX_CPP_API_TYPE_H
+#pragma once
 
 namespace bittrex {
-    namespace api {
-        enum class Type : int {
-            PUBLIC, MARKET, ACCOUNT
-        };
-    }
-}
+namespace api {
 
-#endif //BITTREX_CPP_API_TYPE_H
+enum class Type : int {
+    PUBLIC, MARKET, ACCOUNT
+};
+}//Namespace api
+}//Namespace bittrex

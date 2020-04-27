@@ -3,7 +3,7 @@
 using namespace bittrex;
 
 std::string ApiCall::make_request(const std::string &key, const std::string &secret, const std::string &payloads,
-                                           const std::string &endpoint, const bittrex::api::Type &type) {
+                                  const std::string &endpoint, const bittrex::api::Type &type) {
     std::string res;
     auto wd = std::make_shared<curl::options::WriteData>(res);
 

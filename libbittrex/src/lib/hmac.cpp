@@ -6,7 +6,7 @@ std::string hmac_sha512(const std::string &uri, const std::string &secret) {
 #elif __linux__
     unsigned char *digest;
 #endif
-    
+
 #ifdef __APPLE__
     CCHmac(kCCHmacAlgSHA512, secret.c_str(), secret.length(), uri.c_str(), uri.length(), digest);
 #elif __linux__
@@ -15,7 +15,7 @@ std::string hmac_sha512(const std::string &uri, const std::string &secret) {
                   reinterpret_cast<const unsigned char *>(uri.c_str()), uri.length(),
                   nullptr, nullptr);
 #endif
-   
+
     char sha512_str[HMAC_MAX_MD_CBLOCK];
     for (int i = 0; i < 64; i++)
         sprintf(&sha512_str[i * 2], "%02x", (unsigned int) digest[i]);

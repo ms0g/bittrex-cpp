@@ -27,7 +27,7 @@ using withdrawal_history_ent_list_t = std::vector<withdrawal_history_ent_t>;
 
 class Account : Base {
 public:
-    explicit Account(std::shared_ptr<ApiCall> &api_call) : Base(api_call) {}
+    explicit Account(const std::shared_ptr<ApiCall> &api_call) : Base(api_call) {}
 
     /**
      * Used to retrieve all balances from your account

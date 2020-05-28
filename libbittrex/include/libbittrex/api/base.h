@@ -21,7 +21,7 @@ namespace api {
 
 class Base {
 public:
-    explicit Base(std::shared_ptr<ApiCall> &api_call) : _api_call(api_call) {}
+    explicit Base(const std::shared_ptr<ApiCall> &api_call) : _api_call(api_call) {}
 
     template<typename T, typename M, typename ... Params>
     typename std::enable_if<util::is_std_vector<T>::value, T>::type
@@ -51,7 +51,7 @@ public:
 
 
 private:
-    std::shared_ptr<ApiCall> &_api_call;
+    const std::shared_ptr<ApiCall> &_api_call;
 
 
 };

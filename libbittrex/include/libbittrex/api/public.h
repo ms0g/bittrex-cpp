@@ -29,7 +29,7 @@ using trade_list_t = std::vector<trade_t>;
 
 class Public : Base {
 public:
-    explicit Public(std::shared_ptr<ApiCall> &api_call) : Base(api_call) {}
+    explicit Public(const std::shared_ptr<ApiCall> &api_call) : Base(api_call) {}
 
     /**
      * Get the open and available trading markets at Bittrex along with other meta data

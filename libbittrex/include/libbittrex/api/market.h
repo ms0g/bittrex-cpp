@@ -17,7 +17,7 @@ using open_order_list_t = std::vector<open_order_t>;
 
 class Market : Base {
 public:
-    explicit Market(std::shared_ptr<ApiCall> &api_call) : Base(api_call) {}
+    explicit Market(const std::shared_ptr<ApiCall> &api_call) : Base(api_call) {}
 
     /**
      * Used to place a buy order in a specific market.

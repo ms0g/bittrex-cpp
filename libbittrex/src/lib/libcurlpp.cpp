@@ -20,10 +20,11 @@ m_curl(curl_easy_init(), [](CURL *ptr) {
 }
 
 void Curl::perform() {
-    m_res = curl_easy_perform(m_curl.get());
+    CURLcode res;
+    res = curl_easy_perform(m_curl.get());
     // Check for errors
-    if (m_res != CURLE_OK) {
-        std::cerr << "curl_easy_perform() failed: %s\n" << curl_easy_strerror(m_res) << std::endl;
+    if (res != CURLE_OK) {
+        std::cerr << "curl_easy_perform() failed: %s\n" << curl_easy_strerror(res) << std::endl;
     }
 }
 

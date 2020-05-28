@@ -100,7 +100,6 @@ public:
 
 private:
     std::shared_ptr<CURL> m_curl;
-    CURLcode m_res;
 };
 }
 } //Namespace Bittrex

@@ -20,10 +20,10 @@ namespace bittrex {
 namespace util {
 
 template<typename T>
-auto make_params(const T &t) {
+auto make_params(T &&t) {
     std::stringstream ss;
 
-    ss << t;
+    ss << std::forward<T>(t);
     if (ss.str().empty())
         return std::string("");
 
@@ -34,8 +34,8 @@ auto make_params(const T &t) {
 }
 
 template<typename T, typename ... Args>
-auto make_params(T arg, const Args &... rest) {
-    return make_params(arg) + make_params(rest...);
+auto make_params(T &&arg, Args &&... rest) {
+    return make_params(std::forward<T>(arg)) + make_params(std::forward<Args>(rest)...);
 }
 } //Namespace util
 
@@ -52,10 +52,9 @@ public:
                                     const std::string &endpoint, const bittrex::api::Type &type);
 
     template<typename ... Params>
-    void dispatch(const std::string &endpoint, const bittrex::api::Type &type, pt::ptree &json_tree,
-                  const Params &... rest) {
+    void dispatch(const std::string &endpoint, const bittrex::api::Type &type, pt::ptree &json_tree, Params &&... rest) {
         /* Create uri params */
-        std::string payloads = util::make_params(rest...);
+        std::string payloads = util::make_params(std::forward<Params>(rest)...);
 
         auto async_get = [&](const std::string &endpoint, const std::string &payloads,
                              const bittrex::api::Type &type) {

@@ -25,11 +25,11 @@ public:
 
     template<typename T, typename M, typename ... Params>
     typename std::enable_if<util::is_std_vector<T>::value, T>::type
-    api_request(const char *endpoint, const Type &type, const Params &... rest) {
+    api_request(const char *endpoint, const Type &type, Params &&... rest) {
         T res_arr;
         pt::ptree json_tree;
 
-        _api_call->dispatch(endpoint, type, json_tree, rest...);
+        _api_call->dispatch(endpoint, type, json_tree, std::forward<Params>(rest)...);
 
         BOOST_FOREACH(pt::ptree::value_type &child,
                       json_tree.get_child("result")) {
@@ -41,9 +41,9 @@ public:
 
     template<typename T, typename M, typename ... Params>
     typename std::enable_if<!util::is_std_vector<T>::value, M>::type
-    api_request(const char *endpoint, const Type &type, const Params &... rest) {
+    api_request(const char *endpoint, const Type &type, Params &&... rest) {
         pt::ptree json_tree;
-        _api_call->dispatch(endpoint, type, json_tree, rest...);
+        _api_call->dispatch(endpoint, type, json_tree, std::forward<Params>(rest)...);
         auto res = json_tree.get_child("result");
 
         return M(res);

@@ -1,10 +1,8 @@
 #pragma once
 
-namespace bittrex {
-namespace api {
+namespace bittrex::api {
 
 enum class Type : int {
     PUBLIC, MARKET, ACCOUNT
 };
-}//Namespace api
-}//Namespace bittrex
+}//Namespace bittrex::api

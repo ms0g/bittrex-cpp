@@ -12,8 +12,7 @@
 
 using namespace bittrex;
 
-namespace bittrex {
-namespace api {
+namespace bittrex::api {
 
 using btx_uuid_t = model::Uuid;
 using balance_t = model::Balance;
@@ -81,5 +80,4 @@ public:
     //void get_deposit_history();
 
 };
-} //Namespace Api
-} //Namespace Bittrex
+} //Namespace Bittrex::api

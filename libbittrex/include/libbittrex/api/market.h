@@ -8,8 +8,7 @@
 
 using namespace bittrex;
 
-namespace bittrex {
-namespace api {
+namespace bittrex::api {
 
 using btx_uuid_t = model::Uuid;
 using open_order_t = model::OpenOrder;
@@ -50,5 +49,4 @@ public:
     open_order_list_t get_open_orders(const std::string &market);
 
 };
-} //Namespace Api
-} //Namespace Bittrex
+} //Namespace Bittrex::api

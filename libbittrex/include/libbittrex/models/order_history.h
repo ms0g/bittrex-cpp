@@ -2,8 +2,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-namespace bittrex {
-namespace model {
+namespace bittrex::model {
 
 struct OrderHistoryEntry {
     explicit OrderHistoryEntry(boost::property_tree::ptree &j) {
@@ -40,5 +39,4 @@ struct OrderHistoryEntry {
     std::string immediate_or_cancel;
 
 };
-} //Namespace model
 } //Namespace bittrex

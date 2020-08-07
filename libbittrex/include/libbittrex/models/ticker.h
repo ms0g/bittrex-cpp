@@ -2,8 +2,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-namespace bittrex {
-namespace model {
+namespace bittrex::model {
 
 struct Ticker {
     explicit Ticker(boost::property_tree::ptree &j) {
@@ -17,5 +16,4 @@ struct Ticker {
     std::string last;
 
 };
-} //Namespace model
 } //Namespace bittrex

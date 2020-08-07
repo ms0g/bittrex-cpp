@@ -4,6 +4,8 @@
 #include <exception>
 #include <utility>
 
+namespace bittrex {
+
 class fail : public std::exception {
 public:
     explicit fail(std::string &msg) : msg(msg) {}
@@ -18,3 +20,4 @@ private:
     std::string msg;
 
 };
+}

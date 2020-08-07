@@ -15,11 +15,12 @@
 namespace pt = boost::property_tree;
 namespace btx = bittrex::lib;
 
+using payload_t = std::optional<std::string>;
 
 namespace bittrex::util {
 
 template<typename T>
-std::optional<std::string> make_params(T &&t) {
+payload_t make_params(T &&t) {
     std::stringstream ss;
     
     ss << std::forward<T>(t);
@@ -33,7 +34,7 @@ std::optional<std::string> make_params(T &&t) {
 }
 
 template<typename T, typename ... Args>
-std::optional<std::string> make_params(T &&arg, Args &&... rest) {
+payload_t make_params(T &&arg, Args &&... rest) {
     return make_params(std::forward<T>(arg)).value_or("") + make_params(std::forward<Args>(rest)...).value_or("");
 }
 } //Namespace util
@@ -59,9 +60,9 @@ public:
             auto &&uri = BASE_URL + endpoint;
             
             if (type != bittrex::api::Type::PUBLIC) {
-                uri += "apikey=" + m_key + "&nonce=" + std::to_string(std::time(nullptr)) + "&" + payloads.value();
+                uri += "apikey=" + m_key + "&nonce=" + std::to_string(std::time(nullptr)) + "&" + payloads.value_or("");
             }else {
-                uri += payloads.value();
+                uri += payloads.value_or("");
                 
             }
             

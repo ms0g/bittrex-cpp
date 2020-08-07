@@ -2,8 +2,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-namespace bittrex {
-namespace model {
+namespace bittrex::model {
 
 struct Balance {
     explicit Balance(boost::property_tree::ptree &j) {
@@ -25,5 +24,4 @@ struct Balance {
     std::string uuid;
 
 };
-} //Namespace model
-} //Namespace bittrex
+} //Namespace bittrex::model

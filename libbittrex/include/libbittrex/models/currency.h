@@ -2,8 +2,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-namespace bittrex {
-namespace model {
+namespace bittrex::model {
 
 struct Currency {
     explicit Currency(boost::property_tree::ptree &j) {
@@ -25,5 +24,4 @@ struct Currency {
     std::string base_address;
 
 };
-} //Namespace model
 } //Namespace bittrex

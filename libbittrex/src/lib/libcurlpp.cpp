@@ -11,13 +11,12 @@ size_t write_callback(char *contents, size_t size, size_t nmemb, void *userdata)
 }
 
 
-Curl::Curl() :
-m_curl(curl_easy_init(), [](CURL *ptr) {
+Curl::Curl(): m_curl(curl_easy_init(), [](CURL *ptr) {
     curl_easy_cleanup(ptr);
-}) {
-    if (!m_curl) {
-        throw fail("Curl init failed!");}
-}
+    }) {
+        if (!m_curl) {
+            throw fail("Curl init failed!");}
+        }
 
 void Curl::perform() {
     CURLcode res;

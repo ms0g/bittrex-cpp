@@ -9,8 +9,7 @@
 size_t write_callback(char *contents, size_t size, size_t nmemb, void *userdata);
 
 
-namespace curl {
-namespace options {
+namespace curl::options {
 
 /**
  * Base class for libcurl options
@@ -77,11 +76,9 @@ private:
     std::string &m_url;
 };
 
-}
 } //Namespace Curl
 
-namespace bittrex {
-namespace lib {
+namespace bittrex::lib {
 
 /**
  * Wrapper class for libcurl
@@ -101,5 +98,4 @@ public:
 private:
     std::shared_ptr<CURL> m_curl;
 };
-}
 } //Namespace Bittrex

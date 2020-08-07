@@ -13,8 +13,7 @@
 
 using namespace bittrex::api;
 
-namespace bittrex {
-namespace api {
+namespace bittrex::api {
 
 using market_t = model::Market;
 using market_list_t = std::vector<market_t>;
@@ -75,5 +74,4 @@ public:
     trade_list_t get_market_history(const std::string &market);
 
 };
-} //Namespace Api
 } //Namespace Bittrex

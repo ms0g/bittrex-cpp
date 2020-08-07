@@ -5,8 +5,7 @@
 #include <libbittrex/api/api_call.h>
 #include <libbittrex/api/api_type.h>
 
-namespace bittrex {
-namespace util {
+namespace bittrex::util {
 
 template<typename T>
 struct is_std_vector : std::false_type {
@@ -17,7 +16,7 @@ struct is_std_vector<std::vector<T>> : std::true_type {
 };
 }
 
-namespace api {
+namespace bittrex::api {
 
 class Base {
 public:
@@ -55,5 +54,4 @@ private:
 
 
 };
-}
-}//Namespace bittrex
+}//Namespace bittrex::api

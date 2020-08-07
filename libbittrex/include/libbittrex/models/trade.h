@@ -2,8 +2,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-namespace bittrex {
-namespace model {
+namespace bittrex::model {
 
 struct Trade {
     explicit Trade(boost::property_tree::ptree &j) {
@@ -24,5 +23,4 @@ struct Trade {
     std::string fill_type;
     std::string order_type;
 };
-} //Namespace model
 } //Namespace bittrex

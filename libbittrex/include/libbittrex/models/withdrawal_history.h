@@ -2,8 +2,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-namespace bittrex {
-namespace model {
+namespace bittrex::model {
 
 struct WithdrawalHistoryEntry {
     explicit WithdrawalHistoryEntry(boost::property_tree::ptree &j) {
@@ -32,5 +31,4 @@ struct WithdrawalHistoryEntry {
     std::string canceled;
     std::string invalid_address;
 };
-} //Namespace model
 } //Namespace bittrex

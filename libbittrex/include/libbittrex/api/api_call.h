@@ -16,8 +16,7 @@ namespace pt = boost::property_tree;
 namespace btx = bittrex::lib;
 
 
-namespace bittrex {
-namespace util {
+namespace bittrex::util {
 
 template<typename T>
 auto make_params(T &&t) {
@@ -39,6 +38,7 @@ auto make_params(T &&arg, Args &&... rest) {
 }
 } //Namespace util
 
+namespace bittrex {
 class ApiCall {
 private:
     static constexpr const char *BASE_URL = "https://api.bittrex.com/api/v1.1/";

@@ -10,3 +10,5 @@
 #include <string>
 
 std::string hmac_sha512(const std::string &uri, const std::string &secret);
+
+

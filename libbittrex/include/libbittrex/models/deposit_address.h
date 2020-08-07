@@ -2,8 +2,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-namespace bittrex {
-namespace model {
+namespace bittrex::model {
 
 struct DepositAddress {
     explicit DepositAddress(boost::property_tree::ptree &j) {
@@ -15,5 +14,4 @@ struct DepositAddress {
     std::string address;
 
 };
-} //Namespace model
 } //Namespace bittrex

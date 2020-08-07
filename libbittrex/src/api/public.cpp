@@ -24,7 +24,7 @@ market_sum_list_t Public::get_market_summaries() {
     auto res = api_request<market_sum_list_t, market_sum_t>("public/getmarketsummaries/", bittrex::api::Type::PUBLIC,
                                                             "");
     return res;
-
+    
 }
 
 
@@ -47,5 +47,5 @@ trade_list_t Public::get_market_history(const std::string &market) {
     auto res = api_request<trade_list_t, trade_t>("public/getmarkethistory?", bittrex::api::Type::PUBLIC,
                                                   "market=", market);
     return res;
-
+    
 }

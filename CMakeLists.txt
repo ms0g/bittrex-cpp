@@ -3,7 +3,7 @@ project(bittrex_cpp)
 
 enable_testing()
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 add_subdirectory(libbittrex)
 add_subdirectory(tests)

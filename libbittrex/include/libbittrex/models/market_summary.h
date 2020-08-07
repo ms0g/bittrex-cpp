@@ -2,8 +2,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-namespace bittrex {
-namespace model {
+namespace bittrex::model {
 
 struct MarketSummary {
     explicit MarketSummary(boost::property_tree::ptree &j) {
@@ -37,5 +36,4 @@ struct MarketSummary {
     std::string created;
 
 };
-} //Namespace model
 } //Namespace bittrex

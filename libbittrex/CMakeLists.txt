@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.7)
-project(bittrex)
 
-set(CMAKE_CXX_STANDARD 14)
+project(bittrex)
 
 if (UNIX AND NOT APPLE)
     FIND_PACKAGE(OpenSSL REQUIRED)

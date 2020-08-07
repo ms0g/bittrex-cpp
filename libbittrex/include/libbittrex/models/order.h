@@ -2,8 +2,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-namespace bittrex {
-namespace model {
+namespace bittrex::model {
 
 struct Order {
     explicit Order(boost::property_tree::ptree &j) {
@@ -57,5 +56,4 @@ struct Order {
     std::string condition_target;
 
 };
-} //Namespace model
 } //Namespace bittrex

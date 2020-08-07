@@ -5,8 +5,7 @@
 #include <boost/property_tree/ptree.hpp>
 
 
-namespace bittrex {
-namespace model {
+namespace bittrex::model {
 
 struct OrderBookEntry {
     explicit OrderBookEntry(boost::property_tree::ptree &j) {
@@ -38,5 +37,4 @@ struct OrderBook {
     std::vector<OrderBookEntry> sell;
 
 };
-} //Namespace model
 } //Namespace bittrex

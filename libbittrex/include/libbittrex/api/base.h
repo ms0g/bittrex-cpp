@@ -39,7 +39,7 @@ public:
     }
 
     template<typename T, typename M, typename ... Params>
-    typename std::enable_if<!util::is_std_vector<T>::value, M>::type
+    typename std::enable_if<!util::is_std_vector<T>::value, T>::type
     api_request(const char *endpoint, const Type &type, Params &&... rest) {
         pt::ptree json_tree;
         _api_call->dispatch(endpoint, type, json_tree, std::forward<Params>(rest)...);

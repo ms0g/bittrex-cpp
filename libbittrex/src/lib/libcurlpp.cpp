@@ -15,8 +15,10 @@ Curl::Curl(): m_curl(curl_easy_init(), [](CURL *ptr) {
     curl_easy_cleanup(ptr);
     }) {
         if (!m_curl) {
-            throw fail("Curl init failed!");}
+            throw fail("Curl init failed!");
+            
         }
+}
 
 void Curl::perform() {
     CURLcode res;

@@ -8,16 +8,15 @@ namespace bittrex {
 
 class fail : public std::exception {
 public:
-    explicit fail(std::string &msg) : msg(msg) {}
-
-    explicit fail(std::string &&msg) : msg(std::move(msg)) {}
+    template <typename T>
+    explicit fail(T &&msg) : _msg(std::forward<T>(msg)) {}
 
     const char *what() const noexcept override {
-        return msg.c_str();
+        return _msg.c_str();
     }
 
 private:
-    std::string msg;
+    std::string _msg;
 
 };
 }

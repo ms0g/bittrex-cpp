@@ -33,7 +33,7 @@ class HttpHeader : public OptionBase {
 public:
     using curl_slist_t = std::unique_ptr<curl_slist, std::function<void(curl_slist *)>>;
 
-    explicit HttpHeader(std::string &&header): m_header(std::move(header)) {
+    explicit HttpHeader(std::string header): m_header(std::move(header)) {
         m_chunk = curl_slist_t{curl_slist_append(m_chunk.get(), m_header.c_str()),
                                [](curl_slist *ptr) {
                                    curl_slist_free_all(ptr);
@@ -71,7 +71,7 @@ private:
  */
 class Url : public OptionBase {
 public:
-    explicit Url(std::string &&url) : m_url(std::move(url)) {};
+    explicit Url(std::string url) : m_url(std::move(url)) {};
 
     inline void setOpt() {
         curl_easy_setopt(m_curlHandle, CURLOPT_URL, m_url.c_str());

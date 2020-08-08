@@ -42,7 +42,7 @@ payload_t make_params(T &&arg, Args &&... rest) {
 namespace bittrex {
 class ApiCall {
 private:
-    static constexpr char *BASE_URL = "https://api.bittrex.com/api/v1.1/";
+    static constexpr char const *BASE_URL = "https://api.bittrex.com/api/v1.1/";
 public:
     explicit ApiCall(std::string key, std::string secret) :
     m_key(std::move(key)),

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <libbittrex/lib/exceptions.h>
-
+#include <algorithm>
 #include <string>
 #include <curl/curl.h>
 #include <vector>

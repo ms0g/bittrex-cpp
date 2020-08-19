@@ -9,7 +9,7 @@
 #include <functional>
 
 static size_t write_callback(char *contents, size_t size, size_t nmemb, void *userdata) {
-    ((std::string *) userdata)->append(contents, size * nmemb);
+    static_cast<std::string *>(userdata)->append(contents, size * nmemb);
     return size * nmemb;
 }
 

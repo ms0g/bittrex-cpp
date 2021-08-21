@@ -5,7 +5,12 @@ BUILDROOT=$(pwd)
 mkdir -p build_temp
 cd build_temp || { echo "Failure:Wrong path"; exit 1; }
 
-NUMPROC=$(nproc)
+unameOut="$(uname -s)"
+if [ "$unameOut" = "Darwin" ]; then
+    NUMPROC=$(sysctl -n hw.ncpu)
+elif [ "$unameOut" = "Linux" ]; then
+    NUMPROC=$(nproc)
+fi
 
 echo "Build root: $BUILDROOT"
 echo "Cores:      $NUMPROC "

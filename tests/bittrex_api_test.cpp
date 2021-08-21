@@ -1,7 +1,5 @@
 #define BOOST_TEST_MODULE BittrexApiTest
 
-#include <iostream>
-#include <vector>
 #include <libbittrex/client.h>
 #include <boost/test/included/unit_test.hpp>
 

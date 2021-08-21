@@ -18,6 +18,13 @@ else ()
     message("Could not find the libCURL library")
 endif ()
 
+FIND_PACKAGE(Boost REQUIRED)
+if (Boost_FOUND)
+    INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
+else ()
+    message("Could not find the Boost library")
+endif ()
+
 file(GLOB_RECURSE HEADERS "include/*")
 file(GLOB_RECURSE SOURCES "src/*")
 set(COMPILATION_UNIT ${HEADERS} ${SOURCES})
@@ -25,6 +32,9 @@ set(COMPILATION_UNIT ${HEADERS} ${SOURCES})
 add_library(${PROJECT_NAME} STATIC ${COMPILATION_UNIT})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/)
+
+# For boost header only libraries
+target_link_libraries(${PROJECT_NAME} Boost::boost)
 
 if (UNIX AND NOT APPLE)
     target_link_libraries(${PROJECT_NAME} ${CURL_LIBRARIES} ${OPENSSL_CRYPTO_LIBRARY})

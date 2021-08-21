@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <boost/property_tree/ptree.hpp>
 
 namespace bittrex::model {
@@ -29,7 +30,117 @@ struct Order {
         is_conditional = j.get<std::string>("IsConditional");
         condition = j.get<std::string>("Condition");
         condition_target = j.get<std::string>("ConditionTarget");
-    };
+    }
+
+    Order(const Order &other) {
+        account_id = other.account_id;
+        order_uuid = other.order_uuid;
+        exchange = other.exchange;
+        type = other.type;
+        quantity = other.quantity;
+        quantity_remaining = other.quantity_remaining;
+        limit = other.limit;
+        reserved = other.reserved;
+        reserve_remaining = other.reserve_remaining;
+        commission_reserved = other.commission_reserved;
+        commission_reserve_remaining = other.commission_reserve_remaining;
+        commission_paid = other.commission_paid;
+        price = other.price;
+        price_per_unit = other.price_per_unit;
+        opened = other.opened;
+        closed = other.closed;
+        is_open = other.is_open;
+        sentinel = other.sentinel;
+        cancel_initiated = other.cancel_initiated;
+        immediate_or_cancel = other.immediate_or_cancel;
+        is_conditional = other.is_conditional;
+        condition = other.condition;
+        condition_target = other.condition_target;
+    }
+
+    Order &operator=(const Order &other) noexcept {
+        if (this != &other) {
+            account_id = other.account_id;
+            order_uuid = other.order_uuid;
+            exchange = other.exchange;
+            type = other.type;
+            quantity = other.quantity;
+            quantity_remaining = other.quantity_remaining;
+            limit = other.limit;
+            reserved = other.reserved;
+            reserve_remaining = other.reserve_remaining;
+            commission_reserved = other.commission_reserved;
+            commission_reserve_remaining = other.commission_reserve_remaining;
+            commission_paid = other.commission_paid;
+            price = other.price;
+            price_per_unit = other.price_per_unit;
+            opened = other.opened;
+            closed = other.closed;
+            is_open = other.is_open;
+            sentinel = other.sentinel;
+            cancel_initiated = other.cancel_initiated;
+            immediate_or_cancel = other.immediate_or_cancel;
+            is_conditional = other.is_conditional;
+            condition = other.condition;
+            condition_target = other.condition_target;
+        }
+        return *this;
+    }
+
+    Order(Order &&other) noexcept {
+        account_id = std::move(other.account_id);
+        order_uuid = std::move(other.order_uuid);
+        exchange = std::move(other.exchange);
+        type = std::move(other.type);
+        quantity = std::move(other.quantity);
+        quantity_remaining = std::move(other.quantity_remaining);
+        limit = std::move(other.limit);
+        reserved = std::move(other.reserved);
+        reserve_remaining = std::move(other.reserve_remaining);
+        commission_reserved = std::move(other.commission_reserved);
+        commission_reserve_remaining = std::move(other.commission_reserve_remaining);
+        commission_paid = std::move(other.commission_paid);
+        price = std::move(other.price);
+        price_per_unit = std::move(other.price_per_unit);
+        opened = std::move(other.opened);
+        closed = std::move(other.closed);
+        is_open = std::move(other.is_open);
+        sentinel = std::move(other.sentinel);
+        cancel_initiated = std::move(other.cancel_initiated);
+        immediate_or_cancel = std::move(other.immediate_or_cancel);
+        is_conditional = std::move(other.is_conditional);
+        condition = std::move(other.condition);
+        condition_target = std::move(other.condition_target);
+    }
+
+    Order &operator=(Order &&other) noexcept {
+        if (this != &other) {
+            account_id = std::move(other.account_id);
+            order_uuid = std::move(other.order_uuid);
+            exchange = std::move(other.exchange);
+            type = std::move(other.type);
+            quantity = std::move(other.quantity);
+            quantity_remaining = std::move(other.quantity_remaining);
+            limit = std::move(other.limit);
+            reserved = std::move(other.reserved);
+            reserve_remaining = std::move(other.reserve_remaining);
+            commission_reserved = std::move(other.commission_reserved);
+            commission_reserve_remaining = std::move(other.commission_reserve_remaining);
+            commission_paid = std::move(other.commission_paid);
+            price = std::move(other.price);
+            price_per_unit = std::move(other.price_per_unit);
+            opened = std::move(other.opened);
+            closed = std::move(other.closed);
+            is_open = std::move(other.is_open);
+            sentinel = std::move(other.sentinel);
+            cancel_initiated = std::move(other.cancel_initiated);
+            immediate_or_cancel = std::move(other.immediate_or_cancel);
+            is_conditional = std::move(other.is_conditional);
+            condition = std::move(other.condition);
+            condition_target = std::move(other.condition_target);
+        }
+        return *this;
+    }
 
     std::string account_id;
     std::string order_uuid;

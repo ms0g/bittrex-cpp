@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <boost/property_tree/ptree.hpp>
 
 namespace bittrex::model {
@@ -23,7 +24,93 @@ struct OpenOrder {
         is_conditional = j.get<std::string>("IsConditional");
         condition = j.get<std::string>("Condition");
         condition_target = j.get<std::string>("ConditionTarget");
-    };
+    }
+
+    OpenOrder(const OpenOrder &other) {
+        uuid = other.uuid;
+        order_uuid = other.order_uuid;
+        exchange = other.exchange;
+        order_type = other.order_type;
+        quantity = other.quantity;
+        quantity_remaining = other.quantity_remaining;
+        limit = other.limit;
+        commission_paid = other.commission_paid;
+        price = other.price;
+        price_per_unit = other.price_per_unit;
+        opened = other.opened;
+        closed = other.closed;
+        cancel_initiated = other.cancel_initiated;
+        immediate_or_cancel = other.immediate_or_cancel;
+        is_conditional = other.is_conditional;
+        condition = other.condition;
+        condition_target = other.condition_target;
+    }
+
+    OpenOrder &operator=(const OpenOrder &other) noexcept {
+        if (this != &other) {
+            uuid = other.uuid;
+            order_uuid = other.order_uuid;
+            exchange = other.exchange;
+            order_type = other.order_type;
+            quantity = other.quantity;
+            quantity_remaining = other.quantity_remaining;
+            limit = other.limit;
+            commission_paid = other.commission_paid;
+            price = other.price;
+            price_per_unit = other.price_per_unit;
+            opened = other.opened;
+            closed = other.closed;
+            cancel_initiated = other.cancel_initiated;
+            immediate_or_cancel = other.immediate_or_cancel;
+            is_conditional = other.is_conditional;
+            condition = other.condition;
+            condition_target = other.condition_target;
+        }
+        return *this;
+    }
+
+    OpenOrder(OpenOrder &&other) noexcept {
+        uuid = std::move(other.uuid);
+        order_uuid = std::move(other.order_uuid);
+        exchange = std::move(other.exchange);
+        order_type = std::move(other.order_type);
+        quantity = std::move(other.quantity);
+        quantity_remaining = std::move(other.quantity_remaining);
+        limit = std::move(other.limit);
+        commission_paid = std::move(other.commission_paid);
+        price = std::move(other.price);
+        price_per_unit = std::move(other.price_per_unit);
+        opened = std::move(other.opened);
+        closed = std::move(other.closed);
+        cancel_initiated = std::move(other.cancel_initiated);
+        immediate_or_cancel = std::move(other.immediate_or_cancel);
+        is_conditional = std::move(other.is_conditional);
+        condition = std::move(other.condition);
+        condition_target = std::move(other.condition_target);
+    }
+
+    OpenOrder &operator=(OpenOrder &&other) noexcept {
+        if (this != &other) {
+            uuid = std::move(other.uuid);
+            order_uuid = std::move(other.order_uuid);
+            exchange = std::move(other.exchange);
+            order_type = std::move(other.order_type);
+            quantity = std::move(other.quantity);
+            quantity_remaining = std::move(other.quantity_remaining);
+            limit = std::move(other.limit);
+            commission_paid = std::move(other.commission_paid);
+            price = std::move(other.price);
+            price_per_unit = std::move(other.price_per_unit);
+            opened = std::move(other.opened);
+            closed = std::move(other.closed);
+            cancel_initiated = std::move(other.cancel_initiated);
+            immediate_or_cancel = std::move(other.immediate_or_cancel);
+            is_conditional = std::move(other.is_conditional);
+            condition = std::move(other.condition);
+            condition_target = std::move(other.condition_target);
+        }
+        return *this;
+    }
 
     std::string uuid;
     std::string order_uuid;

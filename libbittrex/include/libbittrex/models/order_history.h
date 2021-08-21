@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <boost/property_tree/ptree.hpp>
 
 namespace bittrex::model {
@@ -21,6 +22,80 @@ struct OrderHistoryEntry {
         condition_target = j.get<std::string>("ConditionTarget");
         immediate_or_cancel = j.get<std::string>("ImmediateOrCancel");
 
+    }
+
+    OrderHistoryEntry(const OrderHistoryEntry &other) {
+        order_uuid = other.order_uuid;
+        exchange = other.exchange;
+        time_stamp = other.time_stamp;
+        order_type = other.order_type;
+        limit = other.limit;
+        quantity = other.quantity;
+        quantity_remaining = other.quantity_remaining;
+        commission = other.commission;
+        price = other.price;
+        price_per_unit = other.price_per_unit;
+        is_conditional = other.is_conditional;
+        condition = other.condition;
+        condition_target = other.condition_target;
+        immediate_or_cancel = other.immediate_or_cancel;
+    }
+
+    OrderHistoryEntry &operator=(const OrderHistoryEntry &other) noexcept {
+        if (this == &other) {
+            order_uuid = other.order_uuid;
+            exchange = other.exchange;
+            time_stamp = other.time_stamp;
+            order_type = other.order_type;
+            limit = other.limit;
+            quantity = other.quantity;
+            quantity_remaining = other.quantity_remaining;
+            commission = other.commission;
+            price = other.price;
+            price_per_unit = other.price_per_unit;
+            is_conditional = other.is_conditional;
+            condition = other.condition;
+            condition_target = other.condition_target;
+            immediate_or_cancel = other.immediate_or_cancel;
+        }
+        return *this;
+    }
+
+    OrderHistoryEntry(OrderHistoryEntry &&other) noexcept {
+        order_uuid = std::move(other.order_uuid);
+        exchange = std::move(other.exchange);
+        time_stamp = std::move(other.time_stamp);
+        order_type = std::move(other.order_type);
+        limit = std::move(other.limit);
+        quantity = std::move(other.quantity);
+        quantity_remaining = std::move(other.quantity_remaining);
+        commission = std::move(other.commission);
+        price = std::move(other.price);
+        price_per_unit = std::move(other.price_per_unit);
+        is_conditional = std::move(other.is_conditional);
+        condition = std::move(other.condition);
+        condition_target = std::move(other.condition_target);
+        immediate_or_cancel = std::move(other.immediate_or_cancel);
+    }
+
+    OrderHistoryEntry &operator=(OrderHistoryEntry &&other) noexcept {
+        if (this == &other) {
+            order_uuid = std::move(other.order_uuid);
+            exchange = std::move(other.exchange);
+            time_stamp = std::move(other.time_stamp);
+            order_type = std::move(other.order_type);
+            limit = std::move(other.limit);
+            quantity = std::move(other.quantity);
+            quantity_remaining = std::move(other.quantity_remaining);
+            commission = std::move(other.commission);
+            price = std::move(other.price);
+            price_per_unit = std::move(other.price_per_unit);
+            is_conditional = std::move(other.is_conditional);
+            condition = std::move(other.condition);
+            condition_target = std::move(other.condition_target);
+            immediate_or_cancel = std::move(other.immediate_or_cancel);
+        }
+        return *this;
     }
 
     std::string order_uuid;

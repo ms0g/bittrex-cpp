@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <boost/property_tree/ptree.hpp>
 
 namespace bittrex::model {
@@ -19,7 +20,58 @@ struct MarketSummary {
         open_sell_orders = j.get<std::string>("OpenSellOrders");
         prev_day = j.get<std::string>("PrevDay");
         created = j.get<std::string>("Created");
-    };
+    }
+
+    MarketSummary(const MarketSummary &other) {
+        market_name = other.market_name;
+        high = other.high;
+        low = other.low;
+        volume = other.volume;
+        last = other.last;
+        base_volume = other.base_volume;
+        time_stamp = other.time_stamp;
+        bid = other.bid;
+        ask = other.ask;
+        open_buy_orders = other.open_buy_orders;
+        open_sell_orders = other.open_sell_orders;
+        prev_day = other.prev_day;
+        created = other.created;
+    }
+
+    MarketSummary(MarketSummary &&other) noexcept {
+        market_name = std::move(other.market_name);
+        high = std::move(other.high);
+        low = std::move(other.low);
+        volume = std::move(other.volume);
+        last = std::move(other.last);
+        base_volume = std::move(other.base_volume);
+        time_stamp = std::move(other.time_stamp);
+        bid = std::move(other.bid);
+        ask = std::move(other.ask);
+        open_buy_orders = std::move(other.open_buy_orders);
+        open_sell_orders = std::move(other.open_sell_orders);
+        prev_day = std::move(other.prev_day);
+        created = std::move(other.created);
+    }
+
+    MarketSummary &operator=(MarketSummary &&other) noexcept {
+        if (this != &other) {
+            market_name = std::move(other.market_name);
+            high = std::move(other.high);
+            low = std::move(other.low);
+            volume = std::move(other.volume);
+            last = std::move(other.last);
+            base_volume = std::move(other.base_volume);
+            time_stamp = std::move(other.time_stamp);
+            bid = std::move(other.bid);
+            ask = std::move(other.ask);
+            open_buy_orders = std::move(other.open_buy_orders);
+            open_sell_orders = std::move(other.open_sell_orders);
+            prev_day = std::move(other.prev_day);
+            created = std::move(other.created);
+        }
+        return *this;
+    }
 
     std::string market_name;
     std::string high;

@@ -1,5 +1,5 @@
 # bittrex-cpp
-[![Build Status](https://travis-ci.org/msamigurpinar/bittrex-cpp.svg?branch=master)](https://travis-ci.org/msamigurpinar/bittrex-cpp)
+[![Build Status](https://app.travis-ci.com/msamigurpinar/bittrex-cpp.svg?branch=master)](https://app.travis-ci.com/msamigurpinar/bittrex-cpp.svg?branch=master)
 
 Bittrex C++ API Client Library
 

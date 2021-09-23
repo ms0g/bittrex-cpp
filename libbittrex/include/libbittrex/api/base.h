@@ -30,10 +30,9 @@ public:
 
         _api_call->dispatch(endpoint, type, json_tree, std::forward<Params_t>(rest)...);
 
-        BOOST_FOREACH(pt::ptree::value_type &child,
-                      json_tree.get_child("result")) {
-                        res_arr.emplace_back(M(child.second));
-                    }
+        BOOST_FOREACH(pt::ptree::value_type &child, json_tree.get_child("result")) {
+                    res_arr.emplace_back(M(child.second));
+        }
 
         return res_arr;
     }
